@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="drab">#324755</color>
+    <color name="sage">#87BCBF</color>
+    <color name="rust">#D97D54</color>
+    <color name="onyx">#1B1C20</color>
+    <color name="slate">#6E8CA0</color>
+    <color name="snow">#FFFFFF</color>
+    <color name="ice">#F0F3F4</color>
+    <color name="steel">#C8D1D3</color>
+    <color name="sand">#B9B0A2</color>
+</resources>
