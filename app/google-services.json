@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1083531644110",
+    "firebase_url": "https://fitwithfriends-8af74.firebaseio.com",
+    "project_id": "fitwithfriends-8af74",
+    "storage_bucket": "fitwithfriends-8af74.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083531644110:android:8d0e2841a473068b",
+        "android_client_info": {
+          "package_name": "com.kryptgames.health.fitwithfriends"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1083531644110-23l63au5db6ub190epgo3petplrmhjrc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kryptgames.health.fitwithfriends",
+            "certificate_hash": "2d0c76a99695f0de13428920737afc51c835a669"
+          }
+        },
+        {
+          "client_id": "1083531644110-8s5hag68f25labnse6pa31i7jfsd8q8k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhLNMbx5d0Lo0M0t9VNQQjwJu9jwW5rGQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1083531644110-8s5hag68f25labnse6pa31i7jfsd8q8k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
