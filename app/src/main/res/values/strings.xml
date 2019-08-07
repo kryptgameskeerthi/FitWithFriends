@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">FIT WITH FRIENDS</string>
+    <string name="app_name">Fit With Friends</string>
+    <string name="app_name1">Fit With</string>
+    <string name="app_name2">Friends</string>
+    <string name="app_tag1">Get fit with friends</string>
+    <string name="app_tag2">With goal a driven approach</string>
 </resources>
