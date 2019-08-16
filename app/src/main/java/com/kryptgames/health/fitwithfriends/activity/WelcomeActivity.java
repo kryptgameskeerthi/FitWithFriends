@@ -10,13 +10,13 @@ import com.kryptgames.health.fitwithfriends.R;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    private static final int SPLASH_TIME_OUT = 3000;// 3s
+    private static final int SPLASH_TIME_OUT = 300000;// 3s
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.activity_welcome1);
 
         new Handler().postDelayed(new Runnable() {
             @Override
