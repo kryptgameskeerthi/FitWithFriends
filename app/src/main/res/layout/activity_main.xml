@@ -125,6 +125,25 @@
 
         </LinearLayout>
 
+        <EditText
+            android:id="@+id/emailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/edittext"
+            android:hint="Email Address"
+            android:fontFamily="@font/robotolight"
+            android:padding="5dip"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:inputType="text"
+            android:maxLength="15"/>
+
+
+
         <TextView
             android:id="@+id/mDisplayDate"
             android:layout_width="match_parent"

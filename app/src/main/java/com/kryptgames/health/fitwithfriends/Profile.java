@@ -8,6 +8,7 @@ public class Profile {
      private String dob;
      private String height;
      private String weight;
+     private String email;
 
     public Profile(){
 
@@ -37,13 +38,18 @@ public class Profile {
         return weight;
     }
 
-    public Profile(String name, String lastName, String genre, String dob, String height, String weight) {
+    public String getEmail() {
+        return email;
+    }
+
+    public Profile(String name, String lastName, String genre, String dob, String height, String weight, String email) {
         this.name = name;
         this.lastName = lastName;
         this.genre = genre;
         this.dob = dob;
         this.height = height;
         this.weight = weight;
+        this.email = email;
 
 
     }

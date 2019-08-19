@@ -12,9 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 
 import android.view.View;
@@ -28,6 +30,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,6 +54,8 @@ public class CreateProfile extends AppCompatActivity {
     public static final String TAG = "MainActivity";
     private static final int PICK_IMAGE = 1;
 
+    private String valid_email;
+
     TextView mDisplayDate;
 
     EditText edName,edLastName;
@@ -64,7 +71,10 @@ public class CreateProfile extends AppCompatActivity {
     Spinner weightSpinner;
 
     Uri imageUri;
-    TextView tv;
+    EditText emailAddress;
+
+    private FirebaseAuth mAuth;
+    FirebaseUser currentUser;
 
 
 
@@ -74,7 +84,19 @@ public class CreateProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initilizeUI();
+
+        FirebaseApp.initializeApp(getApplicationContext());
+
+        mAuth = FirebaseAuth.getInstance();
+
+        currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+
+
+
         profilePic = findViewById(R.id.profilePic);
+        emailAddress = findViewById(R.id.emailAddress);
 
         edit = findViewById(R.id.edit);
 
@@ -110,6 +132,7 @@ public class CreateProfile extends AppCompatActivity {
                     Log.e("Get Data", profile.getDob());
                     Log.e("Get Data", profile.getHeight());
                     Log.e("Get Data", profile.getWeight());
+                    Log.e("Get Data", profile.getLastName());
 
 
                 }
@@ -280,6 +303,68 @@ public class CreateProfile extends AppCompatActivity {
         };
     }
 
+    private void initilizeUI() {
+
+
+        emailAddress = (EditText) findViewById(R.id.emailAddress);
+
+        emailAddress.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before,
+                                      int count) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+
+                // TODO Auto-generated method stub
+                Is_Valid_Email(emailAddress); // pass your EditText Obj here.
+            }
+
+            public void Is_Valid_Email(EditText edt) {
+                if (edt.getText().toString() == null) {
+                    edt.setError("Invalid Email Address");
+                    valid_email = null;
+                } else if (isEmailValid(edt.getText().toString()) == false) {
+                    edt.setError("Invalid Email Address");
+                    valid_email = null;
+                } else {
+                    valid_email = edt.getText().toString();
+                }
+            }
+
+            boolean isEmailValid(CharSequence email) {
+                return android.util.Patterns.EMAIL_ADDRESS.matcher(email)
+                        .matches();
+            } // end of TextWatcher (email)
+        });
+
+
+
+    }
+
+    private void updateUI(FirebaseUser currentUser) {
+
+        if (currentUser!= null) {
+            Toast.makeText(CreateProfile.this, "HOLA" + currentUser.getEmail(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(CreateProfile.this, "SORRY I DONT KNOW U YET"  , Toast.LENGTH_SHORT).show();
+
+        }
+
+    }
+
 
     private void profileCreated() {
 
@@ -289,13 +374,14 @@ public class CreateProfile extends AppCompatActivity {
         String dob = mDisplayDate.getText().toString();
         String height = heightSpinner.getSelectedItem().toString();
         String weight = weightSpinner.getSelectedItem().toString();
+        String email = emailAddress.getText().toString();
 
 
         if (!TextUtils.isEmpty(name)) {
 
             String key = databaseReference.push().getKey();
 
-            Profile profile = new Profile(name, lastName, genre, dob,height, weight);
+            Profile profile = new Profile(name, lastName, genre, dob,height, weight, email);
 
             databaseReference.child(key).setValue(profile);
 
