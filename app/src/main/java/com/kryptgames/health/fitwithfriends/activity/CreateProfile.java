@@ -1,4 +1,4 @@
-package com.kryptgames.health.fitwithfriends;
+package com.kryptgames.health.fitwithfriends.activity;
 
 import android.app.DatePickerDialog;
 
@@ -18,7 +18,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -35,7 +34,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.snapshot.Index;
+import com.kryptgames.health.fitwithfriends.Profile;
+import com.kryptgames.health.fitwithfriends.R;
 
 import java.io.IOException;
 import java.util.ArrayList;
