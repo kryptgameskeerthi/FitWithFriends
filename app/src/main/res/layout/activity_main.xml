@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f0f3f4"
-    tools:context=".CreateProfile"
+    android:background="@color/ice"
+    tools:context=".activity.MainActivity"
     >
 
     <FrameLayout
         android:id="@+id/frameLayout2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_width="@dimen/my_dimen"
+        android:layout_height="@dimen/my_dimen"
+        android:layout_marginStart="@dimen/m_dimen"
+        android:layout_marginLeft="@dimen/m_dimen"
+        android:layout_marginTop="@dimen/y_dimen"
+        android:layout_marginEnd="@dimen/m_dimen"
+        android:layout_marginRight="@dimen/m_dimen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_goneMarginTop="30dp">
+        app:layout_goneMarginTop="@dimen/y_dimen">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profilePic"
@@ -32,8 +32,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/edit"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/t_dimen"
+            android:layout_height="@dimen/t_dimen"
             android:layout_gravity="bottom|right"
             android:background="@drawable/circle"
             android:src="@mipmap/ic_create"
@@ -48,12 +48,12 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="@dimen/t_dimen"
+        android:layout_marginLeft="@dimen/k_dimen"
+        android:layout_marginTop="@dimen/m_dimen"
+        android:layout_marginEnd="@dimen/t_dimen"
+        android:layout_marginRight="@dimen/m_dimen"
+        android:layout_marginBottom="@dimen/h_dimen"
         android:background="@drawable/shape"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/save"
@@ -65,43 +65,43 @@
         <EditText
             android:id="@+id/edName"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_height="@dimen/r_dimen"
+            android:layout_marginStart="@dimen/h_dimen"
+            android:layout_marginLeft="@dimen/l_dimen"
+            android:layout_marginTop="@dimen/h_dimen"
+            android:layout_marginEnd="@dimen/h_dimen"
             android:background="@drawable/edittext"
             android:hint="First Name"
-            android:padding="5dip"
+            android:padding="@dimen/c_dimen"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="@dimen/h_dimen"
             android:inputType="text"
             android:maxLength="15"/>
 
         <EditText
             android:id="@+id/edLastName"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_height="@dimen/r_dimen"
+            android:layout_marginStart="@dimen/h_dimen"
+            android:layout_marginLeft="@dimen/l_dimen"
+            android:layout_marginTop="@dimen/h_dimen"
+            android:layout_marginEnd="@dimen/h_dimen"
             android:background="@drawable/edittext"
             android:hint="Last Name"
-            android:padding="5dip"
+            android:padding="@dimen/c_dimen"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="@dimen/h_dimen"
             android:inputType="text"
             android:maxLength="15"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="8dp"
+            android:layout_height="@dimen/r_dimen"
+            android:layout_marginStart="@dimen/h_dimen"
+            android:layout_marginLeft="@dimen/k_dimen"
+            android:layout_marginTop="@dimen/h_dimen"
+            android:layout_marginEnd="@dimen/h_dimen"
+            android:layout_marginRight="@dimen/m_dimen"
             android:background="@drawable/spinner"
             android:orientation="horizontal">
 
@@ -115,7 +115,7 @@
                 android:gravity="center"
                 android:spinnerMode="dropdown"
                 android:textAlignment="center"
-                android:textSize="24dp">
+                android:textSize="@dimen/g_dimen">
 
             </androidx.appcompat.widget.AppCompatSpinner>
 
@@ -125,28 +125,28 @@
         <TextView
             android:id="@+id/mDisplayDate"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_height="@dimen/r_dimen"
+            android:layout_marginStart="@dimen/h_dimen"
+            android:layout_marginLeft="@dimen/l_dimen"
+            android:layout_marginTop="@dimen/h_dimen"
+            android:layout_marginEnd="@dimen/h_dimen"
             android:background="@drawable/edittext"
             android:hint="Enter Date Of Birth"
-            android:padding="5dp"
+            android:padding="@dimen/c_dimen"
             android:textAlignment="center"
-            android:textSize="20dp"
+            android:textSize="@dimen/h_dimen"
             />
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="12dp"
+            android:layout_height="@dimen/r_dimen"
+            android:layout_marginStart="@dimen/h_dimen"
+            android:layout_marginLeft="@dimen/k_dimen"
+            android:layout_marginTop="@dimen/h_dimen"
+            android:layout_marginEnd="@dimen/h_dimen"
+            android:layout_marginRight="@dimen/m_dimen"
+            android:layout_marginBottom="@dimen/l_dimen"
             android:background="@drawable/spinner"
             android:orientation="horizontal">
 
@@ -160,7 +160,7 @@
                 android:gravity="center"
                 android:spinnerMode="dropdown"
                 android:textAlignment="center"
-                android:textSize="24dp">
+                android:textSize="@dimen/g_dimen">
 
             </androidx.appcompat.widget.AppCompatSpinner>
 
@@ -170,13 +170,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="12dp"
+            android:layout_height="@dimen/r_dimen"
+            android:layout_marginStart="@dimen/h_dimen"
+            android:layout_marginLeft="@dimen/k_dimen"
+            android:layout_marginTop="@dimen/b_dimen"
+            android:layout_marginEnd="@dimen/h_dimen"
+            android:layout_marginRight="@dimen/m_dimen"
+            android:layout_marginBottom="@dimen/l_dimen"
             android:background="@drawable/spinner"
             android:orientation="horizontal">
 
@@ -189,7 +189,7 @@
                 android:gravity="center"
                 android:spinnerMode="dropdown"
                 android:textAlignment="center"
-                android:textSize="24dp">
+                android:textSize="@dimen/g_dimen">
 
             </androidx.appcompat.widget.AppCompatSpinner>
 
@@ -204,14 +204,14 @@
         android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginEnd="140dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="@dimen/f_dimen"
+        android:layout_marginLeft="@dimen/l_dimen"
+        android:layout_marginEnd="@dimen/f_dimen"
+        android:layout_marginRight="@dimen/m_dimen"
+        android:layout_marginBottom="@dimen/h_dimen"
         android:background="@drawable/button"
         android:text="Save"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/snow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.527"

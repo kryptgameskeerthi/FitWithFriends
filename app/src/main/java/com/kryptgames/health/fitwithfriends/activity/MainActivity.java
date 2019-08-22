@@ -1,4 +1,4 @@
-package com.kryptgames.health.fitwithfriends;
+package com.kryptgames.health.fitwithfriends.activity;
 
 import android.app.DatePickerDialog;
 
@@ -18,7 +18,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -35,7 +34,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.snapshot.Index;
+import com.kryptgames.health.fitwithfriends.Profile;
+import com.kryptgames.health.fitwithfriends.R;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class CreateProfile extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
     private static final int PICK_IMAGE = 1;
@@ -127,6 +127,9 @@ public class CreateProfile extends AppCompatActivity {
         edName = findViewById(R.id.edName);
         edLastName = findViewById(R.id.edLastName);
 
+
+
+
         edName.setFilters(new InputFilter[] {
                 new InputFilter() {
                     public CharSequence filter(CharSequence src, int start,
@@ -171,7 +174,7 @@ public class CreateProfile extends AppCompatActivity {
         weight.add(0, "Weight");
 
 
-        for (int i = 70; i < 200; i++) {
+        for (int i = 2; i < 200; i++) {
             String item = String.valueOf(i + " " + "Kgs");
             weight.add(item);
 
@@ -201,7 +204,7 @@ public class CreateProfile extends AppCompatActivity {
         heightSpinner.setAdapter(meterAdapter);
 
 
-        List<String> Gender = new ArrayList<>();
+       /* List<String> Gender = new ArrayList<>();
         Gender.add(0, "Gender");
         Gender.add("Male");
         Gender.add("Female");
@@ -211,7 +214,7 @@ public class CreateProfile extends AppCompatActivity {
         ArrayAdapter<String> dataAdapter;
         dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Gender);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerGender.setAdapter(dataAdapter);
+        spinnerGender.setAdapter(dataAdapter);*/
 
 
 
@@ -261,7 +264,7 @@ public class CreateProfile extends AppCompatActivity {
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DATE);
 
-                DatePickerDialog dialog = new DatePickerDialog(CreateProfile.this, android.R.style.Theme_Holo_Dialog_MinWidth,mDateSetListener, year, month, day);
+                DatePickerDialog dialog = new DatePickerDialog(MainActivity.this, android.R.style.Theme_Holo_Dialog_MinWidth,mDateSetListener, year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
