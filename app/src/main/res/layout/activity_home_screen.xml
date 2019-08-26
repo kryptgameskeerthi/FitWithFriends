@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/drab"
+    android:background="@color/ice"
     tools:context=".activity.HomeScreenActivity">
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fwf_button_fab"
