@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="drawer_elevation"> 16dp </dimen>
+    <dimen name="fab_elevation"> 12dp </dimen>
+    <dimen name="fab_pressed_translation"> 4dp </dimen>
+    <dimen name="tab_padding"> 4dp </dimen>
+    <dimen name="menu_margin_start"> 4dp </dimen>
+    <dimen name="image_padding_top"> 8dp </dimen>
+    <dimen name="image_padding_bottom"> 8dp </dimen>
+    <dimen name="image_padding">4dp</dimen>
+    <dimen name="image_margin_start"> 68dp </dimen>
+    <dimen name="toolbar_textsize">20sp</dimen>
+    <dimen name="toolbar_linetwo_margintop">28dp</dimen>
+    <dimen name="toolbar_lineone_margintop">4dp</dimen>
+    <dimen name="toolbar_lineone_marginbottom">4dp</dimen>
+    <dimen name="notification_marginend">4dp</dimen>
+    <dimen name="notification_textsize">8sp</dimen>
+    <dimen name="notifcation_count_padding_start">4dp</dimen>
+    <dimen name="notification_count_padding_end">4dp</dimen>
+    <dimen name="notification_count_margin_start">-16dp</dimen>
+    <dimen name="notification_count_margin_top">-12dp</dimen>
+    <dimen name="notification_count_width">16dp</dimen>
+    <dimen name="notification_count_height">16dp</dimen>
+
+</resources>

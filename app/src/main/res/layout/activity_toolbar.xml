@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <ImageButton
+        android:id="@+id/fwf_imagebutton_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/fwf_imagebutton_notifications"
+        android:layout_gravity="center|start"
+        android:layout_marginStart="@dimen/menu_margin_start"
+        android:background="@color/snow"
+        android:src="@drawable/ic_homescreen_menudark_icon" />
+
+    <ImageView
+        android:id="@+id/fwf_imageview_applogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/image_margin_start"
+        android:layout_toEndOf="@+id/fwf_imagebutton_menu"
+        android:padding="@dimen/image_padding"
+        android:paddingTop="@dimen/image_padding_top"
+        android:paddingBottom="@dimen/image_padding_bottom"
+        app:srcCompat="@drawable/ic_dummy_logo" />
+
+    <TextView
+        android:id="@+id/fwf_textview_appnamelineone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_toEndOf="@+id/fwf_imageview_applogo"
+        android:layout_marginTop="@dimen/toolbar_lineone_margintop"
+        android:layout_marginBottom="@dimen/toolbar_lineone_marginbottom"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/app_name1"
+        android:textColor="@color/rust"
+        android:textSize="@dimen/toolbar_textsize" />
+    <TextView
+        android:id="@+id/fwf_textview_appnamelinetwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/toolbar_linetwo_margintop"
+        android:fontFamily="sans-serif-smallcaps"
+        android:layout_toEndOf="@+id/fwf_imageview_applogo"
+        android:gravity="center"
+        android:text="@string/app_name2"
+        android:textColor="@color/rust"
+        android:textSize="@dimen/toolbar_textsize"
+        />
+    <ImageButton
+        android:id="@+id/fwf_imagebutton_notifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/snow"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBaseline="@+id/fwf_textview_appnamelineone"
+        android:layout_marginEnd="@dimen/notification_marginend"
+        android:src="@drawable/ic_homescreen_inboxdark_icon"
+         />
+
+    <TextView
+        android:id="@+id/fwf_textview_notificationcount"
+        android:layout_width="@dimen/notification_count_width"
+        android:layout_height="@dimen/notification_count_height"
+        android:layout_alignTop="@+id/fwf_imagebutton_notifications"
+        android:layout_marginStart="@dimen/notification_count_margin_start"
+        android:layout_marginTop="@dimen/notification_count_margin_top"
+        android:layout_toEndOf="@+id/fwf_imagebutton_notifications"
+        android:background="@drawable/notification_count_circle"
+        android:text="@string/notification_count"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textColor="@color/snow"
+        android:textSize="@dimen/notification_textsize"
+        android:maxLines="1"/>
+
+</RelativeLayout>

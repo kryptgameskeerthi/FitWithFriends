@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/drab"
+    tools:context=".activity.HomeScreenActivity">
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fwf_button_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:elevation="@dimen/fab_elevation"
+        app:fabSize="auto"
+        android:background="@android:drawable/ic_input_add"
+        app:backgroundTint="@color/rust"
+        app:pressedTranslationZ="@dimen/fab_pressed_translation"
+        app:layout_anchor="@id/fwf_navigationview_bottomnavigationbar"
+        app:layout_anchorGravity="top|center"
+        />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/fwf_navigationview_bottomnavigationbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:fitsSystemWindows="true"
+        android:background="@color/snow"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/navigation"
+        android:theme="@style/BottomNavigationTheme"
+        />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/fwf_layout_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/fwf_layout_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/snow"
+            app:tabBackground="@drawable/tab_selector"
+            app:tabPadding="@dimen/tab_padding" />
+    </androidx.viewpager.widget.ViewPager>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
