@@ -12,4 +12,9 @@
     <string name="navigation">fwf_navigationview_navigationbar</string>
     <string name="notification_count">0</string>
 
+    <array name="Gender">
+        <item>Male</item>
+        <item>Female</item>
+    </array>
+
 </resources>
