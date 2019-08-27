@@ -44,9 +44,10 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class CreateProfile extends AppCompatActivity {
+public class CreateProfileActivity extends AppCompatActivity {
 
-    public static final String TAG = "MainActivity";
+    public static final String TAG = "CreateProfileActivity";
+
     private static final int PICK_IMAGE = 1;
 
     TextView mDisplayDate;
@@ -171,7 +172,7 @@ public class CreateProfile extends AppCompatActivity {
         weight.add(0, "Weight");
 
 
-        for (int i = 70; i < 200; i++) {
+        for (int i = 20; i < 200; i++) {
             String item = String.valueOf(i + " " + "Kgs");
             weight.add(item);
 
@@ -261,7 +262,7 @@ public class CreateProfile extends AppCompatActivity {
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DATE);
 
-                DatePickerDialog dialog = new DatePickerDialog(CreateProfile.this, android.R.style.Theme_Holo_Dialog_MinWidth,mDateSetListener, year, month, day);
+                DatePickerDialog dialog = new DatePickerDialog(CreateProfileActivity.this, android.R.style.Theme_Holo_Dialog_MinWidth,mDateSetListener, year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
