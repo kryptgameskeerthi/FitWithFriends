@@ -3,6 +3,7 @@ package com.kryptgames.health.fitwithfriends.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.view.View;
@@ -94,8 +95,9 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                         Toast.makeText(getApplicationContext(),"User successfully signed in",Toast.LENGTH_SHORT).show();
-                        //using if-else loop here,if user is already registered we can navigate him to homepage or else to profile creation page
-
+                            Intent homeIntent = new Intent(PhoneAuthenticationActivity.this, CreateProfileActivity.class);
+                            startActivity(homeIntent);
+                            finish();
                         } else {
                             Toast.makeText(getApplicationContext(), "You have entered incorrect OTP", Toast.LENGTH_SHORT).show();
                         }

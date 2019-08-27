@@ -302,6 +302,10 @@ public class CreateProfileActivity extends AppCompatActivity {
 
             Toast.makeText(this, "Profile Created", Toast.LENGTH_SHORT).show();
 
+            Intent homeIntent = new Intent(CreateProfileActivity.this, HomeScreenActivity.class);
+            startActivity(homeIntent);
+            finish();
+
         } else {
             Toast.makeText(this, "No Field should be Empty", Toast.LENGTH_SHORT).show();
         }
