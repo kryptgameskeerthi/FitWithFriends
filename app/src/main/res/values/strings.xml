@@ -9,4 +9,7 @@
     <string name="fwf_button_otp">Request OTP</string>
     <string name="fwf_text_signUP">Sign Up/Login</string>
     <string name="todo">TODO</string>
+    <string name="navigation">fwf_navigationview_navigationbar</string>
+    <string name="notification_count">0</string>
+
 </resources>

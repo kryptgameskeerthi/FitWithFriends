@@ -27,4 +27,14 @@
         <item name="android:shadowDy">1</item>
         <item name="android:shadowRadius">1</item>
     </style>
+
+    <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/rust</item>
+        <item name="android:textColorSecondary">@color/mdtp_transparent_black</item>
+    </style>
+
+
+
+
+
 </resources>
