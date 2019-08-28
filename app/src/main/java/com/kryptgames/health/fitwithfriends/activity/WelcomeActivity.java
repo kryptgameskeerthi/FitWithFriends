@@ -30,7 +30,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private Class<?> getNextScreen() {
-        return PhoneAuthenticationActivity.class;
+        return CreateProfileActivity.class;
         // For Now Just adding the static admin screen but need to build the Logic to select appropriate screen
     }
 }
