@@ -122,6 +122,22 @@
 
         </LinearLayout>
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/r_dimen"
+            android:layout_marginStart="@dimen/h_dimen"
+            android:layout_marginLeft="@dimen/l_dimen"
+            android:layout_marginTop="@dimen/h_dimen"
+            android:layout_marginEnd="@dimen/h_dimen"
+            android:background="@drawable/edittext"
+            android:hint="Email Address"
+            android:padding="@dimen/c_dimen"
+            android:textAlignment="center"
+            android:inputType="text"
+            android:textSize="@dimen/h_dimen"
+            android:id="@+id/emailAddress"/>
+
+
         <TextView
             android:id="@+id/mDisplayDate"
             android:layout_width="match_parent"

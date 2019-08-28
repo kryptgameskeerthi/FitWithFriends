@@ -13,9 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 
 import android.view.View;
@@ -31,6 +33,9 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -72,7 +77,14 @@ public class MainActivity extends AppCompatActivity {
     Spinner weightSpinner;
 
     Uri imageUri;
-    TextView tv;
+    EditText emailAddress;
+
+
+    private FirebaseAuth mAuth;
+    FirebaseUser currentUser;
+
+
+    private String valid_email;
 
     FirebaseStorage storage;
     StorageReference storageReference;
@@ -90,7 +102,36 @@ public class MainActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
+
+        InputFilter alphaFilter[] = new InputFilter[]{ new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence src, int start, int end, Spanned dest, int dstart, int dend)
+            {
+                if (src.equals("")) { // for backspace
+                    return src;
+                }
+                if (src.toString().matches("[a-zA-Z ]+")) {
+                    return src;
+                }
+                return "";
+            }
+        }};
+
+        initilizeUI();
+
+        FirebaseApp.initializeApp(getApplicationContext());
+
+        mAuth = FirebaseAuth.getInstance();
+
+        currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+
+
+
+
         profilePic = findViewById(R.id.profilePic);
+
+        emailAddress = findViewById(R.id.emailAddress);
 
         edit = findViewById(R.id.edit);
 
@@ -143,41 +184,8 @@ public class MainActivity extends AppCompatActivity {
         edName = findViewById(R.id.edName);
         edLastName = findViewById(R.id.edLastName);
 
-
-
-
-        edName.setFilters(new InputFilter[] {
-                new InputFilter() {
-                    public CharSequence filter(CharSequence src, int start,
-                                               int end, Spanned dst, int dstart, int dend) {
-                        if(src.equals("")){ // for backspace
-                            return src;
-                        }
-                        if(src.toString().matches("[a-zA-Z ]+")){
-                            return src;
-                        }
-                        return "";
-                    }
-                }
-        });
-
-
-        edLastName.setFilters(new InputFilter[] {
-                new InputFilter() {
-                    public CharSequence filter(CharSequence src, int start,
-                                               int end, Spanned dst, int dstart, int dend) {
-                        if(src.equals("")){ // for backspace
-                            return src;
-                        }
-                        if(src.toString().matches("[a-zA-Z ]+")){
-                            return src;
-                        }
-                        return "";
-                    }
-                }
-        });
-
-
+        edName.setFilters(alphaFilter);
+        edLastName.setFilters(alphaFilter);
 
 
 
@@ -220,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
         heightSpinner.setAdapter(meterAdapter);
 
 
-       /* List<String> Gender = new ArrayList<>();
+        List<String> Gender = new ArrayList<>();
         Gender.add(0, "Gender");
         Gender.add("Male");
         Gender.add("Female");
@@ -230,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> dataAdapter;
         dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Gender);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerGender.setAdapter(dataAdapter);*/
+        spinnerGender.setAdapter(dataAdapter);
 
 
 
@@ -300,6 +308,18 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
+    private void updateUI(FirebaseUser currentUser) {
+
+        if (currentUser != null) {
+            Toast.makeText(MainActivity.this, "HOLA" + currentUser.getEmail(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(MainActivity.this, "SORRY I DONT KNOW U YET", Toast.LENGTH_SHORT).show();
+
+        }
+
+
+    }
+
 
     private void profileCreated() {
 
@@ -340,6 +360,57 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
+    private void initilizeUI() {
+        // TODO Auto-generated method stub
+
+        emailAddress = (EditText) findViewById(R.id.emailAddress);
+
+        emailAddress.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before,
+                                      int count) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+
+                // TODO Auto-generated method stub
+                Is_Valid_Email(emailAddress); // pass your EditText Obj here.
+            }
+
+            public void Is_Valid_Email(EditText edt) {
+                if (edt.getText().toString() == null) {
+                    edt.setError("Invalid Email Address");
+                    valid_email = null;
+                } else if (isEmailValid(edt.getText().toString()) == false) {
+                    edt.setError("Invalid Email Address");
+                    valid_email = null;
+                } else {
+                    valid_email = edt.getText().toString();
+                }
+            }
+
+            boolean isEmailValid(CharSequence email) {
+                return android.util.Patterns.EMAIL_ADDRESS.matcher(email)
+                        .matches();
+            } // end of TextWatcher (email)
+        });
+
+    }
+
 
     private void uploadImage() {
 
