@@ -8,230 +8,220 @@
     tools:context=".activity.MainActivity"
     >
 
-    <FrameLayout
-        android:id="@+id/frameLayout2"
-        android:layout_width="@dimen/my_dimen"
-        android:layout_height="@dimen/my_dimen"
-        android:layout_marginStart="@dimen/m_dimen"
-        android:layout_marginLeft="@dimen/m_dimen"
-        android:layout_marginTop="@dimen/y_dimen"
-        android:layout_marginEnd="@dimen/m_dimen"
-        android:layout_marginRight="@dimen/m_dimen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_goneMarginTop="@dimen/y_dimen">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profilePic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/harryw" />
 
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/edit"
-            android:layout_width="@dimen/t_dimen"
-            android:layout_height="@dimen/t_dimen"
-            android:layout_gravity="bottom|right"
-            android:background="@drawable/circle"
-            android:src="@mipmap/ic_create"
-
-            />
-
-
-
-    </FrameLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/t_dimen"
-        android:layout_marginLeft="@dimen/k_dimen"
-        android:layout_marginTop="@dimen/m_dimen"
-        android:layout_marginEnd="@dimen/t_dimen"
-        android:layout_marginRight="@dimen/m_dimen"
-        android:layout_marginBottom="@dimen/h_dimen"
-        android:background="@drawable/shape"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/save"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
-
-        <EditText
-            android:id="@+id/edName"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/r_dimen"
-            android:layout_marginStart="@dimen/h_dimen"
-            android:layout_marginLeft="@dimen/l_dimen"
-            android:layout_marginTop="@dimen/h_dimen"
-            android:layout_marginEnd="@dimen/h_dimen"
-            android:background="@drawable/edittext"
-            android:hint="First Name"
-            android:padding="@dimen/c_dimen"
-            android:textAlignment="center"
-            android:textSize="@dimen/h_dimen"
-            android:inputType="text"
-            android:maxLength="15"/>
-
-        <EditText
-            android:id="@+id/edLastName"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/r_dimen"
-            android:layout_marginStart="@dimen/h_dimen"
-            android:layout_marginLeft="@dimen/l_dimen"
-            android:layout_marginTop="@dimen/h_dimen"
-            android:layout_marginEnd="@dimen/h_dimen"
-            android:background="@drawable/edittext"
-            android:hint="Last Name"
-            android:padding="@dimen/c_dimen"
-            android:textAlignment="center"
-            android:textSize="@dimen/h_dimen"
-            android:inputType="text"
-            android:maxLength="15"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/r_dimen"
-            android:layout_marginStart="@dimen/h_dimen"
-            android:layout_marginLeft="@dimen/k_dimen"
-            android:layout_marginTop="@dimen/h_dimen"
-            android:layout_marginEnd="@dimen/h_dimen"
+        <FrameLayout
+            android:id="@+id/frameLayout2"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="@dimen/m_dimen"
+            android:layout_marginLeft="@dimen/m_dimen"
+            android:layout_marginTop="@dimen/y_dimen"
+            android:layout_marginEnd="@dimen/m_dimen"
             android:layout_marginRight="@dimen/m_dimen"
-            android:background="@drawable/spinner"
-            android:orientation="horizontal">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+           >
 
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spinnerGender"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profilePic"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:entries="@array/Gender"
-                android:gravity="center"
-                android:spinnerMode="dropdown"
-                android:textAlignment="center"
-                android:textSize="@dimen/g_dimen">
-
-            </androidx.appcompat.widget.AppCompatSpinner>
+                android:src="@drawable/harryw"
+                >
 
 
-        </LinearLayout>
+            </de.hdodenhof.circleimageview.CircleImageView>
 
-        <EditText
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/edit"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|right"
+                android:background="@drawable/circle"
+                android:src="@mipmap/ic_create">
+
+            </de.hdodenhof.circleimageview.CircleImageView>
+
+
+
+        </FrameLayout>
+
+
+
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/r_dimen"
-            android:layout_marginStart="@dimen/h_dimen"
-            android:layout_marginLeft="@dimen/l_dimen"
-            android:layout_marginTop="@dimen/h_dimen"
-            android:layout_marginEnd="@dimen/h_dimen"
-            android:background="@drawable/edittext"
-            android:hint="Email Address"
-            android:padding="@dimen/c_dimen"
-            android:textAlignment="center"
-            android:inputType="text"
-            android:textSize="@dimen/h_dimen"
-            android:id="@+id/emailAddress"/>
+            android:layout_height="0dp"
+            android:layout_marginTop="30dp"
+           android:background="@drawable/shape"
+            android:layout_marginBottom="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
 
-
-        <TextView
-            android:id="@+id/mDisplayDate"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/r_dimen"
-            android:layout_marginStart="@dimen/h_dimen"
-            android:layout_marginLeft="@dimen/l_dimen"
-            android:layout_marginTop="@dimen/h_dimen"
-            android:layout_marginEnd="@dimen/h_dimen"
-            android:background="@drawable/edittext"
-            android:hint="Enter Date Of Birth"
-            android:padding="@dimen/c_dimen"
-            android:textAlignment="center"
-            android:textSize="@dimen/h_dimen"
-            />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/r_dimen"
-            android:layout_marginStart="@dimen/h_dimen"
-            android:layout_marginLeft="@dimen/k_dimen"
-            android:layout_marginTop="@dimen/h_dimen"
-            android:layout_marginEnd="@dimen/h_dimen"
-            android:layout_marginRight="@dimen/m_dimen"
-            android:layout_marginBottom="@dimen/l_dimen"
-            android:background="@drawable/spinner"
-            android:orientation="horizontal">
-
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/heightSpinner"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:baselineAligned="false"
-                android:gravity="center"
-                android:spinnerMode="dropdown"
-                android:textAlignment="center"
-                android:textSize="@dimen/g_dimen">
+                android:orientation="vertical">
 
-            </androidx.appcompat.widget.AppCompatSpinner>
+                <EditText
+                    android:id="@+id/edName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/h_dimen"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="@dimen/h_dimen"
+                    android:layout_marginEnd="@dimen/h_dimen"
+                    android:background="@drawable/edittext"
+                    android:layout_marginBottom="10dp"
+                    android:hint="First Name"
+                    android:inputType="text"
+                    android:maxLength="15"
+                    android:padding="10dp"
+                    android:textAlignment="center" />
 
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/r_dimen"
-            android:layout_marginStart="@dimen/h_dimen"
-            android:layout_marginLeft="@dimen/k_dimen"
-            android:layout_marginTop="@dimen/b_dimen"
-            android:layout_marginEnd="@dimen/h_dimen"
-            android:layout_marginRight="@dimen/m_dimen"
-            android:layout_marginBottom="@dimen/l_dimen"
-            android:background="@drawable/spinner"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/weightSpinner"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:baselineAligned="false"
-                android:gravity="center"
-                android:spinnerMode="dropdown"
-                android:textAlignment="center"
-                android:textSize="@dimen/g_dimen">
-
-            </androidx.appcompat.widget.AppCompatSpinner>
-
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/edLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/h_dimen"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginEnd="@dimen/h_dimen"
+                    android:background="@drawable/edittext"
+                    android:hint="Last Name"
+                    android:inputType="text"
+                    android:maxLength="15"
+                    android:padding="10dp"
+                    android:textAlignment="center" />
 
 
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinnerGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="@dimen/h_dimen"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginEnd="@dimen/h_dimen"
+                    android:layout_marginRight="@dimen/m_dimen"
+                    android:background="@drawable/spinner"
+                    android:entries="@array/Gender"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:spinnerMode="dropdown"
+                    android:textAlignment="center">
 
-    </LinearLayout>
+                </androidx.appcompat.widget.AppCompatSpinner>
+
+                <EditText
+                    android:id="@+id/emailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="@dimen/h_dimen"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginEnd="@dimen/h_dimen"
+                    android:background="@drawable/edittext"
+                    android:hint="Email Address"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/mDisplayDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="@dimen/h_dimen"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginEnd="@dimen/h_dimen"
+                    android:background="@drawable/spinner"
+                    android:hint="Enter Date Of Birth"
+                    android:padding="10dp"
+                    android:textAlignment="center"
+                    android:textSize="16sp">
+
+                </TextView>
 
 
-    <Button
-        android:id="@+id/save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/f_dimen"
-        android:layout_marginLeft="@dimen/l_dimen"
-        android:layout_marginEnd="@dimen/f_dimen"
-        android:layout_marginRight="@dimen/m_dimen"
-        android:layout_marginBottom="@dimen/h_dimen"
-        android:background="@drawable/button"
-        android:text="Save"
-        android:textColor="@color/snow"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.527"
-        app:layout_constraintStart_toStartOf="parent" />
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/heightSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="@dimen/h_dimen"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginEnd="@dimen/h_dimen"
+                    android:layout_marginRight="@dimen/m_dimen"
+                    android:background="@drawable/spinner"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:spinnerMode="dropdown"
+                    android:textAlignment="center">
+
+                </androidx.appcompat.widget.AppCompatSpinner>
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/weightSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/h_dimen"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginEnd="@dimen/h_dimen"
+                    android:layout_marginRight="@dimen/m_dimen"
+                    android:background="@drawable/spinner"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:spinnerMode="dropdown"
+                    android:textAlignment="center">
+
+                </androidx.appcompat.widget.AppCompatSpinner>
+
+
+                <Button
+                    android:id="@+id/save"
+                    android:layout_width="90sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/f_dimen"
+                    android:layout_marginLeft="@dimen/l_dimen"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="@dimen/f_dimen"
+                    android:layout_marginRight="@dimen/m_dimen"
+                    android:layout_marginBottom="@dimen/h_dimen"
+                    android:background="@drawable/button"
+                    android:text="Save"
+                    android:textColor="@color/snow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.527"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

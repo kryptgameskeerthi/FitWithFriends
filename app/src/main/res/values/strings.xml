@@ -1,5 +1,10 @@
 <resources>
-    <string name="app_name">Fit With Friends</string>
+    <array name="Gender">
+        <item>Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Others</item>
+    </array>
     <string name="app_name1">Fit With</string>
     <string name="app_name2">Friends</string>
     <string name="app_tag1">Get fit with friends</string>
@@ -7,17 +12,10 @@
     <string name="app_name3">CreateProfile</string>
 
 
+    <string name="app_name">Fit With Friends</string>
 
-    <array name="Gender">
-        <item>Gender</item>
-        <item>Male</item>
-        <item>Female</item>
-        <item>Others</item>
-    </array>
-
-
-
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
