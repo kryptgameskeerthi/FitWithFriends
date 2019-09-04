@@ -87,7 +87,8 @@
                     android:inputType="text"
                     android:maxLength="15"
                     android:padding="10dp"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:fontFamily="@font/robotomedium"/>
 
                 <EditText
                     android:id="@+id/edLastName"
@@ -103,7 +104,8 @@
                     android:inputType="text"
                     android:maxLength="15"
                     android:padding="10dp"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:fontFamily="@font/robotomedium"/>
 
 
                 <androidx.appcompat.widget.AppCompatSpinner
@@ -122,7 +124,8 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:spinnerMode="dropdown"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:fontFamily="@font/robotomedium">
 
                 </androidx.appcompat.widget.AppCompatSpinner>
 
@@ -139,7 +142,8 @@
                     android:hint="Email Address"
                     android:inputType="text"
                     android:padding="10dp"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:fontFamily="@font/robotomedium"/>
 
                 <TextView
                     android:id="@+id/mDisplayDate"
@@ -154,7 +158,8 @@
                     android:hint="Enter Date Of Birth"
                     android:padding="10dp"
                     android:textAlignment="center"
-                    android:textSize="16sp">
+                    android:textSize="16sp"
+                    android:fontFamily="@font/robotomedium">
 
                 </TextView>
 
@@ -174,7 +179,8 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:spinnerMode="dropdown"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:fontFamily="@font/robotomedium">
 
                 </androidx.appcompat.widget.AppCompatSpinner>
 
@@ -192,7 +198,8 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:spinnerMode="dropdown"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:fontFamily="@font/robotomedium">
 
                 </androidx.appcompat.widget.AppCompatSpinner>
 
