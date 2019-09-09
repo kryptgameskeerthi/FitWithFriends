@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fwf_cardview_rewards"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    app:cardCornerRadius="12dp"
+    android:layout_margin="20dp"
+    android:background="@color/black"
+    android:backgroundTint="@color/black"
+    >
+    <ImageView
+        android:id="@+id/fwf_imageview_rewardimage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/homepageimage"
+        android:layout_margin="20dp"
+        android:scaleType="fitXY"
+        />
+
+</androidx.cardview.widget.CardView>

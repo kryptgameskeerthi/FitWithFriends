@@ -17,6 +17,10 @@
         <item name="android:backgroundTint"> @color/sage </item>
     </style>
 
+    <style name="create_mission_background">
+        <item name="android:background">@color/steel</item>
+    </style>
+
     <style name="Demo_Text">
         <item name="android:paddingLeft">4px</item>
         <item name="android:paddingBottom">4px</item>
@@ -31,6 +35,17 @@
     <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/rust</item>
         <item name="android:textColorSecondary">@color/mdtp_transparent_black</item>
+    </style>
+
+
+    <style name="calender_theme" parent="ThemeOverlay.AppCompat.Dialog">
+        <item name="android:colorControlActivated">@color/rust</item> <!--selected day-->
+        <item name="android:textColorPrimary">@color/black</item> <!--days of the month-->
+        <item name="android:textColorSecondary">@color/black</item><!--days of the week-->
+        <item name="android:background">@color/snow</item>
+        <item name="android:selectedWeekBackgroundColor">@color/rust</item>
+        <item name="android:selectableItemBackground">@drawable/date_background</item>
+
     </style>
 
 

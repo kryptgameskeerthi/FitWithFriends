@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/ice"
+    android:background="@color/ice">
+
+    <TextView
+        android:id="@+id/fwf_textview_startdate_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Date"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/fwf_textview_startdate_holder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fwf_textview_startdate_header"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="pick a date"
+        android:textSize="40sp"
+        android:textColor="@color/rust"/>
+
+    <CalendarView
+        android:id="@+id/fwf_calenderview_calender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fwf_textview_startdate_holder"
+        android:layout_marginTop="40dp"
+        android:theme="@style/calender_theme"
+
+        >
+
+    </CalendarView>
+
+
+</RelativeLayout>

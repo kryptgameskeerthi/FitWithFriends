@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fwf_layout_newmissions_cardview"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:contentPaddingBottom="20dp"
+    android:layout_margin="20dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/snow"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/fwf_imageview_surfing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_surfing"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"/>
+        <TextView
+            android:id="@+id/fwf_textview_missioninfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Run 100 km in 15 days"
+            android:textColor="@color/black"
+            android:fontFamily="@font/robotobold"
+            android:layout_toEndOf="@+id/fwf_imageview_surfing"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:id="@+id/fwf_textview_days_digits"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="15"
+            android:textColor="@color/rust"
+            android:textSize="24sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_below="@+id/fwf_imageview_surfing"
+            android:background="@drawable/activity_duration_background"
+            android:layout_centerHorizontal="true"
+            android:elevation="12dp"
+            android:layout_marginTop="20dp"
+            />
+        <TextView
+            android:id="@+id/fwf_textview_days_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/fwf_textview_days_digits"
+            android:text="Days"
+            android:textColor="@color/black"
+            android:fontFamily="@font/robotomedium"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            />
+        <TextView
+            android:id="@+id/fwf_textview_kilometers_digits"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="100"
+            android:textColor="@color/rust"
+            android:textSize="24sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_below="@+id/fwf_imageview_surfing"
+            android:background="@drawable/activity_duration_background"
+            android:elevation="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="28dp"
+            />
+        <TextView
+            android:id="@+id/fwf_textview_kilometers_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fwf_textview_kilometers_digits"
+            android:text="Kilometers"
+            android:textColor="@color/black"
+            android:fontFamily="@font/robotomedium"
+            android:textSize="16sp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="8dp"
+            />
+        <TextView
+            android:id="@+id/fwf_textview_friends_digits"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="6"
+            android:textColor="@color/rust"
+            android:textSize="24sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_below="@+id/fwf_imageview_surfing"
+            android:background="@drawable/activity_duration_background"
+            android:elevation="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="28dp"
+            android:layout_alignParentEnd="true"
+            />
+        <TextView
+            android:id="@+id/fwf_textview_friends_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fwf_textview_friends_digits"
+            android:text="Friends"
+            android:textColor="@color/black"
+            android:fontFamily="@font/robotomedium"
+            android:textSize="16sp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_alignParentEnd="true"
+            />
+
+
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
