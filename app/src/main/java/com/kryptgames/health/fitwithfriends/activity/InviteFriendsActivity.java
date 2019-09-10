@@ -23,7 +23,7 @@ import com.kryptgames.health.fitwithfriends.InviteFriendsAdapter;
 import java.util.ArrayList;
 
 public class InviteFriendsActivity extends AppCompatActivity implements InviteFriendsAdapter.ItemClickListener {
-    int i=0,MY_PERMISSIONS_REQUEST_READ_CONTACTS;
+    int MY_PERMISSIONS_REQUEST_READ_CONTACTS;
     private RecyclerView detailsRecyclerView;
     private InviteFriendsAdapter detailsAdapter;
     ImageView imageView;
