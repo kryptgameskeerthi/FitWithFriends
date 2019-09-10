@@ -44,7 +44,6 @@
         <item name="android:textColorSecondary">@color/black</item><!--days of the week-->
         <item name="android:background">@color/snow</item>
         <item name="android:selectedWeekBackgroundColor">@color/rust</item>
-        <item name="android:selectableItemBackground">@drawable/date_background</item>
 
     </style>
 
