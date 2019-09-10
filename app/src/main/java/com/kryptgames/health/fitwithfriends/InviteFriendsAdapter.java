@@ -17,10 +17,12 @@ public class InviteFriendsAdapter extends RecyclerView.Adapter<InviteFriendsAdap
     Context context;
     private ItemClickListener mClickListener;
     TextView selected,total;
+    private int count=0;
 
-    public InviteFriendsAdapter(List<InviteFriendsPojo> horizontalList, Context context){
+    public InviteFriendsAdapter(List<InviteFriendsPojo> horizontalList, Context context,ItemClickListener mClickListener){
         this.horizontalList= horizontalList;
         this.context = context;
+        this.mClickListener=mClickListener;
     }
 
     @Override
@@ -40,8 +42,14 @@ public class InviteFriendsAdapter extends RecyclerView.Adapter<InviteFriendsAdap
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                    if(inviteFriendsPojo.isSelected())
+                        count--;
+                    else
+                        count++;
+                mClickListener.onItemClick(count);
                 inviteFriendsPojo.setSelected(!inviteFriendsPojo.isSelected());
                 holder.imageView.setAlpha(inviteFriendsPojo.isSelected() ? 0.6f : 1);
+
             }
         });
 
@@ -63,17 +71,12 @@ public class InviteFriendsAdapter extends RecyclerView.Adapter<InviteFriendsAdap
         }
         @Override
         public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
-
+            mClickListener.onItemClick(count);
         }
     }
 
-    void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
-    }
-
     public interface ItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(int a);
     }
 
 }

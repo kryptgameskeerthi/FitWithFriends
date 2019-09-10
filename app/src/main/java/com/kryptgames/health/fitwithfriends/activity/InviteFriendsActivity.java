@@ -37,15 +37,10 @@ public class InviteFriendsActivity extends AppCompatActivity implements InviteFr
         overridePendingTransition(R.anim.l2r_slide_in, R.anim.l2r_slide_out);
     }
     @Override
-    public void onItemClick(View view, int position) {
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i++;
-                selected=findViewById(R.id.fwf_textview_selectedcount);
-                selected.setText(""+i);
-            }
-        });
+    public void onItemClick(int a) {
+
+        selected=findViewById(R.id.fwf_textview_selectedcount);
+        selected.setText(""+a);
 
     }
 
@@ -81,7 +76,7 @@ public class InviteFriendsActivity extends AppCompatActivity implements InviteFr
 
         setContentView(R.layout.new_missions_invite_friends);
         detailsRecyclerView = findViewById(R.id.fwf_layout_recyclerview);
-        detailsAdapter = new InviteFriendsAdapter(gridList,getApplicationContext());
+        detailsAdapter = new InviteFriendsAdapter(gridList,getApplicationContext(),this);
         detailsRecyclerView.setLayoutManager(new GridLayoutManager(this,4));
         detailsRecyclerView.setAdapter(detailsAdapter);
         populatedetailsList();
