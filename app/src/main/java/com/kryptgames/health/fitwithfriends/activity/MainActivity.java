@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -50,9 +51,12 @@ import com.kryptgames.health.fitwithfriends.Profile;
 import com.kryptgames.health.fitwithfriends.R;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -61,7 +65,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
-    private static final int PICK_IMAGE = 1;
+    private static final int PICK_IMAGE = 234;
+    boolean checkImage;
 
     TextView mDisplayDate;
 
@@ -149,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Profile");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Profile").child("Images");
 
 
         Query myTopPostsQuery = FirebaseDatabase.getInstance().getReference("Profile");
@@ -340,7 +345,7 @@ public class MainActivity extends AppCompatActivity {
 
             databaseReference.child(key).setValue(profile);
 
-            Toast.makeText(this, "Profile Created", Toast.LENGTH_SHORT).show();
+
 
         } else {
             Toast.makeText(this, "No Field should be Empty", Toast.LENGTH_SHORT).show();
@@ -426,8 +431,14 @@ public class MainActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            progressDialog.dismiss();
-                            Toast.makeText(MainActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                            if (checkImage != true){
+                                Toast.makeText(MainActivity.this, "Uploaded Image" + "Profile Created", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                            } else {
+
+                                Toast.makeText(MainActivity.this, "Uploading in Progress", Toast.LENGTH_SHORT).show();
+                            }
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -442,7 +453,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                     .getTotalByteCount());
-                           progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                           progressDialog.setMessage("Uploaded"+(int)progress+"%");
                         }
                     });
         }
