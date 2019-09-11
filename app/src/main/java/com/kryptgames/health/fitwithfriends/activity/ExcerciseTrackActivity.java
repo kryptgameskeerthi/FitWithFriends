@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.kryptgames.health.fitwithfriends.R;
 import com.kryptgames.health.fitwithfriends.adapters.ActivityTypeListAdapter;
+import com.kryptgames.health.fitwithfriends.utils.FitCalculationUtils;
 import com.yashovardhan99.timeit.Stopwatch;
 
 import java.lang.reflect.Executable;
@@ -45,6 +46,8 @@ public class ExcerciseTrackActivity extends AppCompatActivity implements Activit
 
     long steps;
     float currentDistance;
+    float calories;
+    String activityTime;
 
 
     @Override
@@ -86,6 +89,8 @@ public class ExcerciseTrackActivity extends AppCompatActivity implements Activit
                     stopwatch.start();
                     isButtonClicked = true;
                 } else {
+                    activityTime = FitCalculationUtils.getFormattedTime(stopwatch.getElapsedTime());
+                    calories = FitCalculationUtils.getCaloriesBurnt(stopwatch.getElapsedTime());
                     stopwatch.stop();
                     startButton.setBackgroundResource(R.drawable.button_round);
                     startButton.setText("Start");
@@ -175,6 +180,18 @@ public class ExcerciseTrackActivity extends AppCompatActivity implements Activit
         //dialogBuilder.setCustomTitle(setDialogTitle("Adjust Dosage", launchingActivity));
 
         dialogBuilder.setView(dialogView);
+
+        TextView totalDistance = dialogView.findViewById(R.id.totalDistanceTV);
+        TextView totalTime = dialogView.findViewById(R.id.totalTimeTV);
+        TextView totalSteps = dialogView.findViewById(R.id.totalStepsTV);
+        TextView totalCalories = dialogView.findViewById(R.id.totalCaloriesTV);
+
+        totalDistance.setText(Float.toString(currentDistance));
+        totalTime.setText(activityTime);
+        totalSteps.setText(Long.toString(steps));
+        totalCalories.setText(Float.toString(calories));
+
+
 
 
         dialogBuilder.setPositiveButton("Home", new DialogInterface.OnClickListener() {

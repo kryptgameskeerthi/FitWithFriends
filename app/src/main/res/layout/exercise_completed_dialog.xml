@@ -20,6 +20,7 @@
 
 
     <TextView
+        android:id="@+id/distanceSummaryTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -58,6 +59,7 @@
                 android:textColor="@color/sage" />
 
             <TextView
+                android:id="@+id/totalDistanceTV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="2dp"
@@ -88,6 +90,7 @@
                 android:textColor="@color/sage" />
 
             <TextView
+                android:id="@+id/totalTimeTV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="2dp"
@@ -118,6 +121,7 @@
                 android:textColor="@color/sage" />
 
             <TextView
+                android:id="@+id/totalCaloriesTV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="2dp"
@@ -148,6 +152,7 @@
                 android:textColor="@color/sage" />
 
             <TextView
+                android:id="@+id/totalStepsTV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="2dp"
