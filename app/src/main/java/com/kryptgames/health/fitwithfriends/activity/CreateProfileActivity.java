@@ -121,6 +121,7 @@ public class CreateProfileActivity extends AppCompatActivity {
 
 
                     Profile profile = postSnapshot.getValue(Profile.class);
+                    /*
                     if(profile!= null) {
                         Log.e("Get Data", profile.getName());
                         Log.e("Get Data", profile.getGenre());
@@ -129,6 +130,8 @@ public class CreateProfileActivity extends AppCompatActivity {
                         Log.e("Get Data", profile.getWeight());
 
                     }
+                    */
+
 
 
                 }
