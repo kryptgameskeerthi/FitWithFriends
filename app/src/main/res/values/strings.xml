@@ -1,4 +1,8 @@
 <resources>
+    <array name="Gender">
+        <item>Male</item>
+        <item>Female</item>
+    </array>
     <string name="app_name">Fit With Friends</string>
     <string name="app_name1">Fit With</string>
     <string name="app_name2">Friends</string>
@@ -10,12 +14,11 @@
     <string name="fwf_text_signUP">Sign Up/Login</string>
     <string name="todo">TODO</string>
     <string name="navigation">fwf_navigationview_navigationbar</string>
+
     <string name="notification_count">0</string>
 
-    <array name="Gender">
-        <item>Male</item>
-        <item>Female</item>
-    </array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
