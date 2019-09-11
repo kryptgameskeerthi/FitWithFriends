@@ -1,15 +1,18 @@
 package com.kryptgames.health.fitwithfriends.models;
 
+import com.kryptgames.health.fitwithfriends.utils.FitCalculationUtils;
+
 public class FitActivity {
 
-    private long elapsedTime;
+    private long elapsedTime, steps;
     private float caloriesBurnt;
-    private int steps;
     private float distance;
 
-    public FitActivity(long elapsedTime, int steps) {
+    public FitActivity(long elapsedTime, long steps) {
         this.elapsedTime = elapsedTime;
         this.steps = steps;
+        distance = FitCalculationUtils.getDistanceRun(steps);
+        caloriesBurnt = FitCalculationUtils.getCaloriesBurnt(elapsedTime);
     }
 
     public long getElapsedTime() {
@@ -28,11 +31,11 @@ public class FitActivity {
         this.caloriesBurnt = caloriesBurnt;
     }
 
-    public int getSteps() {
+    public long getSteps() {
         return steps;
     }
 
-    public void setSteps(int steps) {
+    public void setSteps(long steps) {
         this.steps = steps;
     }
 

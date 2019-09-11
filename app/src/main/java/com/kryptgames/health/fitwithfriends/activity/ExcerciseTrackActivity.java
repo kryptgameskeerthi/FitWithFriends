@@ -25,8 +25,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kryptgames.health.fitwithfriends.FitWithFriendsApplication;
 import com.kryptgames.health.fitwithfriends.R;
 import com.kryptgames.health.fitwithfriends.adapters.ActivityTypeListAdapter;
+import com.kryptgames.health.fitwithfriends.models.FitActivity;
 import com.kryptgames.health.fitwithfriends.utils.FitCalculationUtils;
 import com.yashovardhan99.timeit.Stopwatch;
 
@@ -46,8 +48,7 @@ public class ExcerciseTrackActivity extends AppCompatActivity implements Activit
 
     long steps;
     float currentDistance;
-    float calories;
-    String activityTime;
+
 
 
     @Override
@@ -89,15 +90,15 @@ public class ExcerciseTrackActivity extends AppCompatActivity implements Activit
                     stopwatch.start();
                     isButtonClicked = true;
                 } else {
-                    activityTime = FitCalculationUtils.getFormattedTime(stopwatch.getElapsedTime());
-                    calories = FitCalculationUtils.getCaloriesBurnt(stopwatch.getElapsedTime());
+                    long elapsedTime = stopwatch.getElapsedTime();
                     stopwatch.stop();
+                    FitActivity fitActivity = new FitActivity(elapsedTime, steps);
+                    FitWithFriendsApplication.getDbPresenter().addUserFitActivity(fitActivity);
                     startButton.setBackgroundResource(R.drawable.button_round);
                     startButton.setText("Start");
                     sManager.unregisterListener(ExcerciseTrackActivity.this, stepSensor);
-
                     isButtonClicked = false;
-                    showActivityCompletedDialog();
+                    showActivityCompletedDialog(fitActivity);
                 }
 
             }
@@ -126,7 +127,7 @@ public class ExcerciseTrackActivity extends AppCompatActivity implements Activit
         if (sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
             steps++;
 
-            float newDistance = getDistanceRun(steps);
+            float newDistance = FitCalculationUtils.getDistanceRun(steps);
             if (!areEqualToTwoDecimal(newDistance, currentDistance)) {
                 currentDistance = newDistance;
                 updateDistanceTravelled(currentDistance);
@@ -143,13 +144,7 @@ public class ExcerciseTrackActivity extends AppCompatActivity implements Activit
     }
 
 
-    public float getDistanceRun(long steps) {
-        float distance = (float) (steps * 78) / (float) 100000;
-        // testing purpose
-        //float distance = (float) (steps * 78) / (float) 1000;
 
-        return distance;
-    }
 
     public static boolean areEqualToTwoDecimal(float a, float b) {
 
@@ -172,7 +167,7 @@ public class ExcerciseTrackActivity extends AppCompatActivity implements Activit
     }
 
 
-    public void showActivityCompletedDialog() {
+    public void showActivityCompletedDialog(FitActivity fitActivity) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(new ContextThemeWrapper(ExcerciseTrackActivity.this, R.style.AlertDialogStyle));
         LayoutInflater inflater = this.getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.exercise_completed_dialog, null);
@@ -181,15 +176,22 @@ public class ExcerciseTrackActivity extends AppCompatActivity implements Activit
 
         dialogBuilder.setView(dialogView);
 
+        TextView distanceSummary = dialogView.findViewById(R.id.distanceSummaryTV);
+
+        String formattedTime = FitCalculationUtils.getFormattedTime(fitActivity.getElapsedTime());
+
+        String summaryLine  = "You have run " + currentDistance + " kms in " + formattedTime + " time";
+        distanceSummary.setText(summaryLine);
+
         TextView totalDistance = dialogView.findViewById(R.id.totalDistanceTV);
         TextView totalTime = dialogView.findViewById(R.id.totalTimeTV);
         TextView totalSteps = dialogView.findViewById(R.id.totalStepsTV);
         TextView totalCalories = dialogView.findViewById(R.id.totalCaloriesTV);
 
-        totalDistance.setText(Float.toString(currentDistance));
-        totalTime.setText(activityTime);
-        totalSteps.setText(Long.toString(steps));
-        totalCalories.setText(Float.toString(calories));
+        totalDistance.setText(Float.toString(fitActivity.getDistance()));
+        totalTime.setText(formattedTime);
+        totalSteps.setText(Long.toString(fitActivity.getSteps()));
+        totalCalories.setText(Float.toString(fitActivity.getCaloriesBurnt()));
 
 
 
