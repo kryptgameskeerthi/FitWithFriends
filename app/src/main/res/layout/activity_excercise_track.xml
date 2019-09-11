@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/drab"
+    tools:context=".activity.ExcerciseTrackActivity">
+
+
+    <FrameLayout
+        android:id="@+id/trackButtonFrame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRightGuideLine"
+        app:layout_constraintStart_toStartOf="@+id/buttonLeftGuideLine"
+        app:layout_constraintTop_toTopOf="@+id/buttonTopGuideLine">
+
+        <Button
+            android:id="@+id/trackButtonid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@xml/multi_round_button"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="2dp"
+            android:layout_margin="32dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMaxTextSize="64sp"
+                android:gravity="center_horizontal|bottom"
+                android:text="0.0"
+                android:textColor="@color/snow">
+
+            </TextView>
+
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="8dp"
+                android:scaleType="fitXY"
+                android:layout_gravity="top|center_horizontal"
+                android:src="@drawable/ic_dash" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMaxTextSize="16sp"
+                android:gravity="top|center_horizontal"
+                android:text="kilometers"
+
+                android:textColor="@color/snow" />
+
+        </LinearLayout>
+
+
+
+
+    </FrameLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/buttonLeftGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/buttonRightGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/buttonTopGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bottomScreenGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        app:cornerRadius="10dp"
+        android:textColor="@color/snow"
+        android:background="@color/sage"
+        app:layout_constraintBottom_toTopOf="@+id/bottomScreenGuideLine"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRightGuideLine"
+        app:layout_constraintStart_toStartOf="@+id/buttonLeftGuideLine" />
+</androidx.constraintlayout.widget.ConstraintLayout>
