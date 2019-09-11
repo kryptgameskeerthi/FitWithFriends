@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/fwf_layout_recycler_view"
-    android:background="@color/ice">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-</androidx.recyclerview.widget.RecyclerView>
+    <TextView
+        android:id="@+id/fwf_textview_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:fontFamily="@font/robotomedium"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fwf_layout_recycler_view"
+        android:layout_below="@+id/fwf_textview_title"
+        android:background="@color/ice">
+    </androidx.recyclerview.widget.RecyclerView>
+</RelativeLayout>

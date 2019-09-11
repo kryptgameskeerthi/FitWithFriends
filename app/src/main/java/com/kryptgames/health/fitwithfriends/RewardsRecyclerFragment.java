@@ -7,16 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.kryptgames.health.fitwithfriends.activity.CalenderActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +24,7 @@ public class RewardsRecyclerFragment extends Fragment {
     private RecyclerViewAdapter recyclerViewAdapter;
     private List<RewardsPojo> mlist=new ArrayList<>();
     private int checkedPosition=-1;
+    private TextView title;
 
     public static Fragment newInstance() {
         return new RewardsRecyclerFragment();
@@ -34,7 +34,8 @@ public class RewardsRecyclerFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.new_missions_recycler_view,container,false);
-
+        title=view.findViewById(R.id.fwf_textview_title);
+        title.setText("Select Reward");
         RecyclerView recyclerView=view.findViewById(R.id.fwf_layout_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new RewardsRecyclerFragment.RecyclerViewAdapter(mlist,getContext()));
@@ -99,8 +100,13 @@ public class RewardsRecyclerFragment extends Fragment {
                         notifyItemChanged(checkedPosition);
                         checkedPosition = position;
                     }
-                    Intent intent=new Intent(getContext(), CalenderActivity.class);
-                    startActivity(intent);
+                    Fragment fragment=new CalenderFragment();
+                    FragmentTransaction fragmentTransaction=getFragmentManager().beginTransaction();
+                    fragmentTransaction.setCustomAnimations(R.anim.r2l_slide_in, R.anim.r2l_slide_out, R.anim.l2r_slide_in, R.anim.l2r_slide_out);                    fragmentTransaction.replace(R.id.fwf_layout_fragmentcontainer,fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                    notifyDataSetChanged();
+
                 }
             });
         }

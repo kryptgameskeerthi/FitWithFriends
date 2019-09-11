@@ -11,6 +11,9 @@
     <string name="todo">TODO</string>
     <string name="navigation">fwf_navigationview_navigationbar</string>
     <string name="notification_count">0</string>
+    <string name="app_name1_1">Fit </string>
+    <string name="app_name1_2"> with</string>
+
 
     <array name="Gender">
         <item>Male</item>

@@ -94,7 +94,7 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                        Toast.makeText(getApplicationContext(),"User successfully signed in",Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(),"User successfully signed in",Toast.LENGTH_SHORT).show();
                             Intent homeIntent = new Intent(PhoneAuthenticationActivity.this, CreateProfileActivity.class);
                             startActivity(homeIntent);
                             finish();

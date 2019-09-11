@@ -22,6 +22,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.kryptgames.health.fitwithfriends.Pager;
 import com.kryptgames.health.fitwithfriends.R;
 
 public class HomeScreenActivity extends AppCompatActivity {
@@ -48,6 +49,10 @@ public class HomeScreenActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("New"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.rust));
+
+        Pager pager = new Pager(getSupportFragmentManager(),tabLayout.getTabCount());
+        viewPager.setAdapter(pager);
+
 
 
 

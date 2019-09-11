@@ -2,7 +2,8 @@ package com.kryptgames.health.fitwithfriends;
 
 public class NewMissionsPojo {
 
-    public String  title,distance,duration,group;
+    public String  title;
+    public int distance,duration,group;
 
 
     public String getTitle() {
@@ -13,31 +14,31 @@ public class NewMissionsPojo {
         this.title = title;
     }
 
-    public String getDistance() {
+    public int getDistance() {
         return distance;
     }
 
-    public void setDistance(String distance) {
+    public void setDistance(int distance) {
         this.distance = distance;
     }
 
-    public String getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 
-    public String getGroup() {
+    public int getGroup() {
         return group;
     }
 
-    public void setGroup(String group) {
+    public void setGroup(int group) {
         this.group = group;
     }
 
-    public NewMissionsPojo(String title, String distance, String duration, String group) {
+    public NewMissionsPojo(String title, int distance, int duration, int group) {
         this.title = title;
         this.distance = distance;
         this.duration = duration;
