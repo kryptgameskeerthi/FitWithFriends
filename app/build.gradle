@@ -55,6 +55,8 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v2.2.4'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
 
+    implementation 'com.yashovardhan99.timeit:timeit:1.2.0'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

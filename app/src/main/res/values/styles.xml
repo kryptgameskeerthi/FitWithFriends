@@ -36,6 +36,11 @@
         <item name="android:textColorSecondary">@color/mdtp_transparent_black</item>
     </style>
 
+    <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:background">@color/snow</item>
+        <item name="android:gravity">center</item>
+
+    </style>
 
 
 
