@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="Home"
+        android:id="@+id/fwf_navigation_home"
+        android:icon="@drawable/ic_navigation_home_icon"
+        />
+
+    <item
+        android:title="Activities"
+        android:id="@+id/fwf_navigation_activities"
+        android:icon="@drawable/ic_navigation_activity_icon"/>
+
+    <item
+        android:title="Add new activity"
+        android:id="@+id/fwf_navigation_addnewactivity"
+        android:enabled="false"
+        />
+
+    <item
+        android:title="Rewards"
+        android:id="@+id/fwf_navigation_rewards"
+        android:icon="@drawable/ic_navigation_trophy_icon"/>
+
+    <item
+        android:title="Profile"
+        android:id="@+id/fwf_navigation_profile"
+        android:icon="@drawable/ic_navigation_profile_icon"/>
+
+
+
+</menu>

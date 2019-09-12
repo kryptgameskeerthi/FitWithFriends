@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+    <item
+        android:id="@+id/fwf_drawer_titleone"
+        android:title="titleone"/>
+    <item
+        android:id="@+id/fwf_drawer_titletwo"
+        android:title="titletwo"/>
+    <item
+        android:id="@+id/fwf_drawer_titlethree"
+        android:title="titlethree"/>
+    <item
+        android:title="titlefour"
+        android:id="@+id/fwf_drawer_titlefour"/>
+    <item
+        android:id="@+id/fwf_drawer_titlefive"
+        android:title="titlefive"/>
+    </group>
+        <item android:title="maintitle" >
+            <menu>
+                <item
+                    android:title="titlesix"
+                    android:id="@+id/fwf_drawer_titlesix"/>
+
+                <item
+                    android:title="titleseven"
+                    android:id="@+id/fwf_drawer_titleseven"/>
+            </menu>
+        </item>
+</menu>
