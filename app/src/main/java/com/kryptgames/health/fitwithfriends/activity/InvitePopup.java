@@ -39,6 +39,7 @@ public class InvitePopup extends AppCompatDialogFragment {
         Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.activity_invite_popup);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCanceledOnTouchOutside(true);
 
         detailsRecyclerView = dialog.findViewById(R.id.fwf_layout_recycler_view);
         detailsAdapter = new RecyclerViewHorizontalListAdapter(detailsList,getContext());

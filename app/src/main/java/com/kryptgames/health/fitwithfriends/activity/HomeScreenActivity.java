@@ -31,20 +31,21 @@ public class HomeScreenActivity extends AppCompatActivity {
     private ActionBar toolbar;
     private FloatingActionButton floatingActionButton;
     private TextView notificationCount;
-
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acitivity_drawer);
+        //openDialog();
 
 
         this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.activity_toolbar);
         getSupportActionBar().getCustomView();
-
+        viewPager=(ViewPager) findViewById(R.id.fwf_layout_view_pager);
         TabLayout tabLayout=(TabLayout) findViewById(R.id.fwf_layout_tab);
-        ViewPager viewPager=(ViewPager) findViewById(R.id.fwf_layout_view_pager);
+
         tabLayout.addTab(tabLayout.newTab().setText("Active"));
         tabLayout.addTab(tabLayout.newTab().setText("New"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -107,6 +108,14 @@ public class HomeScreenActivity extends AppCompatActivity {
         });
 
     }
+    public void selectTab(int position){
+        viewPager.setCurrentItem(position);
+    }
+    /*public void openDialog(){
+        InvitePopup invitePopup=new InvitePopup();
+        invitePopup.show(getSupportFragmentManager(),"example");
+    }*/
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelelctedListener=new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -128,4 +137,5 @@ public class HomeScreenActivity extends AppCompatActivity {
             return false;
         }
     };
+
 }

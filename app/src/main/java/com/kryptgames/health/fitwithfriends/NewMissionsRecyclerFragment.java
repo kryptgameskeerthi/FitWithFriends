@@ -109,9 +109,16 @@ public class NewMissionsRecyclerFragment extends Fragment {
                         checkedPosition = position;
                     }
 
+
+
                     Fragment fragment=RewardsRecyclerFragment.newInstance();
                     FragmentTransaction fragmentTransaction=getFragmentManager().beginTransaction();
                     fragmentTransaction.setCustomAnimations(R.anim.r2l_slide_in, R.anim.r2l_slide_out, R.anim.l2r_slide_in, R.anim.l2r_slide_out);
+
+                    Bundle bundle=new Bundle();
+                    bundle.putInt("group",detailsList.get(position).group);
+                    fragment.setArguments(bundle);
+
                     fragmentTransaction.replace(R.id.fwf_layout_fragmentcontainer,fragment);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();

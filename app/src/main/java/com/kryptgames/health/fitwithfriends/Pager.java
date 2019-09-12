@@ -22,8 +22,8 @@ public class Pager extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                CalenderFragment inviteFriendsFragment = new CalenderFragment();
-                return inviteFriendsFragment;
+                BlankFragment blankFragment=new BlankFragment();
+                return blankFragment;
             case 1:
                 RootFragment newMissionsRecyclerFragment = new RootFragment();
                 return newMissionsRecyclerFragment;

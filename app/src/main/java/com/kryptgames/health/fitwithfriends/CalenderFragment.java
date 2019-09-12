@@ -22,6 +22,7 @@ import java.util.Calendar;
 
 
 public class CalenderFragment extends Fragment {
+    public int group;
     public CalendarView calendarView;
     public TextView dateHolder,monthHolder,yearHolder;
     private Button prev,next;
@@ -29,6 +30,10 @@ public class CalenderFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        Bundle bundle=this.getArguments();
+        group=bundle.getInt("group");
+
         return inflater.inflate(R.layout.new_missions_calender,container,false);
     }
     @Override
@@ -54,9 +59,18 @@ public class CalenderFragment extends Fragment {
                 if(year<thisYear || year==thisYear&&month< thisMonth || year==thisYear&&month==thisMonth&&dayOfMonth<thisDay)
                     Toast.makeText(getContext(),"Please select a valid date",Toast.LENGTH_SHORT).show();
                 else{
+
+
+
                     Fragment fragment=new InviteFriendsFragment();
                     FragmentTransaction fragmentTransaction=getFragmentManager().beginTransaction();
-                    fragmentTransaction.setCustomAnimations(R.anim.r2l_slide_in, R.anim.r2l_slide_out, R.anim.l2r_slide_in, R.anim.l2r_slide_out);                    fragmentTransaction.replace(R.id.fwf_layout_fragmentcontainer,fragment);
+                    fragmentTransaction.setCustomAnimations(R.anim.r2l_slide_in, R.anim.r2l_slide_out, R.anim.l2r_slide_in, R.anim.l2r_slide_out);
+
+                    Bundle bundle=new Bundle();
+                    bundle.putInt("group",group);
+                    fragment.setArguments(bundle);
+
+                    fragmentTransaction.replace(R.id.fwf_layout_fragmentcontainer,fragment);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
                 }

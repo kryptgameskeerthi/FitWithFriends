@@ -21,6 +21,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
+import com.kryptgames.health.fitwithfriends.activity.HomeScreenActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +33,7 @@ public class InviteFriendsFragment extends Fragment {
     private List<InviteFriendsPojo> mlist = new ArrayList<>();
     private TextView selected,total;
     private Button button;
-    private int count=0,totalparticipants=5;
+    private int count=0,totalparticipants;
 
     public static Fragment newInstance() {
 
@@ -68,8 +71,16 @@ public class InviteFriendsFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ((HomeScreenActivity)getActivity()).selectTab(0);
+
+                NewMissionsRecyclerFragment newMissionsRecyclerFragment=new NewMissionsRecyclerFragment();
                 FragmentTransaction fragmentTransaction=getFragmentManager().beginTransaction();
                 fragmentTransaction.setCustomAnimations(R.anim.r2l_slide_in, R.anim.r2l_slide_out, R.anim.l2r_slide_in, R.anim.l2r_slide_out);
+                fragmentTransaction.remove(new InviteFriendsFragment());
+                fragmentTransaction.replace(R.id.fwf_layout_fragmentcontainer,newMissionsRecyclerFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
                 Toast.makeText(getContext(),"Mission has been created and added to the list",Toast.LENGTH_SHORT).show();
             }
         });
@@ -86,6 +97,9 @@ public class InviteFriendsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        Bundle bundle=this.getArguments();
+        totalparticipants=bundle.getInt("group");
 
         View view = inflater.inflate(R.layout.new_missions_invite_friends, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.fwf_layout_recyclerview);
@@ -201,6 +215,5 @@ public class InviteFriendsFragment extends Fragment {
             mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userfour"));
             mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userfive"));
             mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "usersix"));
-
     }
 }

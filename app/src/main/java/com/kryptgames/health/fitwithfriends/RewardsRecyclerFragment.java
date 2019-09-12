@@ -23,7 +23,7 @@ import java.util.List;
 public class RewardsRecyclerFragment extends Fragment {
     private RecyclerViewAdapter recyclerViewAdapter;
     private List<RewardsPojo> mlist=new ArrayList<>();
-    private int checkedPosition=-1;
+    private int checkedPosition=-1,group;
     private TextView title;
 
     public static Fragment newInstance() {
@@ -33,6 +33,10 @@ public class RewardsRecyclerFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        Bundle bundle=this.getArguments();
+        group=bundle.getInt("group");
+
         View view=inflater.inflate(R.layout.new_missions_recycler_view,container,false);
         title=view.findViewById(R.id.fwf_textview_title);
         title.setText("Select Reward");
@@ -100,9 +104,18 @@ public class RewardsRecyclerFragment extends Fragment {
                         notifyItemChanged(checkedPosition);
                         checkedPosition = position;
                     }
+
+
+
                     Fragment fragment=new CalenderFragment();
                     FragmentTransaction fragmentTransaction=getFragmentManager().beginTransaction();
-                    fragmentTransaction.setCustomAnimations(R.anim.r2l_slide_in, R.anim.r2l_slide_out, R.anim.l2r_slide_in, R.anim.l2r_slide_out);                    fragmentTransaction.replace(R.id.fwf_layout_fragmentcontainer,fragment);
+                    fragmentTransaction.setCustomAnimations(R.anim.r2l_slide_in, R.anim.r2l_slide_out, R.anim.l2r_slide_in, R.anim.l2r_slide_out);
+
+                    Bundle bundle=new Bundle();
+                    bundle.putInt("group",group);
+                    fragment.setArguments(bundle);
+
+                    fragmentTransaction.replace(R.id.fwf_layout_fragmentcontainer,fragment);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
                     notifyDataSetChanged();

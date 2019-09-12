@@ -10,10 +10,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="@dimen/fwf_textview_title_textsize"
         android:fontFamily="@font/robotomedium"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"/>
+        android:layout_marginTop="@dimen/fwf_textview_title_margintop"
+        android:layout_marginBottom="@dimen/fwf_textview_title_marginbottom"/>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

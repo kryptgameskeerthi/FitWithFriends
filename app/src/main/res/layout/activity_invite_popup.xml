@@ -11,10 +11,10 @@
 
         android:id="@+id/fwf_cardview_pendinginvitepopup"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
+        android:layout_height="@dimen/fwf_cardview_pendinginvitepopup_height"
         android:layout_gravity="center"
         android:background="@color/snow"
-        app:cardCornerRadius="20dp">
+        app:cardCornerRadius="@dimen/fwf_cardview_pendinginvitepopup_radius">
 
         <RelativeLayout
             android:id="@+id/fwf_layout_framelayout"
@@ -22,59 +22,59 @@
             android:layout_height="match_parent">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/fwf_imageview_userimage"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
+                android:layout_width="@dimen/fwf_imageview_userimage_width"
+                android:layout_height="@dimen/fwf_imageview_userimage_height"
                 android:src="@drawable/homepageimage"
                 android:layout_alignParentStart="true"
-                android:layout_margin="20dp"/>
+                android:layout_margin="@dimen/fwf_imageview_userimage_margin"/>
             <TextView
                 android:id="@+id/fwf_textview_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Scott Middough"
+                android:text="@string/fwf_textview_username"
                 android:layout_toEndOf="@id/fwf_imageview_userimage"
-                android:layout_marginEnd="2dp"
-                android:layout_marginTop="32dp"
-                android:textSize="20sp"
+                android:layout_marginEnd="@dimen/fwf_textview_username_marginend"
+                android:layout_marginTop="@dimen/fwf_invitepopup_textview_username_margintop"
+                android:textSize="@dimen/fwf_invitepopup_textview_username_textsize"
                 android:textColor="@color/black"
-                android:layout_marginStart="16dp"/>
+                android:layout_marginStart="@dimen/fwf_textview_username_marginstart"/>
             <TextView
                 android:id="@+id/fwf_textview_missioninvite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/fwf_textview_username"
                 android:layout_toEndOf="@+id/fwf_imageview_userimage"
-                android:text="Sent you a Mission Invite"
+                android:text="@string/fwf_textview_missioninvite"
                 android:textColor="@color/steel"
-                android:textSize="16sp"
-                android:layout_marginTop="8dp"/>
+                android:textSize="@dimen/fwf_textview_missioninvite_textsize"
+                android:layout_marginTop="@dimen/fwf_textview_missioninvite_margintop"/>
             <TextView
                 android:id="@+id/fwf_textview_missiontitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Run 100 km in 7 days"
+                android:text="@string/fwf_textview_missiontitle"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/fwf_textview_missiontitle_textsize"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/fwf_textview_missioninvite"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="@dimen/fwf_textview_missiontitle_margintop"
                 />
             <View
                 android:id="@+id/fwf_view_line"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="@dimen/fwf_view_line_height"
                 android:layout_below="@+id/fwf_textview_missiontitle"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/fwf_view_line_margintop"
                 android:background="@color/ice"/>
             <TextView
                 android:id="@+id/fwf_textview_team"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/fwf_view_line"
-                android:text="Team"
-                android:textSize="16sp"
+                android:text="@string/fwf_textview_team"
+                android:textSize="@dimen/fwf_textview_team_textsize"
                 android:textColor="@color/black"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/fwf_textview_team_margintop"
                 android:layout_centerHorizontal="true"/>
 
 
@@ -89,15 +89,15 @@
             <View
                 android:id="@+id/fwf_view_linetwo"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="@dimen/fwf_view_linetwo_height"
                 android:layout_above="@+id/fwf_view_buttonseperatorline"
                 android:backgroundTint="@color/ice"
                 android:background="@color/ice"/>
 
             <View
                 android:id="@+id/fwf_view_buttonseperatorline"
-                android:layout_width="2dp"
-                android:layout_height="44dp"
+                android:layout_width="@dimen/fwf_view_buttonseperatorline_width"
+                android:layout_height="@dimen/fwf_view_buttonseperatorline_height"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
                 android:backgroundTint="@color/ice"
@@ -114,14 +114,14 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Approve"
+                    android:text="@string/fwf_button_accept"
                     android:textAlignment="center"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/fwf_button_accept_textsize"
                     android:textColor="@color/sage"
                     android:backgroundTint="@color/snow"
-                    android:layout_marginEnd="1dp"
-                    android:layout_marginTop="-6dp"
-                    android:layout_marginBottom="-6dp"
+                    android:layout_marginEnd="@dimen/fwf_button_accept_marginstart"
+                    android:layout_marginTop="@dimen/fwf_button_accept_margintop"
+                    android:layout_marginBottom="@dimen/fwf_button_accept_marginbottom"
                     />
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/fwf_button_reject"
@@ -129,13 +129,13 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:textAlignment="center"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/fwf_button_accept_textsize"
                     android:backgroundTint="@color/snow"
                     android:textColor="@color/rust"
-                    android:text="Reject"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="-6dp"
-                    android:layout_marginBottom="-6dp"/>
+                    android:text="@string/fwf_button_reject"
+                    android:layout_marginStart="@dimen/fwf_button_accept_marginstart"
+                    android:layout_marginTop="@dimen/fwf_button_accept_margintop"
+                    android:layout_marginBottom="@dimen/fwf_button_accept_marginbottom"/>
             </LinearLayout>
 
         </RelativeLayout>

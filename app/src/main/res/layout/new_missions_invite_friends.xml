@@ -11,18 +11,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Invite Friends"
+        android:text="@string/fwf_textview_invitefriends"
         android:fontFamily="@font/robotobold"
         android:textColor="@color/black"
-        android:textSize="24sp"
-        android:layout_marginTop="20dp"/>
+        android:textSize="@dimen/fwf_textview_invitefriends_textsize"
+        android:layout_marginTop="@dimen/fwf_textview_invitefriends_margintop"/>
 
     <LinearLayout
         android:id="@+id/fwf_layout_linearlayout"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/fwf_layout_linearlayout_margintop"
         android:layout_below="@+id/fwf_textview_invitefriends"
         android:layout_centerHorizontal="true">
 
@@ -30,27 +30,27 @@
             android:id="@+id/fwf_textview_selectedcount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
-            android:textSize="16sp"
+            android:text="@string/fwf_textview_selectedcount"
+            android:textSize="@dimen/fwf_layout_linearlayout_textview_textsize"
             android:textColor="@color/black"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="/"
-            android:textSize="16sp"
+            android:textSize="@dimen/fwf_layout_linearlayout_textview_textsize"
             android:textColor="@color/black"/>
         <TextView
             android:id="@+id/fwf_textview_totalcount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3"
-            android:textSize="16sp"
+            android:textSize="@dimen/fwf_layout_linearlayout_textview_textsize"
             android:textColor="@color/black"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" selected"
-            android:textSize="16sp"
+            android:text="@string/textview_selected"
+            android:layout_marginStart="@dimen/selected_marginstart"
+            android:textSize="@dimen/fwf_layout_linearlayout_textview_textsize"
             android:textColor="@color/black"/>
     </LinearLayout>
 
@@ -60,23 +60,22 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/fwf_button_createmission"
         android:layout_below="@+id/fwf_layout_linearlayout"
-        android:layout_margin="12dp"/>
+        android:layout_margin="@dimen/fwf_layout_recyclerview_margin"/>
 
 <Button
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/fwf_button_createmission"
-    android:text="Create Mission"
-    android:paddingStart="20dp"
-    android:paddingEnd="20dp"
+    android:text="@string/fwf_button_createmission"
+    android:paddingStart="@dimen/fwf_button_createmission_paddingstart"
+    android:paddingEnd="@dimen/fwf_button_createmission_paddingend"
     android:textColor="@color/snow"
     android:textAlignment="center"
     android:textAllCaps="false"
     android:fontFamily="@font/robotoregular"
-    android:textScaleX="1.3"
     android:layout_alignParentBottom="true"
     android:layout_centerHorizontal="true"
-    android:layout_marginBottom="24dp"
+    android:layout_marginBottom="@dimen/fwf_button_createmission_marginbottom"
     android:background="@drawable/create_mission_button"
     />
 
