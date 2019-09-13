@@ -34,10 +34,11 @@
             android:name=".activity.CreateProfileActivity"
             android:theme="@style/NoActionBar"></activity>
     </application>
+
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
