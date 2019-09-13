@@ -14,11 +14,27 @@
     <string name="fwf_text_signUP">Sign Up/Login</string>
     <string name="todo">TODO</string>
     <string name="navigation">fwf_navigationview_navigationbar</string>
-
     <string name="notification_count">0</string>
+    <string name="app_name1_1">Fit </string>
+    <string name="app_name1_2"> with</string>
+    <string name="calendar_startdate">Start Date</string>
+    <string name="fwf_textview_days_text">Days</string>
+    <string name="fwf_textview_kilometers_text">Kilometers</string>
+    <string name="fwf_textview_friends_text">Friends</string>
+    <string name="fwf_button_createmission">Create Mission</string>
+    <string name="fwf_textview_selectedcount">0</string>
+    <string name="textview_selected">selected</string>
+    <string name="fwf_textview_invitefriends">Invite Friends</string>
+    <string name="fwf_button_accept">Approve</string>
+    <string name="fwf_button_reject">Reject</string>
+    <string name="fwf_textview_username">Scott Middough</string>
+    <string name="fwf_textview_missioninvite">Sent you a Mission Invite</string>
+    <string name="fwf_textview_missiontitle">Run 100 km in 7 days</string>
+    <string name="fwf_textview_team">Team</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 
 </resources>
