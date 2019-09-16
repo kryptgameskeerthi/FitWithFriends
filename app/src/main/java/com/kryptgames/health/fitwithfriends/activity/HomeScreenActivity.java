@@ -28,6 +28,7 @@ import com.kryptgames.health.fitwithfriends.MyRewardsFragment;
 import com.kryptgames.health.fitwithfriends.Pager;
 import com.kryptgames.health.fitwithfriends.R;
 import com.kryptgames.health.fitwithfriends.RewardsRecyclerFragment;
+import com.kryptgames.health.fitwithfriends.fragment.ExerciseListFragment;
 
 import java.util.zip.Inflater;
 
@@ -136,8 +137,8 @@ public class HomeScreenActivity extends AppCompatActivity {
                     break;
                 case R.id.fwf_navigation_activities:
                     viewPager.setVisibility(View.GONE);
-                    selectedFragment=new BlankFragment();
-                    //Toast.makeText(HomeScreenActivity.this,"You have clicked on the activities icon",Toast.LENGTH_SHORT).show();
+                    selectedFragment=new ExerciseListFragment();
+                    //Toast.makeText(HomeScreenActivity.this,"You have clicked on the profile icon",Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.fwf_navigation_rewards:
                     viewPager.setVisibility(View.GONE);
