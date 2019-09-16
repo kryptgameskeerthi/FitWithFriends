@@ -37,6 +37,7 @@
         android:id="@+id/fwf_layout_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/fwf_layout_view_pager_marginbottom"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <com.google.android.material.tabs.TabLayout

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/fwf_textview_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fwf_textview_title_textsize"
+        android:fontFamily="@font/robotomedium"
+        android:layout_marginTop="@dimen/fwf_textview_title_margintop"
+        android:layout_marginBottom="@dimen/fwf_textview_title_marginbottom"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fwf_layout_recycler_view"
+        android:layout_below="@+id/fwf_textview_title"
+        android:background="@color/ice">
+    </androidx.recyclerview.widget.RecyclerView>
+</RelativeLayout>

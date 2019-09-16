@@ -24,6 +24,10 @@
         <item name="android:backgroundTint"> @color/sage </item>
     </style>
 
+    <style name="create_mission_background">
+        <item name="android:background">@color/steel</item>
+    </style>
+
     <style name="Demo_Text">
         <item name="android:paddingLeft">4px</item>
         <item name="android:paddingBottom">4px</item>
@@ -46,6 +50,15 @@
         <item name="android:gravity">center</item>
         <item name="android:fontFamily">@font/robotoregular</item>
 
+    </style>
+
+
+    <style name="calender_theme" parent="ThemeOverlay.AppCompat.Dialog">
+        <item name="android:colorControlActivated">@color/rust</item> <!--selected day-->
+        <item name="android:textColorPrimary">@color/black</item> <!--days of the month-->
+        <item name="android:textColorSecondary">@color/black</item><!--days of the week-->
+        <item name="android:background">@color/snow</item>
+        <item name="android:selectedWeekBackgroundColor">@color/rust</item>
     </style>
 
 
