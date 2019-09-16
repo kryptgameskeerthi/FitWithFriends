@@ -95,5 +95,6 @@
     <dimen name="fwf_button_accept_marginbottom">-6dp</dimen>
     <dimen name="fwf_button_accept_textsize">12sp</dimen>
     <dimen name="fwf_layout_view_pager_marginbottom">60dp</dimen>
+    <dimen name="main_container_marginbottom">56dp</dimen>
 
 </resources>
