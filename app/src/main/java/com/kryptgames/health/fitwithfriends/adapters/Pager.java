@@ -1,9 +1,12 @@
-package com.kryptgames.health.fitwithfriends;
+package com.kryptgames.health.fitwithfriends.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
+import com.kryptgames.health.fitwithfriends.fragment.BlankFragment;
+import com.kryptgames.health.fitwithfriends.fragment.RootFragment;
 
 
 public class Pager extends FragmentPagerAdapter {

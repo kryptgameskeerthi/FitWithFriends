@@ -1,4 +1,4 @@
-package com.kryptgames.health.fitwithfriends;
+package com.kryptgames.health.fitwithfriends.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,6 +14,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.kryptgames.health.fitwithfriends.models.NewMissionsPojo;
+import com.kryptgames.health.fitwithfriends.R;
 
 import java.util.ArrayList;
 import java.util.List;

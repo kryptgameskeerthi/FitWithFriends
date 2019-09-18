@@ -1,4 +1,4 @@
-package com.kryptgames.health.fitwithfriends;
+package com.kryptgames.health.fitwithfriends.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.kryptgames.health.fitwithfriends.R;
+import com.kryptgames.health.fitwithfriends.models.InvitePopupPojo;
 
 import java.util.List;
 

@@ -1,8 +1,6 @@
 package com.kryptgames.health.fitwithfriends.activity;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,28 +8,22 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.kryptgames.health.fitwithfriends.BlankFragment;
-import com.kryptgames.health.fitwithfriends.CalenderFragment;
-import com.kryptgames.health.fitwithfriends.MyRewardsFragment;
-import com.kryptgames.health.fitwithfriends.Pager;
+import com.kryptgames.health.fitwithfriends.fragment.BlankFragment;
+import com.kryptgames.health.fitwithfriends.fragment.MyRewardsFragment;
+import com.kryptgames.health.fitwithfriends.adapters.Pager;
 import com.kryptgames.health.fitwithfriends.R;
-import com.kryptgames.health.fitwithfriends.RewardsRecyclerFragment;
 import com.kryptgames.health.fitwithfriends.fragment.ExerciseListFragment;
-
-import java.util.zip.Inflater;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
