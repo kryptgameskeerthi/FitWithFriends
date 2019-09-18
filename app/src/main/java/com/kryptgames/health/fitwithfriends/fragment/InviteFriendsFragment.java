@@ -21,7 +21,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.kryptgames.health.fitwithfriends.models.InviteFriendsPojo;
+import com.kryptgames.health.fitwithfriends.models.FriendsInvitation;
 import com.kryptgames.health.fitwithfriends.R;
 import com.kryptgames.health.fitwithfriends.activity.HomeScreenActivity;
 
@@ -30,7 +30,7 @@ import java.util.List;
 
 public class InviteFriendsFragment extends Fragment {
     private int MY_PERMISSIONS_REQUEST_READ_CONTACTS;
-    private List<InviteFriendsPojo> mlist = new ArrayList<>();
+    private List<FriendsInvitation> mlist = new ArrayList<>();
     private TextView selected,total;
     private Button button;
     private int count=0,totalparticipants;
@@ -125,10 +125,10 @@ public class InviteFriendsFragment extends Fragment {
 
     public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
 
-        private List<InviteFriendsPojo> horizontalList;
+        private List<FriendsInvitation> horizontalList;
         Context context;
 
-        public RecyclerViewAdapter(List<InviteFriendsPojo> horizontalList, Context context) {
+        public RecyclerViewAdapter(List<FriendsInvitation> horizontalList, Context context) {
             this.horizontalList = horizontalList;
             this.context = context;
             notifyDataSetChanged();
@@ -143,14 +143,14 @@ public class InviteFriendsFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-            final InviteFriendsPojo inviteFriendsPojo = horizontalList.get(position);
+            final FriendsInvitation friendsInvitation = horizontalList.get(position);
             holder.userImage.setImageResource(horizontalList.get(position).getUserImage());
             holder.userName.setText(horizontalList.get(position).getUserName());
-            holder.userImage.setForeground(inviteFriendsPojo.isSelected() ? getResources().getDrawable(R.drawable.user_selected_foreground) : null);
+            holder.userImage.setForeground(friendsInvitation.isSelected() ? getResources().getDrawable(R.drawable.user_selected_foreground) : null);
             holder.userImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (inviteFriendsPojo.isSelected())
+                    if (friendsInvitation.isSelected())
                         count--;
                     else
                         count++;
@@ -167,8 +167,8 @@ public class InviteFriendsFragment extends Fragment {
                     }
                     else {button.setEnabled(false); button.setBackgroundResource(R.drawable.create_mission_button);}
                     selected.setText("" + count);
-                    inviteFriendsPojo.setSelected(!inviteFriendsPojo.isSelected());
-                    holder.userImage.setForeground(inviteFriendsPojo.isSelected() ? getResources().getDrawable(R.drawable.user_selected_foreground) : null);
+                    friendsInvitation.setSelected(!friendsInvitation.isSelected());
+                    holder.userImage.setForeground(friendsInvitation.isSelected() ? getResources().getDrawable(R.drawable.user_selected_foreground) : null);
                 }
             });
         }
@@ -179,41 +179,41 @@ public class InviteFriendsFragment extends Fragment {
 
     }
         private void populateList() {
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userone"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "usertwo"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userthree"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userfour"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userfive"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "usersix"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userone"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "usertwo"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userthree"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userfour"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userfive"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "usersix"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userone"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "usertwo"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userthree"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userfour"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userfive"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "usersix"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userone"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "usertwo"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userthree"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userfour"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userfive"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "usersix"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userone"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "usertwo"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userthree"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userfour"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userfive"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "usersix"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userone"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "usertwo"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userthree"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userfour"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "userfive"));
-            mlist.add(new InviteFriendsPojo(R.drawable.homepageimage, "usersix"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userone"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usertwo"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userthree"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfour"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfive"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usersix"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userone"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usertwo"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userthree"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfour"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfive"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usersix"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userone"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usertwo"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userthree"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfour"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfive"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usersix"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userone"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usertwo"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userthree"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfour"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfive"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usersix"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userone"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usertwo"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userthree"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfour"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfive"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usersix"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userone"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usertwo"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userthree"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfour"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfive"));
+            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usersix"));
     }
 }

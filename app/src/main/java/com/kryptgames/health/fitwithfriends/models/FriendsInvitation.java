@@ -1,12 +1,12 @@
 package com.kryptgames.health.fitwithfriends.models;
 
-public class InviteFriendsPojo {
+public class FriendsInvitation {
 
     public int userImage;
     public String userName;
     private boolean isSelected=false;
 
-    public InviteFriendsPojo(int userImage, String userName) {
+    public FriendsInvitation(int userImage, String userName) {
         this.userImage = userImage;
         this.userName = userName;
     }
