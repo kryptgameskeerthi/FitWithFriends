@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -88,16 +89,21 @@ public class MyRewardsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                /*
-                Fragment fragment=new BlankFragment();
+
+                QRCGeneratorFragment fragment=new QRCGeneratorFragment();
                 FragmentTransaction fragmentTransaction=getFragmentManager().beginTransaction();
                 fragmentTransaction.setCustomAnimations(R.anim.r2l_slide_in, R.anim.r2l_slide_out, R.anim.l2r_slide_in, R.anim.l2r_slide_out);
+
+                Bundle bundle=new Bundle();
+                bundle.putString("title",detailsList.get(position).getTitle());
+                fragment.setArguments(bundle);
+
                 fragmentTransaction.replace(R.id.main_container,fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
-                Toast.makeText(getContext(),"you have clicked on the tile number"+position,Toast.LENGTH_SHORT).show();
-                
-                 */
+
+
+
             }
         });
 
@@ -110,10 +116,10 @@ public class MyRewardsFragment extends Fragment {
     public void populateList(){
 
         MyRewardsPojo one = new MyRewardsPojo(R.drawable.homepageimage,"Free beer at zero 40","Oct 20 2018");
-        MyRewardsPojo two = new MyRewardsPojo(R.drawable.homepageimage,"Free beer at zero 40","Oct 20 2018");
-        MyRewardsPojo three = new MyRewardsPojo(R.drawable.homepageimage,"Free beer at zero 40","Oct 20 2018");
-        MyRewardsPojo four = new MyRewardsPojo(R.drawable.homepageimage,"Free beer at zero 40","Oct 20 2018");
-        MyRewardsPojo five = new MyRewardsPojo(R.drawable.homepageimage,"Free beer at zero 40","Oct 20 2018");
+        MyRewardsPojo two = new MyRewardsPojo(R.drawable.homepageimage,"Free beer at zero 50","Oct 20 2018");
+        MyRewardsPojo three = new MyRewardsPojo(R.drawable.homepageimage,"Free beer at zero 60","Oct 20 2018");
+        MyRewardsPojo four = new MyRewardsPojo(R.drawable.homepageimage,"Free beer at zero 70","Oct 20 2018");
+        MyRewardsPojo five = new MyRewardsPojo(R.drawable.homepageimage,"Free beer at zero 80","Oct 20 2018");
         mlist.add(one);
         mlist.add(two);
         mlist.add(three);
