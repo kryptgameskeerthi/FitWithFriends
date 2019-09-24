@@ -164,7 +164,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
            holder.chart.getDescription().setEnabled(false);
            holder.chart.getLegend().setEnabled(false);
            holder.chart.setDoubleTapToZoomEnabled(false);
-           holder.chart.setFitBars(true);
+           holder.chart.setPinchZoom(false);
+           holder.chart.setScaleEnabled(false);
            holder.chart.invalidate();
 
         holder.more.setOnClickListener(new View.OnClickListener() {
@@ -183,7 +184,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     }
 
     public void populateList(){
-        CompletedMissionsVerticalPojo one=new CompletedMissionsVerticalPojo("Run 100 km in 1 week",81,50,nlist,getData(),labels,R.drawable.homepageimage);
+        CompletedMissionsVerticalPojo one=new CompletedMissionsVerticalPojo("Run 100 km in 1 week",81,50,nlist,entries,labels,R.drawable.homepageimage);
         CompletedMissionsVerticalPojo two=new CompletedMissionsVerticalPojo("Run 100 km in 1 week",74,54,nlist,entries,labels,R.drawable.homepageimage);
         CompletedMissionsVerticalPojo three=new CompletedMissionsVerticalPojo("Run 100 km in 1 week",96,23,nlist,entries,labels,R.drawable.homepageimage);
         CompletedMissionsVerticalPojo four=new CompletedMissionsVerticalPojo("Run 100 km in 1 week",65,57,nlist,entries,labels,R.drawable.homepageimage);
