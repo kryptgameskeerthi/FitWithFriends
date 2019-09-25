@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.kryptgames.health.fitwithfriends.R;
 import com.kryptgames.health.fitwithfriends.models.InvitePopupPojo;
 
@@ -34,6 +35,8 @@ public class RecyclerViewHorizontalListAdapter extends RecyclerView.Adapter<Recy
     public void onBindViewHolder(DetailsViewHolder holder, final int position) {
         holder.imageView.setImageResource(horizontalList.get(position).getUserImage());
         holder.txtview.setText(horizontalList.get(position).getUserName());
+
+
 
     }
 
