@@ -33,10 +33,21 @@
         android:theme="@style/BottomNavigationTheme"
         />
 
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/main_container"
+        android:layout_marginBottom="@dimen/main_container_marginbottom">
+    </FrameLayout>
+
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/fwf_layout_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/fwf_layout_view_pager_marginbottom"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <com.google.android.material.tabs.TabLayout

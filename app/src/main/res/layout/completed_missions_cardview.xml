@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fwf_cardview_completedmissions"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/snow"
+    android:layout_margin="20dp"
+    android:animateLayoutChanges="true"
+    app:cardCornerRadius="12dp"
+    app:contentPaddingBottom="12dp">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/fwf_textview_missiontitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Run 100 km in 1 week"
+        android:textSize="20sp"
+        android:fontFamily="@font/robotomedium"
+        android:textColor="@color/black"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"/>
+    <ImageButton
+        android:id="@+id/fwf_imagebutton_cardexpand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_more_horiz_black_24dp"
+        android:background="@color/snow"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
+        />
+    <LinearLayout
+        android:id="@+id/fwf_layout_linear_progressbars"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fwf_textview_missiontitle"
+        android:layout_marginTop="20dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+            <ProgressBar
+                android:id="@+id/fwf_progressbar_goalcompleted"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerHorizontal="true"
+                android:max="100"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/progressbar_background"
+                style="?android:attr/progressBarStyleHorizontal"
+                />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+                <TextView
+                    android:id="@+id/fwf_textview_percentageone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="75"
+                    android:textSize="20sp"
+                    android:textColor="@color/sage"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="%"
+                    android:layout_toEndOf="@+id/fwf_textview_percentageone"
+                    android:textSize="20sp"
+                    android:textColor="@color/sage"/>
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+            <ProgressBar
+                android:id="@+id/fwf_progressbar_mycontribution"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerHorizontal="true"
+                android:max="100"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/progressbar_background"
+                style="?android:attr/progressBarStyleHorizontal"
+                />
+           <RelativeLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_centerInParent="true">
+            <TextView
+                android:id="@+id/fwf_textview_percentagetwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="57"
+                android:textSize="20sp"
+                android:textColor="@color/sage"/>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="%"
+                   android:layout_toEndOf="@+id/fwf_textview_percentagetwo"
+                   android:textSize="20sp"
+                   android:textColor="@color/sage"/>
+           </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fwf_layout_linear_progresstitles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fwf_layout_linear_progressbars">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Goal Completed"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="My Contribution"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/fwf_layout_relative_expandable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fwf_layout_linear_progresstitles"
+        android:layout_marginTop="12dp"
+        android:visibility="gone">
+    <TextView
+        android:id="@+id/fwf_textview_teamcontributions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Team Contributions"
+        android:textSize="16sp"
+        android:fontFamily="@font/robotoregular"
+        android:textColor="@color/black"
+        android:layout_marginStart="12dp"
+        />
+
+        <com.github.mikephil.charting.charts.HorizontalBarChart
+            android:id="@+id/fwf_barchart"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/fwf_textview_teamcontributions"
+            android:layout_marginTop="-12dp"
+            android:layout_marginBottom="-12dp"
+
+            />
+        <TextView
+            android:id="@+id/fwf_textview_reward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reward"
+            android:textSize="16sp"
+            android:layout_below="@+id/fwf_barchart"
+            android:fontFamily="@font/robotoregular"
+            android:textColor="@color/black"
+            android:layout_marginStart="12dp"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/fwf_cardview_rewardcard"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            app:cardCornerRadius="12dp"
+            android:layout_margin="12dp"
+            android:layout_below="@+id/fwf_textview_reward"
+            android:background="@color/black"
+            android:backgroundTint="@color/black">
+            <ImageView
+                android:id="@+id/fwf_imageview_rewardimage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/homepageimage"
+                android:layout_margin="20dp"
+                android:scaleType="fitXY" />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/fwf_view_line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/steel"
+        android:layout_below="@+id/fwf_layout_relative_expandable"
+        android:layout_marginTop="12dp"/>
+
+    <TextView
+        android:id="@+id/fwf_textview_topcontributors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Top Contributors"
+        android:fontFamily="@font/robotoregular"
+        android:layout_below="@+id/fwf_view_line"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_alignStart="@+id/fwf_textview_missiontitle"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fwf_recyclerview_completedmissionscontributors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fwf_textview_topcontributors"
+        />
+</RelativeLayout>
+
+</androidx.cardview.widget.CardView>

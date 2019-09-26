@@ -6,22 +6,21 @@
     android:layout_height="match_parent"
     android:background="@color/ice">
     <TextView
-        android:id="@+id/fwf_textview_myexcercises"
+        android:id="@+id/fwf_textview_myrewards"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
-        android:text="My Activity"
+        android:text="My Rewards"
         android:fontFamily="@font/robotomedium"
         android:textColor="@color/black"
         android:textSize="24sp"/>
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/exercise_list_recyclerview"
+        android:id="@+id/fwf_layout_myrewardsrecyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/fwf_textview_myexcercises"
+        android:layout_below="@+id/fwf_textview_myrewards"
         android:layout_marginTop="12dp"/>
 </RelativeLayout>

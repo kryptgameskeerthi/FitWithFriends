@@ -41,7 +41,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.kryptgames.health.fitwithfriends.Profile;
+import com.kryptgames.health.fitwithfriends.models.Profile;
 import com.kryptgames.health.fitwithfriends.R;
 
 import java.io.IOException;
