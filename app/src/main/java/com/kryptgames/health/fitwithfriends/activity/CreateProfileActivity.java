@@ -29,7 +29,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -76,6 +75,11 @@ public class CreateProfileActivity extends AppCompatActivity {
 
     FirebaseStorage storage;
     StorageReference storageReference;
+    boolean checkImage=false;
+    String key,imageReference;
+    String userNumber;
+
+  ProgressDialog progressDialog;
 
 
 
@@ -85,6 +89,9 @@ public class CreateProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        userNumber=getIntent().getStringExtra("number");
 
 
         storage = FirebaseStorage.getInstance();
@@ -120,7 +127,7 @@ public class CreateProfileActivity extends AppCompatActivity {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
 
-                    Profile profile = postSnapshot.getValue(Profile.class);
+                    //Profile profile = postSnapshot.getValue(Profile.class);
                     /*
                     if(profile!= null) {
                         Log.e("Get Data", profile.getName());
@@ -263,9 +270,11 @@ public class CreateProfileActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                profileCreated();
-                uploadImage();
 
+               // uploadImage();
+
+
+                profileCreated();
 
             }
         });
@@ -312,13 +321,67 @@ public class CreateProfileActivity extends AppCompatActivity {
         String weight = weightSpinner.getSelectedItem().toString();
 
 
+
         if (!TextUtils.isEmpty(name)) {
 
-            String key = databaseReference.push().getKey();
+            if (imageUri != null) {
+                progressDialog = new ProgressDialog(this);
+                progressDialog.setTitle("Uploading...");
+                progressDialog.show();
 
-            Profile profile = new Profile(name, lastName, genre, dob,height, weight);
+                StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
+                ref.putFile(imageUri)
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                if (!checkImage) {
+                                    ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
 
-            databaseReference.child(key).setValue(profile);
+                                            //key = databaseReference.push().getKey();
+
+
+                                            imageReference=String.valueOf(uri);
+                                            Profile profile = new Profile(name, lastName, genre, dob,height, weight,imageReference, userNumber);
+
+                                            databaseReference.child(userNumber).setValue(profile);
+
+
+                                        /*HashMap<String, String> hashMap = new HashMap<>();
+                                        hashMap.put("imageurl", String.valueOf(uri));
+
+                                        databaseReference.child(key).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+
+                                                Toast.makeText(CreateProfileActivity.this, "Profile Created", Toast.LENGTH_SHORT).show();
+                                                progressDialog.dismiss();
+
+
+                                            }
+                                        });*/
+                                        }
+                                    });
+
+                                } else {
+
+                                    Toast.makeText(CreateProfileActivity.this, "Uploading in Progress", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+
+                        double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                        progressDialog.setMessage("Uploaded " + ((int) progress) + "%...");
+
+                    }
+                });
+            }
+
+
 
             Toast.makeText(this, "Profile Created", Toast.LENGTH_SHORT).show();
             Intent homeIntent = new Intent(CreateProfileActivity.this, HomeScreenActivity.class);
@@ -346,39 +409,48 @@ public class CreateProfileActivity extends AppCompatActivity {
 
     private void uploadImage() {
 
-        if(imageUri != null)
-        {
-            final ProgressDialog progressDialog = new ProgressDialog(this);
+        if (imageUri != null) {
+             progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+            StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
             ref.putFile(imageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            progressDialog.dismiss();
-                            Toast.makeText(CreateProfileActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            progressDialog.dismiss();
-                            Toast.makeText(CreateProfileActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
-                                    .getTotalByteCount());
-                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                            if (!checkImage) {
+                                ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+
+                                        imageReference=String.valueOf(uri);
+                                        /*HashMap<String, String> hashMap = new HashMap<>();
+                                        hashMap.put("imageurl", String.valueOf(uri));
+
+                                        databaseReference.child(key).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+
+                                                Toast.makeText(CreateProfileActivity.this, "Profile Created", Toast.LENGTH_SHORT).show();
+                                                progressDialog.dismiss();
+
+
+                                            }
+                                        });*/
+                                    }
+                                });
+
+                            } else {
+
+                                Toast.makeText(CreateProfileActivity.this, "Uploading in Progress", Toast.LENGTH_SHORT).show();
+                            }
+
                         }
                     });
         }
-    }
 
+    }
 
 
 }
