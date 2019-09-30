@@ -24,6 +24,7 @@ import com.kryptgames.health.fitwithfriends.fragment.MyRewardsFragment;
 import com.kryptgames.health.fitwithfriends.adapters.Pager;
 import com.kryptgames.health.fitwithfriends.R;
 import com.kryptgames.health.fitwithfriends.fragment.ExerciseListFragment;
+import com.kryptgames.health.fitwithfriends.fragment.UserProfilePageFragment;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
@@ -140,7 +141,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                     break;
                 case R.id.fwf_navigation_profile:
                     viewPager.setVisibility(View.GONE);
-                    selectedFragment=new BlankFragment();
+                    selectedFragment=new UserProfilePageFragment();
                     //Toast.makeText(HomeScreenActivity.this,"You have clicked on the profile icon",Toast.LENGTH_SHORT).show();
                     break;
             }
