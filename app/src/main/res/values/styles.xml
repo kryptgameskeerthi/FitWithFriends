@@ -7,7 +7,12 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:fontFamily">@font/robotoregular</item>
+
     </style>
+
+
+
+
 
     <style name="AppCompatNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:fontFamily">@font/robotoregular</item>
@@ -22,6 +27,7 @@
 
     <style name="button_round" >
         <item name="android:backgroundTint"> @color/sage </item>
+
     </style>
 
     <style name="create_mission_background">
@@ -60,6 +66,7 @@
         <item name="android:background">@color/snow</item>
         <item name="android:selectedWeekBackgroundColor">@color/rust</item>
     </style>
+
 
 
 
