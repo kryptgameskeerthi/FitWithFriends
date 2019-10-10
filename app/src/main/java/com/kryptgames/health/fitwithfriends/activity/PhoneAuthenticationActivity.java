@@ -18,6 +18,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.kryptgames.health.fitwithfriends.R;
 
 import java.util.concurrent.TimeUnit;
@@ -31,6 +36,7 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private String mVerificationId;
+    private static String userNumber;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
 
     @Override
@@ -66,7 +72,7 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 mUserNumber = (EditText) findViewById(R.id.fwf_edittext_phonenumber);
-                String userNumber = mUserNumber.getText().toString();
+                userNumber = mUserNumber.getText().toString();
                 String number = "+" + "91" + userNumber;
                 PhoneAuthProvider.getInstance().verifyPhoneNumber(number, 60, TimeUnit.SECONDS, PhoneAuthenticationActivity.this, mCallbacks);
 
@@ -94,15 +100,43 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            //Toast.makeText(getApplicationContext(),"User successfully signed in",Toast.LENGTH_SHORT).show();
-                            Intent homeIntent = new Intent(PhoneAuthenticationActivity.this, CreateProfileActivity.class);
-                            startActivity(homeIntent);
-                            finish();
+
+                            DatabaseReference reference= FirebaseDatabase.getInstance().getReference();
+                            DatabaseReference ref=reference.child("Profile").child(userNumber);
+                            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if(dataSnapshot.exists()){
+                                        Intent homeIntent=new Intent(getApplicationContext(),HomeScreenActivity.class);
+                                        startActivity(homeIntent);
+                                        finish();
+                                    }
+
+                                    else {
+                                        Intent profileIntent = new Intent(PhoneAuthenticationActivity.this, CreateProfileActivity.class);
+                                        profileIntent.putExtra("number",userNumber);
+                                        startActivity(profileIntent);
+                                        finish();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
                         } else {
                             Toast.makeText(getApplicationContext(), "You have entered incorrect OTP", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
+
+    public static String getNumber(){
+        String a=userNumber;
+        return a;
+    }
+
 }
 
