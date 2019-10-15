@@ -25,6 +25,7 @@ public class CalenderFragment extends Fragment {
     public CalendarView calendarView;
     public TextView dateHolder,monthHolder,yearHolder;
     private Button prev,next;
+    private String title;
 
     @Nullable
     @Override
@@ -32,6 +33,7 @@ public class CalenderFragment extends Fragment {
 
         Bundle bundle=this.getArguments();
         group=bundle.getInt("group");
+        title=bundle.getString("title");
 
         return inflater.inflate(R.layout.new_missions_calender,container,false);
     }
@@ -67,6 +69,7 @@ public class CalenderFragment extends Fragment {
 
                     Bundle bundle=new Bundle();
                     bundle.putInt("group",group);
+                    bundle.putString("title",title);
                     fragment.setArguments(bundle);
 
                     fragmentTransaction.replace(R.id.fwf_layout_fragmentcontainer,fragment);

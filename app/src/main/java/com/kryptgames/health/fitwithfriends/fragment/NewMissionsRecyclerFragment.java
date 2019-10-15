@@ -120,6 +120,7 @@ public class NewMissionsRecyclerFragment extends Fragment {
 
                     Bundle bundle=new Bundle();
                     bundle.putInt("group",detailsList.get(position).group);
+                    bundle.putString("title",detailsList.get(position).title);
                     fragment.setArguments(bundle);
 
                     fragmentTransaction.replace(R.id.fwf_layout_fragmentcontainer,fragment);

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +22,30 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.kryptgames.health.fitwithfriends.activity.InvitePopup;
 import com.kryptgames.health.fitwithfriends.models.FriendsInvitation;
 import com.kryptgames.health.fitwithfriends.R;
 import com.kryptgames.health.fitwithfriends.activity.HomeScreenActivity;
+import com.kryptgames.health.fitwithfriends.models.InvitePopupPojo;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
+import static com.kryptgames.health.fitwithfriends.activity.PhoneAuthenticationActivity.getNumber;
 
 public class InviteFriendsFragment extends Fragment {
     private int MY_PERMISSIONS_REQUEST_READ_CONTACTS;
@@ -34,6 +53,11 @@ public class InviteFriendsFragment extends Fragment {
     private TextView selected,total;
     private Button button;
     private int count=0,totalparticipants;
+    private String userNumber,missionTitle;
+    private ArrayList<InvitePopupPojo> participantsList=new ArrayList<>();
+    private ArrayList<String> deviceIds=new ArrayList<>();
+    private String DEVICE_TOKEN="dN7bDO-37_E:APA91bFC41FHHEM93NER76E_p3IQTVFPdG__0OYyLx91Fz5gxRVQ_8scyN98bMVfQEIOLUaMy79sEhUWUUwwGRE6dCHd5JeoJIidQnJsJDkIWY_GKq7Iti4Auvqj2Ofd-y6wgJDXA9wu";
+    private String two="eJZqOwoJUAY:APA91bFfEkzRfL0i-oD1uD2adYbr6n6BmBNRvIuFiR38wfDxmtmNNSY4n-bnK3WBu_oZLMYDLE1QMbVyDip-g5RyZr5t075oinijpXsPzONZL3O5GpIWvwnhAO_Y0Xqjd0CyhOuYK6R_";
 
     public static Fragment newInstance() {
 
@@ -73,6 +97,16 @@ public class InviteFriendsFragment extends Fragment {
             public void onClick(View v) {
                 ((HomeScreenActivity)getActivity()).selectTab(0);
 
+                for(FriendsInvitation model : mlist){
+                    if(model.isSelected()){
+                        participantsList.add(new InvitePopupPojo(model.getUserImage(),model.getUserName()));
+                    }
+                }
+                deviceIds.add(DEVICE_TOKEN);
+                deviceIds.add(two);
+
+                sendNotification(userNumber,missionTitle,participantsList,deviceIds);
+
                 NewMissionsRecyclerFragment newMissionsRecyclerFragment=new NewMissionsRecyclerFragment();
                 FragmentTransaction fragmentTransaction=getFragmentManager().beginTransaction();
                 fragmentTransaction.setCustomAnimations(R.anim.r2l_slide_in, R.anim.r2l_slide_out, R.anim.l2r_slide_in, R.anim.l2r_slide_out);
@@ -100,6 +134,8 @@ public class InviteFriendsFragment extends Fragment {
 
         Bundle bundle=this.getArguments();
         totalparticipants=bundle.getInt("group");
+        missionTitle=bundle.getString("title");
+        userNumber=getNumber();
 
         View view = inflater.inflate(R.layout.new_missions_invite_friends, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.fwf_layout_recyclerview);
@@ -215,5 +251,80 @@ public class InviteFriendsFragment extends Fragment {
             mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfour"));
             mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfive"));
             mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usersix"));
+    }
+
+    public void sendNotification(String senderNumber, String missionTitle, ArrayList<InvitePopupPojo> participantsList, ArrayList<String> deviceIds){
+
+        final String serverKey="AAAA_EeEzM4:APA91bH_YEU0_plNvWth4WcaOHNSOKCOme5yAz7Hs4QM8578IUt6TQ8Fa14H6ZAOCKT1RDA7TMcxSVMISG1BI0ruzt0SrTpFLUtaOBsxv-gV_iF23NnVkIbKAOFnR1vAuW3oIFo_gu-R";
+        JSONObject json1 = new JSONObject();
+        JSONArray idsArray = new JSONArray();
+        JSONObject notification = new JSONObject();
+        JSONObject data = new JSONObject();
+        JSONArray array=new JSONArray();
+        String title="Mission Invite";
+        String message="You have got a new mission invite";
+
+        try {
+            for(int i=0;i<(deviceIds.size());i++) {
+
+                idsArray.put(deviceIds.get(i));
+            }
+
+            notification.put("title", title);
+            notification.put("body", message);
+            notification.put("click_action","HomeScreenActivity");
+
+            data.put("senderNumber",senderNumber);
+            data.put("missionTitle",missionTitle);
+
+            json1.put("content_available", true);
+            json1.put("priority", "high");
+            json1.put("registration_ids",idsArray);
+            json1.put("notification", notification);
+
+            for(int i=0;i<(participantsList.size());i++)
+            {
+                int userImage=participantsList.get(i).userImage;
+                String userName=participantsList.get(i).userName;
+
+                JSONObject info=new JSONObject();
+                info.put("userImage",userImage);
+                info.put("userName",userName);
+
+                array.put(info);
+
+            }
+
+            data.put("userinfo",array);
+            json1.put("data", data);
+
+        }catch (JSONException e){
+            System.out.println(e.getMessage());
+        }
+        String pushMessage=json1.toString();
+
+        String url = "https://fcm.googleapis.com/fcm/send";
+        final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody body = RequestBody.create(JSON, pushMessage);
+        Request request = new Request.Builder()
+                .url(url)
+                .header("Authorization", "key="+serverKey)
+                .post(body)
+                .build();
+        Callback responseCallBack = new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.v("Fail Message", "fail");
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.v("response", response.toString());
+            }
+        };
+        okhttp3.Call call = client.newCall(request);
+        call.enqueue(responseCallBack);
     }
 }

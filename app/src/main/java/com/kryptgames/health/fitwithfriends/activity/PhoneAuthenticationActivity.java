@@ -9,9 +9,13 @@ import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.alimuzaffar.lib.pin.PinEntryEditText;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
@@ -23,21 +27,24 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.kryptgames.health.fitwithfriends.R;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 
 public class PhoneAuthenticationActivity extends AppCompatActivity {
 
     private EditText mUserNumber;
-    private EditText mEntered_OTP;
+    private PinEntryEditText mEntered_OTP;
     private Button mbutton;
     private FirebaseAuth mAuth;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private String mVerificationId;
     private static String userNumber;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
+    private LinearLayout pinentryLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +52,7 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_phone_authentication);
         mAuth = FirebaseAuth.getInstance();
         mbutton = (Button) findViewById(R.id.fwf_button_otp);
+        pinentryLayout=findViewById(R.id.fwf_layout_pinentry);
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
             public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
@@ -61,39 +69,35 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
                 super.onCodeSent(s, forceResendingToken);
                 mVerificationId = s;
                 Toast.makeText(PhoneAuthenticationActivity.this, "Otp sent successfully", Toast.LENGTH_SHORT).show();
-                mEntered_OTP = (EditText) findViewById(R.id.fwf_edittext_otp);
-                mEntered_OTP.setVisibility(View.VISIBLE);
+                mEntered_OTP = (PinEntryEditText) findViewById(R.id.fwf_pinentryedittext_otp);
+                pinentryLayout.setVisibility(View.VISIBLE);
                 mbutton.setText("Go");
-
             }
         };
         mbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 mUserNumber = (EditText) findViewById(R.id.fwf_edittext_phonenumber);
                 userNumber = mUserNumber.getText().toString();
                 String number = "+" + "91" + userNumber;
                 PhoneAuthProvider.getInstance().verifyPhoneNumber(number, 60, TimeUnit.SECONDS, PhoneAuthenticationActivity.this, mCallbacks);
-
                 mUserNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(13) });
                 mUserNumber.setText("+91" + userNumber);
                 mUserNumber.setEnabled(false);
                 mUserNumber.setBackground(getResources().getDrawable(R.drawable.edittext_steelbackground));
-
                 mbutton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mEntered_OTP = (EditText) findViewById(R.id.fwf_edittext_otp);
+                        mEntered_OTP = (PinEntryEditText) findViewById(R.id.fwf_pinentryedittext_otp);
                         String entered_OTP = mEntered_OTP.getText().toString();
                         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, entered_OTP);
                         signInWithPhoneAuthCredential(credential);
                     }
                 });
-
             }
         });
     }
+
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -107,9 +111,28 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if(dataSnapshot.exists()){
-                                        Intent homeIntent=new Intent(getApplicationContext(),HomeScreenActivity.class);
-                                        startActivity(homeIntent);
-                                        finish();
+                                        String tokenId= FirebaseInstanceId.getInstance().getToken();
+                                        HashMap<String,Object> map=new HashMap<>();
+                                        map.clear();
+                                        map.put("token",tokenId);
+                                        DatabaseReference database=FirebaseDatabase.getInstance().getReference();
+                                        DatabaseReference ref=database.child("Profile").child(userNumber);
+                                        ref.updateChildren(map).addOnSuccessListener((new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Intent homeIntent=new Intent(getApplicationContext(),HomeScreenActivity.class);
+                                                startActivity(homeIntent);
+                                                finish();
+                                            }
+
+                                        })).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(getApplicationContext(),"Error"+e.getMessage(),Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+
                                     }
 
                                     else {
@@ -137,6 +160,5 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
         String a=userNumber;
         return a;
     }
-
 }
 
