@@ -199,10 +199,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     }
 
     public void populateListHorizontal(){
-        InvitePopupPojo one = new InvitePopupPojo(R.drawable.homepageimage, "userone");
-        InvitePopupPojo two = new InvitePopupPojo(R.drawable.homepageimage, "usertwo");
-        InvitePopupPojo three = new InvitePopupPojo(R.drawable.homepageimage, "userthree");
-        InvitePopupPojo four = new InvitePopupPojo(R.drawable.homepageimage, "userfour");
+        InvitePopupPojo one = new InvitePopupPojo("https://firebasestorage.googleapis.com/v0/b/fitwithfriends-8af74.appspot.com/o/images%2F8ff54af4-6d93-4760-8115-6027dce925a1?alt=media&token=6940db7c-73ee-4ed3-bdc9-9e9c0bc6cd26", "userone");
+        InvitePopupPojo two = new InvitePopupPojo("https://firebasestorage.googleapis.com/v0/b/fitwithfriends-8af74.appspot.com/o/images%2F8ff54af4-6d93-4760-8115-6027dce925a1?alt=media&token=6940db7c-73ee-4ed3-bdc9-9e9c0bc6cd26", "usertwo");
+        InvitePopupPojo three = new InvitePopupPojo("https://firebasestorage.googleapis.com/v0/b/fitwithfriends-8af74.appspot.com/o/images%2F8ff54af4-6d93-4760-8115-6027dce925a1?alt=media&token=6940db7c-73ee-4ed3-bdc9-9e9c0bc6cd26", "userthree");
+        InvitePopupPojo four = new InvitePopupPojo("https://firebasestorage.googleapis.com/v0/b/fitwithfriends-8af74.appspot.com/o/images%2F8ff54af4-6d93-4760-8115-6027dce925a1?alt=media&token=6940db7c-73ee-4ed3-bdc9-9e9c0bc6cd26", "userfour");
         nlist.add(one);
         nlist.add(two);
         nlist.add(three);

@@ -50,12 +50,12 @@ public class HomeScreenActivity extends AppCompatActivity {
         senderNumber=getIntent().getStringExtra("senderNumber");
         if(senderNumber!=null){
         missionTitle=getIntent().getStringExtra("missionTitle");
-        //participantsList=getIntent().getExtras().getParcelableArrayList("userinfo");
+        participantsList=getIntent().getExtras().getParcelableArrayList("userinfo");
 
        /* try{JSONArray participantsArray = new JSONArray(getIntent().getParcelableArrayListExtra("userinfo"));
         for(int i=0;i<participantsArray.length();i++) {
             JSONObject participantsArrayJSONObject = participantsArray.getJSONObject(i);
-            int image=participantsArrayJSONObject.getInt("userImage");
+            String image=participantsArrayJSONObject.getString("userImage");
             String name=participantsArrayJSONObject.getString("userName");
             participantsList.add(new InvitePopupPojo(image,name));
         }}catch (JSONException e){e.printStackTrace();}*/

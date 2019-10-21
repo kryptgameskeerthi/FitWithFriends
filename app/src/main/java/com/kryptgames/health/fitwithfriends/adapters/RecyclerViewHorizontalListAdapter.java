@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.kryptgames.health.fitwithfriends.R;
 import com.kryptgames.health.fitwithfriends.models.InvitePopupPojo;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class RecyclerViewHorizontalListAdapter extends RecyclerView.Adapter<Recy
 
     @Override
     public void onBindViewHolder(DetailsViewHolder holder, final int position) {
-        holder.imageView.setImageResource(horizontalList.get(position).getUserImage());
+        Picasso.with(context).load(horizontalList.get(position).getUserImage()).into(holder.imageView);
         holder.txtview.setText(horizontalList.get(position).getUserName());
 
     }
