@@ -4,11 +4,11 @@
 
     <gradient
         android:angle="270"
-        android:endColor="@color/snow"
-        android:startColor="@color/snow" />
+        android:endColor="#ffffff"
+        android:startColor="#ffffff" />
     <stroke
         android:width="4dp"
-        android:color="@color/snow">
+        android:color="#ffffff">
 
     </stroke>
 
