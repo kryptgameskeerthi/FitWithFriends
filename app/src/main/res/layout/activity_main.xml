@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:background="@color/ice"
+    android:background="#f0f3f4"
     tools:context=".activity.CreateProfileActivity"
     >
 
@@ -121,23 +120,10 @@
                 android:textSize="24dp"
                 android:fontFamily="@font/robotolight">
 
+            </androidx.appcompat.widget.AppCompatSpinner>
 
 
-        <FrameLayout
-            android:id="@+id/frameLayout2"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginStart="@dimen/m_dimen"
-            android:layout_marginLeft="@dimen/m_dimen"
-            android:layout_marginTop="@dimen/y_dimen"
-            android:layout_marginEnd="@dimen/m_dimen"
-            android:layout_marginRight="@dimen/m_dimen"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-           >
-
-
+        </LinearLayout>
 
         <TextView
             android:id="@+id/mDisplayDate"
@@ -182,6 +168,12 @@
                 android:textSize="24dp"
                 android:fontFamily="@font/robotolight">
 
+            </androidx.appcompat.widget.AppCompatSpinner>
+
+
+        </LinearLayout>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -206,190 +198,31 @@
                 android:textSize="24dp"
                 android:fontFamily="@font/robotolight">
 
+            </androidx.appcompat.widget.AppCompatSpinner>
+
+        </LinearLayout>
 
 
 
-        </FrameLayout>
+    </LinearLayout>
 
 
-
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="30dp"
-           android:background="@drawable/shape"
-            android:layout_marginBottom="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginEnd="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <EditText
-                    android:id="@+id/edName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/h_dimen"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="@dimen/h_dimen"
-                    android:layout_marginEnd="@dimen/h_dimen"
-                    android:background="@drawable/edittext"
-                    android:layout_marginBottom="10dp"
-                    android:hint="First Name"
-                    android:inputType="text"
-                    android:maxLength="15"
-                    android:padding="10dp"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/robotomedium"/>
-
-                <EditText
-                    android:id="@+id/edLastName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/h_dimen"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginEnd="@dimen/h_dimen"
-                    android:background="@drawable/edittext"
-                    android:hint="Last Name"
-                    android:inputType="text"
-                    android:maxLength="15"
-                    android:padding="10dp"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/robotomedium"/>
-
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/spinnerGender"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginStart="@dimen/h_dimen"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginEnd="@dimen/h_dimen"
-                    android:layout_marginRight="@dimen/m_dimen"
-                    android:background="@drawable/spinner"
-                    android:entries="@array/Gender"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:spinnerMode="dropdown"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/robotomedium">
-
-                </androidx.appcompat.widget.AppCompatSpinner>
-
-                <EditText
-                    android:id="@+id/emailAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginStart="@dimen/h_dimen"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginEnd="@dimen/h_dimen"
-                    android:background="@drawable/edittext"
-                    android:hint="Email Address"
-                    android:inputType="text"
-                    android:padding="10dp"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/robotomedium"/>
-
-                <TextView
-                    android:id="@+id/mDisplayDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginStart="@dimen/h_dimen"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginEnd="@dimen/h_dimen"
-                    android:background="@drawable/spinner"
-                    android:hint="Enter Date Of Birth"
-                    android:padding="10dp"
-                    android:textAlignment="center"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/robotomedium">
-
-                </TextView>
-
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/heightSpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginStart="@dimen/h_dimen"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginEnd="@dimen/h_dimen"
-                    android:layout_marginRight="@dimen/m_dimen"
-                    android:background="@drawable/spinner"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:spinnerMode="dropdown"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/robotomedium">
-
-                </androidx.appcompat.widget.AppCompatSpinner>
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/weightSpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/h_dimen"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginEnd="@dimen/h_dimen"
-                    android:layout_marginRight="@dimen/m_dimen"
-                    android:background="@drawable/spinner"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:spinnerMode="dropdown"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/robotomedium">
-
-                </androidx.appcompat.widget.AppCompatSpinner>
-
-
-                <Button
-                    android:id="@+id/save"
-                    android:layout_width="90sp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginStart="@dimen/f_dimen"
-                    android:layout_marginLeft="@dimen/l_dimen"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginEnd="@dimen/f_dimen"
-                    android:layout_marginRight="@dimen/m_dimen"
-                    android:layout_marginBottom="@dimen/h_dimen"
-                    android:background="@drawable/button"
-                    android:text="Save"
-                    android:textColor="@color/snow"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.527"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-
-            </LinearLayout>
-
-
-        </ScrollView>
-
+    <Button
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button"
+        android:text="Save"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
