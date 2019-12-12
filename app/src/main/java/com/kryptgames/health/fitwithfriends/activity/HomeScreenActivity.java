@@ -1,8 +1,6 @@
 package com.kryptgames.health.fitwithfriends.activity;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,20 +8,25 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.viewpager.widget.PagerAdapter;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.kryptgames.health.fitwithfriends.Pager;
+
+import com.kryptgames.health.fitwithfriends.fragment.BlankFragment;
+import com.kryptgames.health.fitwithfriends.fragment.MyRewardsFragment;
+import com.kryptgames.health.fitwithfriends.adapters.Pager;
+
 import com.kryptgames.health.fitwithfriends.R;
+import com.kryptgames.health.fitwithfriends.fragment.ExerciseListFragment;
+import com.kryptgames.health.fitwithfriends.fragment.UserProfilePageFragment;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
@@ -39,6 +42,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         setContentView(R.layout.acitivity_drawer);
         //openDialog();
 
+        //openDialog();
 
         this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.activity_toolbar);
@@ -83,7 +87,6 @@ public class HomeScreenActivity extends AppCompatActivity {
         toolbar = getSupportActionBar();
         BottomNavigationView navigation=(BottomNavigationView)findViewById(R.id.fwf_navigationview_bottomnavigationbar);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelelctedListener);
-
         notifications=findViewById(R.id.fwf_imagebutton_notifications);
         notifications.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +98,9 @@ public class HomeScreenActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(HomeScreenActivity.this,"navigation to add new activity page",Toast.LENGTH_SHORT).show();
+                Intent trackExerciseIntent = new Intent(HomeScreenActivity.this, ExcerciseTrackActivity.class);
+                startActivity(trackExerciseIntent);
+                finish();
             }
         });
 
@@ -111,6 +116,7 @@ public class HomeScreenActivity extends AppCompatActivity {
     public void selectTab(int position){
         viewPager.setCurrentItem(position);
     }
+
     /*public void openDialog(){
         InvitePopup invitePopup=new InvitePopup();
         invitePopup.show(getSupportFragmentManager(),"example");
@@ -119,22 +125,32 @@ public class HomeScreenActivity extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelelctedListener=new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment selectedFragment=null;
             switch (item.getItemId())
             {
                 case R.id.fwf_navigation_home:
-                    Toast.makeText(HomeScreenActivity.this,"You have clicked on the home icon",Toast.LENGTH_SHORT).show();
-                    return true;
+                    viewPager.setVisibility(View.VISIBLE);
+                    viewPager.setCurrentItem(0);
+                    selectedFragment=new BlankFragment();
+                    break;
                 case R.id.fwf_navigation_activities:
-                    Toast.makeText(HomeScreenActivity.this,"You have clicked on the activities icon",Toast.LENGTH_SHORT).show();
-                    return true;
+                    viewPager.setVisibility(View.GONE);
+                    selectedFragment=new ExerciseListFragment();
+                    //Toast.makeText(HomeScreenActivity.this,"You have clicked on the profile icon",Toast.LENGTH_SHORT).show();
+                    break;
                 case R.id.fwf_navigation_rewards:
-                    Toast.makeText(HomeScreenActivity.this,"You have clicked on the rewards icon",Toast.LENGTH_SHORT).show();
-                    return true;
+                    viewPager.setVisibility(View.GONE);
+                    selectedFragment=new MyRewardsFragment();
+                    //Toast.makeText(HomeScreenActivity.this,"You have clicked on the rewards icon",Toast.LENGTH_SHORT).show();
+                    break;
                 case R.id.fwf_navigation_profile:
-                    Toast.makeText(HomeScreenActivity.this,"You have clicked on the profile icon",Toast.LENGTH_SHORT).show();
-                    return true;
+                    viewPager.setVisibility(View.GONE);
+                    selectedFragment=new UserProfilePageFragment();
+                    //Toast.makeText(HomeScreenActivity.this,"You have clicked on the profile icon",Toast.LENGTH_SHORT).show();
+                    break;
             }
-            return false;
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_container,selectedFragment).commit();
+            return true;
         }
     };
 

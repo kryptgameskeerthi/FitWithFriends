@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="12dp"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    app:contentPaddingBottom="8dp"
+    app:cardCornerRadius="12dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/fwf_textview_rewardtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/robotomedium"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"/>
+
+        <ImageView
+            android:id="@+id/fwf_imageview_qrcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_below="@+id/fwf_textview_rewardtitle"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/fwf_textview_placedescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:textSize="12sp"
+            android:textColor="@color/mdtp_transparent_black"
+            android:fontFamily="@font/robotoregular"
+            android:layout_below="@+id/fwf_imageview_qrcode"
+            android:layout_alignStart="@+id/fwf_textview_rewardtitle"/>
+
+
+        <TextView
+            android:id="@+id/fwf_textview_offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Offer"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/robotomedium"
+            android:layout_below="@+id/fwf_textview_placedescription"
+            android:layout_alignStart="@+id/fwf_textview_rewardtitle"/>
+        <TextView
+            android:id="@+id/fwf_textview_offerdescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textSize="12sp"
+            android:textColor="@color/mdtp_transparent_black"
+            android:fontFamily="@font/robotoregular"
+            android:layout_below="@+id/fwf_textview_offer"
+            android:layout_alignStart="@+id/fwf_textview_rewardtitle"/>
+
+
+        <TextView
+            android:id="@+id/fwf_textview_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Location"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/robotomedium"
+            android:layout_below="@+id/fwf_textview_offerdescription"
+            android:layout_alignStart="@+id/fwf_textview_rewardtitle"/>
+        <TextView
+            android:id="@+id/fwf_textview_locationdescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textSize="12sp"
+            android:textColor="@color/mdtp_transparent_black"
+            android:fontFamily="@font/robotoregular"
+            android:layout_below="@+id/fwf_textview_location"
+            android:layout_alignStart="@+id/fwf_textview_rewardtitle"/>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

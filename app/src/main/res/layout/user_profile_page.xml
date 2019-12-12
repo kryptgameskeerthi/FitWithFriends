@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.jgabrielfreitas.core.BlurImageView
+        android:id="@+id/fwf_imageview_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/harryw"
+        app:layout_constraintBottom_toTopOf="@+id/backgroundImageBottomGuideLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+    android:id="@+id/userImageLeftGuideLine"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintGuide_percent="0.08" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/backgroundImageBottomGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/userImageRightGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topActivitiesStartGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.62" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/fwf_circleimageview_userimage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/harryw"
+        app:layout_constraintDimensionRatio="1.2"
+        app:layout_constraintEnd_toStartOf="@+id/userImageRightGuideLine"
+        app:layout_constraintStart_toStartOf="@+id/userImageLeftGuideLine"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fwf_textview_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/robotomedium"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="12dp"
+        android:textColor="@color/snow"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/userImageLeftGuideLine"
+        app:layout_constraintTop_toBottomOf="@+id/fwf_circleimageview_userimage" />
+
+    <TextView
+        android:id="@+id/fwf_textview_usercontactnumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="12dp"
+        android:textColor="@color/snow"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/userImageLeftGuideLine"
+        app:layout_constraintTop_toBottomOf="@+id/fwf_textview_username" />
+    <TextView
+        android:id="@+id/fwf_textview_useremail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="12dp"
+        android:textColor="@color/snow"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/userImageLeftGuideLine"
+        app:layout_constraintTop_toBottomOf="@+id/fwf_textview_usercontactnumber" />
+
+
+    <TextView
+        android:id="@+id/fwf_textview_topactivities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/fwf_textview_topactivities"
+        android:textColor="@color/snow"
+        android:textScaleX="1.1"
+        app:layout_constraintStart_toStartOf="@+id/topActivitiesStartGuideLine"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fwf_textview_surfing"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/fwf_textview_surfing"
+        android:textAlignment="center"
+        android:textColor="@color/snow"
+        app:layout_constraintEnd_toEndOf="@+id/fwf_textview_topactivities"
+        app:layout_constraintStart_toStartOf="@+id/fwf_textview_topactivities"
+        app:layout_constraintTop_toBottomOf="@+id/fwf_circleimageview_surfing" />
+
+    <TextView
+        android:id="@+id/fwf_textview_hiking"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/fwf_textview_hiking"
+        android:textAlignment="center"
+        android:textColor="@color/snow"
+        app:layout_constraintEnd_toEndOf="@+id/fwf_textview_topactivities"
+        app:layout_constraintStart_toStartOf="@+id/fwf_textview_topactivities"
+        app:layout_constraintTop_toBottomOf="@+id/fwf_circleimageview_hiking" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/fwf_circleimageview_hiking"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/circle"
+        android:padding="16dp"
+        android:src="@drawable/ic_dummy_logo"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toEndOf="@+id/fwf_circleimageview_surfing"
+        app:layout_constraintStart_toStartOf="@+id/fwf_circleimageview_surfing"
+        app:layout_constraintTop_toBottomOf="@+id/fwf_textview_surfing" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/fwf_circleimageview_surfing"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/circle"
+        android:padding="16dp"
+        android:src="@drawable/ic_surfing"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toEndOf="@+id/fwf_textview_topactivities"
+        app:layout_constraintHorizontal_bias="0.708"
+        app:layout_constraintStart_toStartOf="@+id/fwf_textview_topactivities"
+        app:layout_constraintTop_toBottomOf="@+id/fwf_textview_topactivities" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="28dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/backgroundImageBottomGuideLine"
+        tools:layout_editor_absoluteX="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/fwf_imagebutton_rewards_earned"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="16dp"
+                android:padding="8dp"
+                android:background="@color/snow"
+                android:src="@drawable/ic_icon_arrow" />
+
+            <ImageButton
+                android:id="@+id/fwf_imagebutton_missions_completed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fwf_view_lineone"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="16dp"
+                android:padding="8dp"
+                android:background="@color/snow"
+                android:src="@drawable/ic_icon_arrow"
+                />
+
+            <ImageButton
+                android:id="@+id/fwf_imagebutton_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fwf_view_linetwo"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="16dp"
+                android:padding="8dp"
+                android:background="@color/snow"
+                android:src="@drawable/ic_icon_arrow" />
+
+            <TextView
+                android:id="@+id/fwf_textview_rewards_earned"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/robotomedium"
+                android:text="@string/fwf_textview_rewardsearned"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/fwf_textview_missions_completed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fwf_view_lineone"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/robotomedium"
+                android:text="@string/fwf_textview_missions_completed"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/fwf_textview_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fwf_view_linetwo"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/robotomedium"
+                android:text="@string/fwf_textview_settings"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <View
+                android:id="@+id/fwf_view_lineone"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/fwf_textview_rewards_earned"
+                android:background="@color/steel" />
+
+            <View
+                android:id="@+id/fwf_view_linetwo"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/fwf_textview_missions_completed"
+                android:background="@color/steel" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/fwf_circleimageview_edit"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@mipmap/ic_create"
+        app:layout_constraintBottom_toBottomOf="@+id/fwf_imageview_background"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

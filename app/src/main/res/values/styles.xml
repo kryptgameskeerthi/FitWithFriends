@@ -6,11 +6,18 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/robotoregular</item>
     </style>
+
+    <style name="AppCompatNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fontFamily">@font/robotoregular</item>
+    </style>
+
 
     <style name="NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:fontFamily">@font/robotoregular</item>
     </style>
 
     <style name="button_round" >
@@ -35,8 +42,24 @@
     <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/rust</item>
         <item name="android:textColorSecondary">@color/mdtp_transparent_black</item>
+        <item name="android:fontFamily">@font/robotoregular</item>
     </style>
 
+    <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:background">@color/snow</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">@font/robotoregular</item>
+
+    </style>
+
+
+    <style name="calender_theme" parent="ThemeOverlay.AppCompat.Dialog">
+        <item name="android:colorControlActivated">@color/rust</item> <!--selected day-->
+        <item name="android:textColorPrimary">@color/black</item> <!--days of the month-->
+        <item name="android:textColorSecondary">@color/black</item><!--days of the week-->
+        <item name="android:background">@color/snow</item>
+        <item name="android:selectedWeekBackgroundColor">@color/rust</item>
+    </style>
 
     <style name="calender_theme" parent="ThemeOverlay.AppCompat.Dialog">
         <item name="android:colorControlActivated">@color/rust</item> <!--selected day-->
