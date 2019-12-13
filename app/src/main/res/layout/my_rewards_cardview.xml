@@ -70,9 +70,7 @@
             android:textColor="@color/snow"
             android:fontFamily="@font/robotomedium"
             android:textAllCaps="false"
-
             android:background="@drawable/button_round"
-
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:textAlignment="center"
