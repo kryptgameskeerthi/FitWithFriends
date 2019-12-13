@@ -104,7 +104,6 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
                             DatabaseReference reference= FirebaseDatabase.getInstance().getReference();
                             DatabaseReference ref=reference.child("Profile").child(userNumber);
                             ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -148,6 +147,7 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
 
                                 }
                             });
+
 
                         } else {
                             Toast.makeText(getApplicationContext(), "You have entered incorrect OTP", Toast.LENGTH_SHORT).show();

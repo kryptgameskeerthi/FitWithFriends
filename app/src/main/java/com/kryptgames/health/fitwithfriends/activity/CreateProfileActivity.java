@@ -1,5 +1,6 @@
 package com.kryptgames.health.fitwithfriends.activity;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 
 import android.app.ProgressDialog;
@@ -11,25 +12,32 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.Log;
 
+import android.view.Gravity;
 import android.view.View;
+
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -63,7 +71,9 @@ public class CreateProfileActivity extends AppCompatActivity {
     Spinner spinnerGender;
 
     Button save;
-    CircleImageView profilePic, edit;
+    CircleImageView profilePic,edit;
+    ImageButton back;
+
     DatabaseReference databaseReference;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
@@ -76,6 +86,12 @@ public class CreateProfileActivity extends AppCompatActivity {
 
     FirebaseStorage storage;
     StorageReference storageReference;
+    boolean checkImage=false;
+    String key,imageReference;
+    String userNumber;
+
+  ProgressDialog progressDialog;
+
 
 
 
@@ -87,10 +103,14 @@ public class CreateProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        userNumber=getIntent().getStringExtra("number");
+
+
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
         profilePic = findViewById(R.id.profilePic);
+
 
         edit = findViewById(R.id.edit);
 
@@ -107,6 +127,10 @@ public class CreateProfileActivity extends AppCompatActivity {
 
         });
 
+
+
+
+
         databaseReference = FirebaseDatabase.getInstance().getReference("Profile");
 
 
@@ -120,7 +144,7 @@ public class CreateProfileActivity extends AppCompatActivity {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
 
-                    Profile profile = postSnapshot.getValue(Profile.class);
+                    //Profile profile = postSnapshot.getValue(Profile.class);
                     /*
                     if(profile!= null) {
                         Log.e("Get Data", profile.getName());
@@ -243,7 +267,7 @@ public class CreateProfileActivity extends AppCompatActivity {
 
                 } else {
                     String item = parent.getItemAtPosition(position).toString();
-                    Toast.makeText(parent.getContext(), "selected: " + item, Toast.LENGTH_SHORT).show();
+
                 }
             }
 
@@ -263,9 +287,14 @@ public class CreateProfileActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                profileCreated();
-                uploadImage();
 
+
+               // uploadImage();
+
+
+                
+
+                profileCreated();
 
             }
         });
@@ -282,7 +311,7 @@ public class CreateProfileActivity extends AppCompatActivity {
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DATE);
 
-                DatePickerDialog dialog = new DatePickerDialog(CreateProfileActivity.this, android.R.style.Theme_Holo_Dialog_MinWidth,mDateSetListener, year, month, day);
+                DatePickerDialog dialog = new DatePickerDialog(CreateProfileActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,mDateSetListener, year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
@@ -312,13 +341,67 @@ public class CreateProfileActivity extends AppCompatActivity {
         String weight = weightSpinner.getSelectedItem().toString();
 
 
+
         if (!TextUtils.isEmpty(name)) {
 
-            String key = databaseReference.push().getKey();
+            if (imageUri != null) {
+                progressDialog = new ProgressDialog(this);
+                progressDialog.setTitle("Uploading...");
+                progressDialog.show();
 
-            Profile profile = new Profile(name, lastName, genre, dob,height, weight);
+                StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
+                ref.putFile(imageUri)
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                if (!checkImage) {
+                                    ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
 
-            databaseReference.child(key).setValue(profile);
+                                            //key = databaseReference.push().getKey();
+
+
+                                            imageReference=String.valueOf(uri);
+                                            Profile profile = new Profile(name, lastName, genre, dob,height, weight,imageReference, userNumber);
+
+                                            databaseReference.child(userNumber).setValue(profile);
+
+
+                                        /*HashMap<String, String> hashMap = new HashMap<>();
+                                        hashMap.put("imageurl", String.valueOf(uri));
+
+                                        databaseReference.child(key).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+
+                                                Toast.makeText(CreateProfileActivity.this, "Profile Created", Toast.LENGTH_SHORT).show();
+                                                progressDialog.dismiss();
+
+
+                                            }
+                                        });*/
+                                        }
+                                    });
+
+                                } else {
+
+                                    Toast.makeText(CreateProfileActivity.this, "Uploading in Progress", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+
+                        double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                        progressDialog.setMessage("Uploaded " + ((int) progress) + "%...");
+
+                    }
+                });
+            }
+
+
 
             Toast.makeText(this, "Profile Created", Toast.LENGTH_SHORT).show();
             Intent homeIntent = new Intent(CreateProfileActivity.this, HomeScreenActivity.class);
@@ -346,38 +429,55 @@ public class CreateProfileActivity extends AppCompatActivity {
 
     private void uploadImage() {
 
-        if(imageUri != null)
-        {
-            final ProgressDialog progressDialog = new ProgressDialog(this);
+        if (imageUri != null) {
+             progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+            StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
             ref.putFile(imageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            progressDialog.dismiss();
-                            Toast.makeText(CreateProfileActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            progressDialog.dismiss();
-                            Toast.makeText(CreateProfileActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
-                                    .getTotalByteCount());
-                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                            if (!checkImage) {
+                                ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+
+                                        imageReference=String.valueOf(uri);
+                                        /*HashMap<String, String> hashMap = new HashMap<>();
+                                        hashMap.put("imageurl", String.valueOf(uri));
+
+                                        databaseReference.child(key).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+
+                                                Toast.makeText(CreateProfileActivity.this, "Profile Created", Toast.LENGTH_SHORT).show();
+                                                progressDialog.dismiss();
+
+
+                                            }
+                                        });*/
+                                    }
+                                });
+
+                            } else {
+
+                                Toast.makeText(CreateProfileActivity.this, "Uploading in Progress", Toast.LENGTH_SHORT).show();
+                            }
+
                         }
                     });
         }
+
+
+
+
+  
+
+
     }
+
 
 
 

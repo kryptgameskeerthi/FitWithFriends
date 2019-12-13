@@ -19,9 +19,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+
 import com.kryptgames.health.fitwithfriends.fragment.BlankFragment;
 import com.kryptgames.health.fitwithfriends.fragment.MyRewardsFragment;
 import com.kryptgames.health.fitwithfriends.adapters.Pager;
+
 import com.kryptgames.health.fitwithfriends.R;
 import com.kryptgames.health.fitwithfriends.fragment.ExerciseListFragment;
 import com.kryptgames.health.fitwithfriends.fragment.UserProfilePageFragment;
@@ -40,12 +42,15 @@ public class HomeScreenActivity extends AppCompatActivity {
     private FloatingActionButton floatingActionButton;
     private TextView notificationCount;
     private ViewPager viewPager;
+
     private String senderNumber,missionTitle;
     private ArrayList<InvitePopupPojo> participantsList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acitivity_drawer);
+        //openDialog();
 
         senderNumber=getIntent().getStringExtra("senderNumber");
         if(senderNumber!=null){
