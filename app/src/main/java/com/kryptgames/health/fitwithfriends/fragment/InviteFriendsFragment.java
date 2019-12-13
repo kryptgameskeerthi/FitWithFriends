@@ -1,9 +1,13 @@
 package com.kryptgames.health.fitwithfriends.fragment;
 
 import android.Manifest;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,12 +26,18 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.kryptgames.health.fitwithfriends.activity.InvitePopup;
 import com.kryptgames.health.fitwithfriends.models.FriendsInvitation;
 import com.kryptgames.health.fitwithfriends.R;
 import com.kryptgames.health.fitwithfriends.activity.HomeScreenActivity;
 import com.kryptgames.health.fitwithfriends.models.InvitePopupPojo;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,7 +58,8 @@ import okhttp3.Response;
 import static com.kryptgames.health.fitwithfriends.activity.PhoneAuthenticationActivity.getNumber;
 
 public class InviteFriendsFragment extends Fragment {
-    private int MY_PERMISSIONS_REQUEST_READ_CONTACTS;
+    private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
+    ArrayList<String> contacts = new ArrayList<>();
     private List<FriendsInvitation> mlist = new ArrayList<>();
     private TextView selected,total;
     private Button button;
@@ -56,8 +67,7 @@ public class InviteFriendsFragment extends Fragment {
     private String userNumber,missionTitle;
     private ArrayList<InvitePopupPojo> participantsList=new ArrayList<>();
     private ArrayList<String> deviceIds=new ArrayList<>();
-    private String DEVICE_TOKEN="dN7bDO-37_E:APA91bFC41FHHEM93NER76E_p3IQTVFPdG__0OYyLx91Fz5gxRVQ_8scyN98bMVfQEIOLUaMy79sEhUWUUwwGRE6dCHd5JeoJIidQnJsJDkIWY_GKq7Iti4Auvqj2Ofd-y6wgJDXA9wu";
-    private String two="eJZqOwoJUAY:APA91bFfEkzRfL0i-oD1uD2adYbr6n6BmBNRvIuFiR38wfDxmtmNNSY4n-bnK3WBu_oZLMYDLE1QMbVyDip-g5RyZr5t075oinijpXsPzONZL3O5GpIWvwnhAO_Y0Xqjd0CyhOuYK6R_";
+    RecyclerViewAdapter adapter;
 
     public static Fragment newInstance() {
 
@@ -65,32 +75,46 @@ public class InviteFriendsFragment extends Fragment {
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (grantResults.length > 0
-                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            // permission was granted, Do the contacts-related task you need to do.
-        } else {
-            // permission denied
+        if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission is granted
+                readContacts();
+            } else {
+                Toast.makeText(getContext(), "We cannot display the list of your friends until you grant us the permission", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "please navigate to settings,under app permissions please grant FIT WITH FRIENDS a permission to read your contacts", Toast.LENGTH_SHORT).show();
+
+            }
         }
-        return;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (ContextCompat.checkSelfPermission(getContext(),
-                Manifest.permission.READ_CONTACTS)
-                != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-                    Manifest.permission.READ_CONTACTS)) {
-            } else {
-                ActivityCompat.requestPermissions(getActivity(),
-                        new String[]{Manifest.permission.READ_CONTACTS},MY_PERMISSIONS_REQUEST_READ_CONTACTS
-                );
-            }
-        } else {
-            // Permission has already been granted
-        }
         total.setText(""+totalparticipants);
+        readContacts();
+        for(String number:contacts){
+            DatabaseReference reference= FirebaseDatabase.getInstance().getReference();
+            DatabaseReference ref=reference.child("Profile").child(number);
+
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        String token = dataSnapshot.child("token").getValue(String.class);
+                        String fName = dataSnapshot.child("name").getValue(String.class);
+                        String lName = dataSnapshot.child("lastName").getValue(String.class);
+                        String image = dataSnapshot.child("imageRef").getValue(String.class);
+                        mlist.add(new FriendsInvitation(image, token, fName + " " + lName));
+                        adapter.notifyDataSetChanged();
+
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
         button.setEnabled(false);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,11 +123,11 @@ public class InviteFriendsFragment extends Fragment {
 
                 for(FriendsInvitation model : mlist){
                     if(model.isSelected()){
-                        participantsList.add(new InvitePopupPojo(model.getUserImage(),model.getUserName()));
+
+                        participantsList.add(new InvitePopupPojo(model.getUserImageRef(),model.getUserName()));
+                        deviceIds.add(model.getTokenId());
                     }
                 }
-                deviceIds.add(DEVICE_TOKEN);
-                deviceIds.add(two);
 
                 sendNotification(userNumber,missionTitle,participantsList,deviceIds);
 
@@ -139,9 +163,9 @@ public class InviteFriendsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.new_missions_invite_friends, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.fwf_layout_recyclerview);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),4));
-        recyclerView.setAdapter(new RecyclerViewAdapter(mlist, getContext()));
-        populateList();
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),4));
+        adapter=new RecyclerViewAdapter(mlist, getContext());
+        recyclerView.setAdapter(adapter);
         return view;
     }
 
@@ -180,7 +204,7 @@ public class InviteFriendsFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
             final FriendsInvitation friendsInvitation = horizontalList.get(position);
-            holder.userImage.setImageResource(horizontalList.get(position).getUserImage());
+            Picasso.with(getContext()).load(horizontalList.get(position).getUserImageRef()).into(holder.userImage);
             holder.userName.setText(horizontalList.get(position).getUserName());
             holder.userImage.setForeground(friendsInvitation.isSelected() ? getResources().getDrawable(R.drawable.user_selected_foreground) : null);
             holder.userImage.setOnClickListener(new View.OnClickListener() {
@@ -214,43 +238,11 @@ public class InviteFriendsFragment extends Fragment {
         }
 
     }
-        private void populateList() {
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userone"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usertwo"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userthree"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfour"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfive"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usersix"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userone"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usertwo"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userthree"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfour"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfive"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usersix"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userone"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usertwo"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userthree"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfour"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfive"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usersix"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userone"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usertwo"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userthree"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfour"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfive"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usersix"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userone"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usertwo"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userthree"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfour"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfive"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usersix"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userone"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usertwo"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userthree"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfour"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "userfive"));
-            mlist.add(new FriendsInvitation(R.drawable.homepageimage, "usersix"));
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.notifyDataSetChanged();
     }
 
     public void sendNotification(String senderNumber, String missionTitle, ArrayList<InvitePopupPojo> participantsList, ArrayList<String> deviceIds){
@@ -284,7 +276,7 @@ public class InviteFriendsFragment extends Fragment {
 
             for(int i=0;i<(participantsList.size());i++)
             {
-                int userImage=participantsList.get(i).userImage;
+                String userImage=participantsList.get(i).userImageRef;
                 String userName=participantsList.get(i).userName;
 
                 JSONObject info=new JSONObject();
@@ -326,5 +318,59 @@ public class InviteFriendsFragment extends Fragment {
         };
         okhttp3.Call call = client.newCall(request);
         call.enqueue(responseCallBack);
+    }
+    private void readContacts() {
+        // Check the SDK version and whether the permission is already granted or not.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && getContext().checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
+            //After this point you wait for callback in onRequestPermissionsResult(int, String[], int[]) overriden method
+        } else {
+            // Android version is lesser than 6.0 or the permission is already granted.
+            contacts = getContactNames();
+
+            for (int i = 0; i < contacts.size(); i++) {
+                Log.i("contacts", contacts.get(i));
+            }
+
+        }
+    }
+
+    private ArrayList<String> getContactNames() {
+        ArrayList<String> numbers = new ArrayList<>();
+
+        ContentResolver resolver = getContext().getContentResolver();
+        Cursor cursor = resolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+
+        while (cursor.moveToNext()) {
+            String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+            String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+
+            Cursor phoneCursor = resolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
+                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=?", new String[]{id}, null);
+
+            Log.i("My Info", id + "=" + name);
+
+            while (phoneCursor.moveToNext()) {
+                String phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+
+                if (phoneNumber.length() > 10) {
+                    phoneNumber = phoneNumber.replaceAll("\\s", "");
+                    phoneNumber = phoneNumber.replaceAll("-", "");
+                    phoneNumber = phoneNumber.replace("+91", "");
+                    phoneNumber = phoneNumber.replace("(", "");
+                    phoneNumber = phoneNumber.replace(")", "");
+                    if (phoneNumber.length() > 10)
+                        phoneNumber = phoneNumber.substring(1, 11);
+                }
+                if (phoneNumber.length() == 10) {
+                    if(!numbers.contains(phoneNumber))
+                    numbers.add(phoneNumber);
+
+                    Log.i("My info", phoneNumber);
+
+                }
+            }
+        }
+        return numbers;
     }
 }

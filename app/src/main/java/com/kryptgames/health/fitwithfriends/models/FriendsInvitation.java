@@ -2,21 +2,33 @@ package com.kryptgames.health.fitwithfriends.models;
 
 public class FriendsInvitation {
 
-    public int userImage;
+    public String userImageRef,tokenId;
     public String userName;
     private boolean isSelected=false;
+    public int userImage;
 
-    public FriendsInvitation(int userImage, String userName) {
-        this.userImage = userImage;
-        this.userName = userName;
+    public FriendsInvitation(){
+
     }
 
     public int getUserImage() {
         return userImage;
     }
 
-    public void setUserImage(int userImage) {
-        this.userImage = userImage;
+    public String getUserImageRef() {
+        return userImageRef;
+    }
+
+    public void setUserImageRef(String userImageRef) {
+        this.userImageRef = userImageRef;
+    }
+
+    public String getTokenId() {
+        return tokenId;
+    }
+
+    public void setTokenId(String tokenId) {
+        this.tokenId = tokenId;
     }
 
     public String getUserName() {
@@ -24,6 +36,12 @@ public class FriendsInvitation {
     }
 
     public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public FriendsInvitation(String userImageRef, String tokenId, String userName) {
+        this.userImageRef = userImageRef;
+        this.tokenId = tokenId;
         this.userName = userName;
     }
 

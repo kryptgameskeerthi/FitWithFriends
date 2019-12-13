@@ -5,16 +5,16 @@ import android.os.Parcelable;
 
 public class InvitePopupPojo implements Parcelable {
 
-    public int userImage;
+    public String userImageRef;
     public String userName;
 
-    public InvitePopupPojo(int userImage, String userName) {
-        this.userImage = userImage;
+    public InvitePopupPojo(String userImageRef, String userName) {
+        this.userImageRef = userImageRef;
         this.userName = userName;
     }
 
     protected InvitePopupPojo(Parcel in) {
-        userImage = in.readInt();
+        userImageRef = in.readString();
         userName = in.readString();
     }
 
@@ -30,12 +30,12 @@ public class InvitePopupPojo implements Parcelable {
         }
     };
 
-    public int getUserImage() {
-        return userImage;
+    public String getUserImage() {
+        return userImageRef;
     }
 
-    public void setUserImage(int userImage) {
-        this.userImage = userImage;
+    public void setUserImage(String userImage) {
+        this.userImageRef = userImage;
     }
 
     public String getUserName() {
@@ -53,7 +53,7 @@ public class InvitePopupPojo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(userImage);
+        dest.writeString(userImageRef);
         dest.writeString(userName);
     }
 }

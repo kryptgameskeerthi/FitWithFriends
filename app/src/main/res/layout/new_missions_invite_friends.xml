@@ -79,4 +79,27 @@
     android:background="@drawable/create_mission_button"
     />
 
+    <ProgressBar
+        android:indeterminate="true"
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/fwf_textview_invitefriends"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="20dp"
+        android:visibility="gone"/>
+    <ProgressBar
+        android:indeterminate="true"
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/fwf_textview_invitefriends"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="20dp"
+        android:visibility="gone"/>
+
 </RelativeLayout>

@@ -55,7 +55,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             for(int i=0;i<length;i++) {
                 JSONObject participantsArrayJSONObject = participantsArray.getJSONObject(i);
-                int image=participantsArrayJSONObject.getInt("userImage");
+                String image=participantsArrayJSONObject.getString("userImage");
                 String name=participantsArrayJSONObject.getString("userName");
                 pariticipantsList.add(new InvitePopupPojo(image,name));
             }
@@ -69,7 +69,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Intent intent = new Intent(clickAction);
         intent.putExtra("senderNumber",senderNumber);
         intent.putExtra("missionTitle",missionTitle);
-        intent.putExtra("userinfo",pariticipantsList);
+        //intent.putExtra("userinfo",pariticipantsList);
         intent.putParcelableArrayListExtra("userinfo",pariticipantsList);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);

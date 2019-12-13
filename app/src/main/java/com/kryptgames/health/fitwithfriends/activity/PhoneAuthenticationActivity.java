@@ -5,11 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputFilter;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alimuzaffar.lib.pin.PinEntryEditText;
@@ -42,7 +48,7 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private String mVerificationId;
-    private static String userNumber;
+    private static String cUserNumber,userNumber;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private LinearLayout pinentryLayout;
 
@@ -53,6 +59,45 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mbutton = (Button) findViewById(R.id.fwf_button_otp);
         pinentryLayout=findViewById(R.id.fwf_layout_pinentry);
+
+        mUserNumber = (EditText) findViewById(R.id.fwf_edittext_phonenumber);
+
+        mUserNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                if(s.length()>0) {
+                    char a;
+                    a = s.charAt(0);
+                    if (a == '+') {
+                        mUserNumber.setFilters(new InputFilter[]{new InputFilter.LengthFilter(13)});
+                        cUserNumber = mUserNumber.getText().toString();
+
+
+                    } else {
+                        mUserNumber.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
+                        userNumber = mUserNumber.getText().toString();
+                        cUserNumber = "+" + "91" + userNumber;
+                    }
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+
+            }
+        });
+
+
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
             public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
@@ -70,6 +115,15 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
                 mVerificationId = s;
                 Toast.makeText(PhoneAuthenticationActivity.this, "Otp sent successfully", Toast.LENGTH_SHORT).show();
                 mEntered_OTP = (PinEntryEditText) findViewById(R.id.fwf_pinentryedittext_otp);
+
+                mEntered_OTP.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                        if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                            mbutton.performClick();
+                        }
+                        return false;
+                    }
+                });
                 pinentryLayout.setVisibility(View.VISIBLE);
                 mbutton.setText("Go");
             }
@@ -77,12 +131,14 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
         mbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mUserNumber = (EditText) findViewById(R.id.fwf_edittext_phonenumber);
-                userNumber = mUserNumber.getText().toString();
-                String number = "+" + "91" + userNumber;
-                PhoneAuthProvider.getInstance().verifyPhoneNumber(number, 60, TimeUnit.SECONDS, PhoneAuthenticationActivity.this, mCallbacks);
+
+                if(cUserNumber.length()>10){
+                    userNumber=cUserNumber.substring(3,13);
+                }
+                mUserNumber.setFilters(new InputFilter[]{new InputFilter.LengthFilter(13)});
+                mUserNumber.setText(cUserNumber);
+                PhoneAuthProvider.getInstance().verifyPhoneNumber(cUserNumber, 60, TimeUnit.SECONDS, PhoneAuthenticationActivity.this, mCallbacks);
                 mUserNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(13) });
-                mUserNumber.setText("+91" + userNumber);
                 mUserNumber.setEnabled(false);
                 mUserNumber.setBackground(getResources().getDrawable(R.drawable.edittext_steelbackground));
                 mbutton.setOnClickListener(new View.OnClickListener() {

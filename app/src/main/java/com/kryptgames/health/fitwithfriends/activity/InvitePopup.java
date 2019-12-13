@@ -28,6 +28,7 @@ import com.kryptgames.health.fitwithfriends.models.InvitePopupPojo;
 import com.kryptgames.health.fitwithfriends.R;
 import com.kryptgames.health.fitwithfriends.adapters.RecyclerViewHorizontalListAdapter;
 import com.kryptgames.health.fitwithfriends.models.Profile;
+import com.squareup.picasso.Picasso;
 
 
 import org.json.JSONArray;
@@ -77,7 +78,7 @@ public class InvitePopup extends AppCompatDialogFragment {
         Bundle bundle=getArguments();
         userNumber=bundle.getString("userNumber");
         missionTitle=bundle.getString("missionTitle");
-        //detailsList=bundle.getParcelableArrayList("userinfo");
+        detailsList=bundle.getParcelableArrayList("userinfo");
 
 
         detailsRecyclerView = dialog.findViewById(R.id.fwf_layout_recycler_view);
@@ -85,7 +86,6 @@ public class InvitePopup extends AppCompatDialogFragment {
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         detailsRecyclerView.setLayoutManager(horizontalLayoutManager);
         detailsRecyclerView.setAdapter(detailsAdapter);
-        populatedetailsList();
 
         activityTitle.setText(missionTitle);
 
@@ -110,7 +110,7 @@ public class InvitePopup extends AppCompatDialogFragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Profile profile = dataSnapshot.getValue(Profile.class);
                 hostName.setText((profile.getName()) + " " + (profile.getLastName()));
-                //Picasso.with(getContext()).load((profile.getimageRef())).into(hostImage);
+                Picasso.with(getContext()).load((dataSnapshot.child("imageRef").getValue(String.class))).into(hostImage);
                 tokenId=dataSnapshot.child("token").getValue(String.class);
 
             }
@@ -146,20 +146,7 @@ public class InvitePopup extends AppCompatDialogFragment {
        return dialog;
     }
 
-    private void populatedetailsList() {
-        InvitePopupPojo one = new InvitePopupPojo(R.drawable.homepageimage, "userone");
-        InvitePopupPojo two = new InvitePopupPojo(R.drawable.homepageimage, "usertwo");
-        InvitePopupPojo three = new InvitePopupPojo(R.drawable.homepageimage, "userthree");
-        InvitePopupPojo four = new InvitePopupPojo(R.drawable.homepageimage, "userfour");
-        detailsList.add(one);
-        detailsList.add(two);
-        detailsList.add(three);
-        detailsList.add(four);
-        detailsList.add(one);
-        detailsList.add(two);
-        detailsList.add(three);
-        detailsList.add(four);
-    }
+
 
     public void sendNotification(String name,String response,String token){
 
