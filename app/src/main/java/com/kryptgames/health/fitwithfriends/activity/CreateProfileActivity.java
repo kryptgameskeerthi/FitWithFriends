@@ -1,5 +1,6 @@
 package com.kryptgames.health.fitwithfriends.activity;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 
 import android.app.ProgressDialog;
@@ -11,20 +12,28 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.Log;
 
+import android.view.Gravity;
 import android.view.View;
+
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,7 +71,9 @@ public class CreateProfileActivity extends AppCompatActivity {
     Spinner spinnerGender;
 
     Button save;
-    CircleImageView profilePic, edit;
+    CircleImageView profilePic,edit;
+    ImageButton back;
+
     DatabaseReference databaseReference;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
@@ -85,6 +96,7 @@ public class CreateProfileActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +110,7 @@ public class CreateProfileActivity extends AppCompatActivity {
         storageReference = storage.getReference();
 
         profilePic = findViewById(R.id.profilePic);
+
 
         edit = findViewById(R.id.edit);
 
@@ -113,6 +126,10 @@ public class CreateProfileActivity extends AppCompatActivity {
 
 
         });
+
+
+
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Profile");
 
@@ -250,7 +267,7 @@ public class CreateProfileActivity extends AppCompatActivity {
 
                 } else {
                     String item = parent.getItemAtPosition(position).toString();
-                    Toast.makeText(parent.getContext(), "selected: " + item, Toast.LENGTH_SHORT).show();
+
                 }
             }
 
@@ -271,8 +288,11 @@ public class CreateProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                // uploadImage();
 
+
+                
 
                 profileCreated();
 
@@ -291,7 +311,7 @@ public class CreateProfileActivity extends AppCompatActivity {
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DATE);
 
-                DatePickerDialog dialog = new DatePickerDialog(CreateProfileActivity.this, android.R.style.Theme_Holo_Dialog_MinWidth,mDateSetListener, year, month, day);
+                DatePickerDialog dialog = new DatePickerDialog(CreateProfileActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,mDateSetListener, year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
@@ -450,7 +470,15 @@ public class CreateProfileActivity extends AppCompatActivity {
                     });
         }
 
+
+
+
+  
+
+
     }
+
+
 
 
 }
