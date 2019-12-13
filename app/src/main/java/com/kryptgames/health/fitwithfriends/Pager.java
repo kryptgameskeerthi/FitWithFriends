@@ -1,13 +1,9 @@
-package com.kryptgames.health.fitwithfriends.adapters;
+package com.kryptgames.health.fitwithfriends;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-
-import com.kryptgames.health.fitwithfriends.fragment.BlankFragment;
-import com.kryptgames.health.fitwithfriends.fragment.RecyclerFragment;
-import com.kryptgames.health.fitwithfriends.fragment.RootFragment;
 
 
 public class Pager extends FragmentPagerAdapter {
@@ -26,8 +22,8 @@ public class Pager extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                RecyclerFragment recyclerFragment=new RecyclerFragment();
-                return recyclerFragment;
+                BlankFragment blankFragment=new BlankFragment();
+                return blankFragment;
             case 1:
                 RootFragment newMissionsRecyclerFragment = new RootFragment();
                 return newMissionsRecyclerFragment;

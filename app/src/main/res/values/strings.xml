@@ -31,6 +31,7 @@
     <string name="fwf_textview_missioninvite">Sent you a Mission Invite</string>
     <string name="fwf_textview_missiontitle">Run 100 km in 7 days</string>
     <string name="fwf_textview_team">Team</string>
+
     <string name="completedmissions_title">Completed Missions</string>
     <string name="fwf_textview_topactivities">TOP ACTIVITIES</string>
     <string name="fwf_textview_surfing">Surfing</string>
@@ -38,6 +39,7 @@
     <string name="fwf_textview_settings">Settings</string>
     <string name="fwf_textview_missions_completed">Missions Completed</string>
     <string name="fwf_textview_rewardsearned">Rewards Earned</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
