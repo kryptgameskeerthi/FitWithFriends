@@ -36,12 +36,11 @@
         <activity
             android:name=".activity.CreateProfileActivity"
             android:theme="@style/NoActionBar"
-
-
             />
         <activity
             android:name=".activity.HomeScreenActivity"
-            android:theme="@style/NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light" />
+      
     </application>
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />

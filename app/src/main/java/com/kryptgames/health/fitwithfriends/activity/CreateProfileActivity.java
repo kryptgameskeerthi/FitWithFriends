@@ -288,8 +288,11 @@ public class CreateProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                // uploadImage();
 
+
+                
 
                 profileCreated();
 
@@ -469,8 +472,11 @@ public class CreateProfileActivity extends AppCompatActivity {
 
 
 
-    }
 
+  
+
+
+    }
 
 
 
