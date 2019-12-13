@@ -59,6 +59,9 @@ dependencies {
     implementation 'com.yashovardhan99.timeit:timeit:1.2.0'
     //QRC generator
     implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
+    //Blur image
+    implementation 'com.github.jgabrielfreitas:BlurImageView:1.0.1'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 
 }
 
