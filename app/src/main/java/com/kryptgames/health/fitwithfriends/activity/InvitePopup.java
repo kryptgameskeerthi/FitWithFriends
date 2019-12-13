@@ -16,9 +16,11 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.kryptgames.health.fitwithfriends.InvitePopupPojo;
+
+import com.kryptgames.health.fitwithfriends.models.InvitePopupPojo;
 import com.kryptgames.health.fitwithfriends.R;
-import com.kryptgames.health.fitwithfriends.RecyclerViewHorizontalListAdapter;
+import com.kryptgames.health.fitwithfriends.adapters.RecyclerViewHorizontalListAdapter;
+
 
 import java.util.ArrayList;
 import java.util.List;

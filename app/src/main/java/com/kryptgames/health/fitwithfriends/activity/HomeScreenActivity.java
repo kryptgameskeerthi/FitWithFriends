@@ -1,8 +1,6 @@
 package com.kryptgames.health.fitwithfriends.activity;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,29 +8,32 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.PagerAdapter;
+
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.kryptgames.health.fitwithfriends.BlankFragment;
-import com.kryptgames.health.fitwithfriends.CalenderFragment;
-import com.kryptgames.health.fitwithfriends.MyRewardsFragment;
-import com.kryptgames.health.fitwithfriends.Pager;
-import com.kryptgames.health.fitwithfriends.R;
-import com.kryptgames.health.fitwithfriends.RewardsRecyclerFragment;
 
-import java.util.zip.Inflater;
+
+import com.kryptgames.health.fitwithfriends.fragment.BlankFragment;
+import com.kryptgames.health.fitwithfriends.fragment.MyRewardsFragment;
+import com.kryptgames.health.fitwithfriends.adapters.Pager;
+
+import com.kryptgames.health.fitwithfriends.R;
+import com.kryptgames.health.fitwithfriends.fragment.ExerciseListFragment;
+import com.kryptgames.health.fitwithfriends.fragment.UserProfilePageFragment;
+
 
 public class HomeScreenActivity extends AppCompatActivity {
 
@@ -102,7 +103,9 @@ public class HomeScreenActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(HomeScreenActivity.this,"navigation to add new activity page",Toast.LENGTH_SHORT).show();
+                Intent trackExerciseIntent = new Intent(HomeScreenActivity.this, ExcerciseTrackActivity.class);
+                startActivity(trackExerciseIntent);
+                finish();
             }
         });
 
@@ -137,8 +140,10 @@ public class HomeScreenActivity extends AppCompatActivity {
                     break;
                 case R.id.fwf_navigation_activities:
                     viewPager.setVisibility(View.GONE);
-                    selectedFragment=new BlankFragment();
-                    //Toast.makeText(HomeScreenActivity.this,"You have clicked on the activities icon",Toast.LENGTH_SHORT).show();
+
+                    selectedFragment=new ExerciseListFragment();
+                    //Toast.makeText(HomeScreenActivity.this,"You have clicked on the profile icon",Toast.LENGTH_SHORT).show();
+
                     break;
                 case R.id.fwf_navigation_rewards:
                     viewPager.setVisibility(View.GONE);
@@ -147,7 +152,9 @@ public class HomeScreenActivity extends AppCompatActivity {
                     break;
                 case R.id.fwf_navigation_profile:
                     viewPager.setVisibility(View.GONE);
-                    selectedFragment=new BlankFragment();
+
+                    selectedFragment=new UserProfilePageFragment();
+
                     //Toast.makeText(HomeScreenActivity.this,"You have clicked on the profile icon",Toast.LENGTH_SHORT).show();
                     break;
             }

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kryptgames.health.fitwithfriends">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    
+    
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
+
 
     <application
         android:name=".FitWithFriendsApplication"
@@ -17,25 +16,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.WelcomeActivity"
+        <activity android:name=".activity.ExcerciseTrackActivity"
+            android:theme="@style/AppCompatNoActionBar">
+
+        </activity>
+        <activity
+            android:name=".activity.WelcomeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".activity.PhoneAuthenticationActivity"
-            android:theme="@style/NoActionBar"></activity>
 
         <activity
-            android:name=".activity.CreateProfileActivity"
-            android:theme="@style/NoActionBar">
-        </activity>
+            android:name=".activity.PhoneAuthenticationActivity"
+            android:theme="@style/NoActionBar" />
         <activity
             android:name=".activity.HomeScreenActivity"
-            android:theme="@style/Theme.AppCompat.Light">
-        </activity>
-
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".activity.CreateProfileActivity"
+            android:theme="@style/NoActionBar"></activity>
     </application>
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
 </manifest>

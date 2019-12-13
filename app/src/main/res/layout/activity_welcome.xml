@@ -16,7 +16,6 @@
         android:src="@drawable/homepageimage"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,54 +23,41 @@
         android:id="@+id/fwf_textview_appnamelineone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="140dp"
-        android:alpha="1.5"
-        android:fontFamily="sans-serif-smallcaps"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/nunitobold"
         android:gravity="center"
         android:text="@string/app_name1"
         android:textColor="@color/snow"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/fwf_textview_appnamelinetwo"
-        app:layout_constraintEnd_toEndOf="@+id/fwf_imageview_welcomeimage"
-        app:layout_constraintStart_toEndOf="@+id/fwf_imageview_applogo"
-        app:layout_constraintTop_toTopOf="@+id/fwf_imageview_applogo" />
+        app:layout_constraintBottom_toBottomOf="@+id/fwf_imageview_welcomeimage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/fwf_imageview_welcomeimage"
+        app:layout_constraintTop_toTopOf="@+id/fwf_imageview_welcomeimage" />
 
     <TextView
         android:id="@+id/fwf_textview_appnamelinetwo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="20dp"
-        android:alpha="1.5"
-        android:fontFamily="sans-serif-smallcaps"
+        android:fontFamily="@font/nunitobold"
         android:gravity="center"
         android:text="@string/app_name2"
         android:textColor="@color/snow"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/fwf_imageview_applogo"
-        app:layout_constraintEnd_toEndOf="@+id/fwf_imageview_welcomeimage"
-        app:layout_constraintHorizontal_bias="0.075"
-        app:layout_constraintStart_toEndOf="@+id/fwf_imageview_applogo"
+        app:layout_constraintStart_toStartOf="@+id/fwf_textview_appnamelineone"
         app:layout_constraintTop_toBottomOf="@+id/fwf_textview_appnamelineone" />
 
 
     <ImageView
         android:id="@+id/fwf_imageview_applogo"
-        android:layout_width="92dp"
-        android:layout_height="92dp"
-        android:layout_marginStart="62dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="8dp"
-        android:alpha="1.5"
         android:scaleType="fitXY"
         android:src="@drawable/ic_dummy_logo_light"
-        app:layout_constraintBottom_toBottomOf="@+id/fwf_imageview_welcomeimage"
-        app:layout_constraintEnd_toStartOf="@+id/fwf_textview_appnamelineone"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/fwf_imageview_welcomeimage"
-        app:layout_constraintTop_toTopOf="@+id/fwf_imageview_welcomeimage"
-        app:layout_constraintVertical_bias="0.589" />
+        app:layout_constraintBottom_toBottomOf="@+id/fwf_textview_appnamelinetwo"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toStartOf="@+id/fwf_textview_appnamelinetwo"
+        app:layout_constraintTop_toTopOf="@+id/fwf_textview_appnamelineone" />
 
     <TextView
         android:id="@+id/fwf_textview_apptaglineone"
@@ -80,33 +66,27 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:fontFamily="sans-serif-smallcaps"
+        android:fontFamily="@font/robotobold"
         android:text="@string/app_tag1"
         android:textColor="@color/snow"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.453"
+        app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fwf_imageview_welcomeimage"
-        app:layout_constraintVertical_bias="0.306" />
+        app:layout_constraintVertical_bias="0.3" />
 
     <TextView
         android:id="@+id/fwf_textview_apptaglinetwo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:fontFamily="sans-serif-smallcaps"
         android:text="@string/app_tag2"
         android:textColor="@color/snow"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.348"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/fwf_textview_apptaglineone"
         app:layout_constraintTop_toBottomOf="@+id/fwf_textview_apptaglineone"
-        app:layout_constraintVertical_bias="0.048" />
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

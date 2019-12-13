@@ -2,6 +2,7 @@ package com.kryptgames.health.fitwithfriends.activity;
 
 import android.app.DatePickerDialog;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -28,26 +29,32 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.kryptgames.health.fitwithfriends.Profile;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.kryptgames.health.fitwithfriends.models.Profile;
 import com.kryptgames.health.fitwithfriends.R;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CreateProfileActivity extends AppCompatActivity {
 
     public static final String TAG = "CreateProfileActivity";
-
     private static final int PICK_IMAGE = 1;
 
     TextView mDisplayDate;
@@ -67,6 +74,10 @@ public class CreateProfileActivity extends AppCompatActivity {
     Uri imageUri;
     TextView tv;
 
+    FirebaseStorage storage;
+    StorageReference storageReference;
+
+
 
 
 
@@ -74,6 +85,10 @@ public class CreateProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
 
         profilePic = findViewById(R.id.profilePic);
 
@@ -106,11 +121,17 @@ public class CreateProfileActivity extends AppCompatActivity {
 
 
                     Profile profile = postSnapshot.getValue(Profile.class);
-                    Log.e("Get Data", profile.getName());
-                    Log.e("Get Data", profile.getGenre());
-                    Log.e("Get Data", profile.getDob());
-                    Log.e("Get Data", profile.getHeight());
-                    Log.e("Get Data", profile.getWeight());
+                    /*
+                    if(profile!= null) {
+                        Log.e("Get Data", profile.getName());
+                        Log.e("Get Data", profile.getGenre());
+                        Log.e("Get Data", profile.getDob());
+                        Log.e("Get Data", profile.getHeight());
+                        Log.e("Get Data", profile.getWeight());
+
+                    }
+                    */
+
 
 
                 }
@@ -172,7 +193,7 @@ public class CreateProfileActivity extends AppCompatActivity {
         weight.add(0, "Weight");
 
 
-        for (int i = 20; i < 200; i++) {
+        for (int i = 2; i < 200; i++) {
             String item = String.valueOf(i + " " + "Kgs");
             weight.add(item);
 
@@ -207,8 +228,6 @@ public class CreateProfileActivity extends AppCompatActivity {
         Gender.add("Male");
         Gender.add("Female");
         Gender.add("Others");
-
-
         ArrayAdapter<String> dataAdapter;
         dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Gender);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -245,6 +264,7 @@ public class CreateProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 profileCreated();
+                uploadImage();
 
 
             }
@@ -301,11 +321,9 @@ public class CreateProfileActivity extends AppCompatActivity {
             databaseReference.child(key).setValue(profile);
 
             Toast.makeText(this, "Profile Created", Toast.LENGTH_SHORT).show();
-
             Intent homeIntent = new Intent(CreateProfileActivity.this, HomeScreenActivity.class);
             startActivity(homeIntent);
             finish();
-
         } else {
             Toast.makeText(this, "No Field should be Empty", Toast.LENGTH_SHORT).show();
         }
@@ -323,6 +341,41 @@ public class CreateProfileActivity extends AppCompatActivity {
             profilePic.setImageBitmap(bitmap);
         }catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void uploadImage() {
+
+        if(imageUri != null)
+        {
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+
+            StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+            ref.putFile(imageUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.dismiss();
+                            Toast.makeText(CreateProfileActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(CreateProfileActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                    .getTotalByteCount());
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                        }
+                    });
         }
     }
 
