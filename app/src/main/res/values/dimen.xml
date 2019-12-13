@@ -54,7 +54,7 @@
     <dimen name="fwf_layout_recyclerview_margin">12dp</dimen>
     <dimen name="fwf_button_createmission_paddingstart">20dp</dimen>
     <dimen name="fwf_button_createmission_paddingend">20dp</dimen>
-    <dimen name="fwf_button_createmission_marginbottom">24dp</dimen>
+    <dimen name="fwf_button_createmission_marginbottom">28dp</dimen>
     <dimen name="selected_marginstart">4dp</dimen>
     <dimen name="fwf_textview_title_margintop">12dp</dimen>
     <dimen name="fwf_textview_title_marginbottom">12dp</dimen>
@@ -97,7 +97,8 @@
     <dimen name="fwf_button_accept_margintop">-6dp</dimen>
     <dimen name="fwf_button_accept_marginbottom">-6dp</dimen>
     <dimen name="fwf_button_accept_textsize">12sp</dimen>
-    <dimen name="fwf_layout_view_pager_marginbottom">60dp</dimen>
+    <dimen name="fwf_layout_view_pager_marginbottom">56dp</dimen>
+    <dimen name="main_container_marginbottom">56dp</dimen>
 
     <dimen name="main_container_marginbottom">56dp</dimen>
 
