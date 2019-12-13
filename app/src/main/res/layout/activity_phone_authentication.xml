@@ -125,34 +125,38 @@
                 android:textColorHint="@color/mdtp_transparent_black"
                 android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/fwf_edittext_otp"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/fwf_edittext_phonenumber"
-                android:layout_centerInParent="true"
+                android:id="@+id/fwf_layout_pinentry"
                 android:layout_centerHorizontal="true"
+                android:layout_below="@+id/fwf_edittext_phonenumber"
+                android:background="@drawable/pinentry_background"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
                 android:layout_marginTop="38dp"
-                android:background="@xml/edit_round"
-                android:paddingStart="112dp"
-                android:paddingEnd="112dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:hint="@string/fwf_editText_otp_hint"
-                android:inputType="number"
-                android:maxLength="6"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textColorHint="@color/mdtp_transparent_black"
-                android:textSize="20sp"
-                android:visibility="gone" />
+                android:visibility="gone">
+                <com.alimuzaffar.lib.pin.PinEntryEditText
+                    android:id="@+id/fwf_pinentryedittext_otp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="false"
+                    android:digits="1234567890"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:textIsSelectable="false"
+                    android:textSize="16sp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    />
+            </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/fwf_button_otp"
                 style="@style/button_round"
                 android:layout_width="wrap_content"
                 android:layout_height="52dp"
-                android:layout_below="@+id/fwf_edittext_otp"
+                android:layout_below="@+id/fwf_layout_pinentry"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="38dp"
                 android:background="@drawable/button_round"

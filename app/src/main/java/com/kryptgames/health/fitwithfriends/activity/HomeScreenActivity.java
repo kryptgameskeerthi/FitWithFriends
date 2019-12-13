@@ -27,6 +27,13 @@ import com.kryptgames.health.fitwithfriends.adapters.Pager;
 import com.kryptgames.health.fitwithfriends.R;
 import com.kryptgames.health.fitwithfriends.fragment.ExerciseListFragment;
 import com.kryptgames.health.fitwithfriends.fragment.UserProfilePageFragment;
+import com.kryptgames.health.fitwithfriends.models.InvitePopupPojo;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
@@ -36,13 +43,31 @@ public class HomeScreenActivity extends AppCompatActivity {
     private TextView notificationCount;
     private ViewPager viewPager;
 
+    private String senderNumber,missionTitle;
+    private ArrayList<InvitePopupPojo> participantsList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acitivity_drawer);
         //openDialog();
 
-        //openDialog();
+        senderNumber=getIntent().getStringExtra("senderNumber");
+        if(senderNumber!=null){
+        missionTitle=getIntent().getStringExtra("missionTitle");
+        //participantsList=getIntent().getExtras().getParcelableArrayList("userinfo");
+
+       /* try{JSONArray participantsArray = new JSONArray(getIntent().getParcelableArrayListExtra("userinfo"));
+        for(int i=0;i<participantsArray.length();i++) {
+            JSONObject participantsArrayJSONObject = participantsArray.getJSONObject(i);
+            int image=participantsArrayJSONObject.getInt("userImage");
+            String name=participantsArrayJSONObject.getString("userName");
+            participantsList.add(new InvitePopupPojo(image,name));
+        }}catch (JSONException e){e.printStackTrace();}*/
+
+
+            openDialog();}
+
 
         this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.activity_toolbar);
@@ -117,10 +142,15 @@ public class HomeScreenActivity extends AppCompatActivity {
         viewPager.setCurrentItem(position);
     }
 
-    /*public void openDialog(){
+    public void openDialog(){
         InvitePopup invitePopup=new InvitePopup();
+        Bundle bundle=new Bundle();
+        bundle.putString("userNumber",senderNumber);
+        bundle.putString("missionTitle",missionTitle);
+        bundle.putParcelableArrayList("userinfo",participantsList);
+        invitePopup.setArguments(bundle);
         invitePopup.show(getSupportFragmentManager(),"example");
-    }*/
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelelctedListener=new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override

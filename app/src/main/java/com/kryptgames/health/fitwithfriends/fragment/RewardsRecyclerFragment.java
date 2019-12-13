@@ -27,6 +27,7 @@ public class RewardsRecyclerFragment extends Fragment {
     private List<RewardsPojo> mlist=new ArrayList<>();
     private int checkedPosition=-1,group;
     private TextView title;
+    private String missionTitle;
 
     public static Fragment newInstance() {
         return new RewardsRecyclerFragment();
@@ -38,6 +39,7 @@ public class RewardsRecyclerFragment extends Fragment {
 
         Bundle bundle=this.getArguments();
         group=bundle.getInt("group");
+        missionTitle=bundle.getString("title");
 
         View view=inflater.inflate(R.layout.new_missions_recycler_view,container,false);
         title=view.findViewById(R.id.fwf_textview_title);
@@ -115,6 +117,7 @@ public class RewardsRecyclerFragment extends Fragment {
 
                     Bundle bundle=new Bundle();
                     bundle.putInt("group",group);
+                    bundle.putString("title",missionTitle);
                     fragment.setArguments(bundle);
 
                     fragmentTransaction.replace(R.id.fwf_layout_fragmentcontainer,fragment);

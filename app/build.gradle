@@ -31,6 +31,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:18.1.0'
     implementation 'com.google.firebase:firebase-database:18.0.1'
     implementation 'com.google.firebase:firebase-messaging:19.0.1'
+    implementation 'com.google.firebase:firebase-core:16.0.4'
     implementation 'com.google.firebase:firebase-storage:19.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13-beta-3'
@@ -62,6 +63,15 @@ dependencies {
     //Blur image
     implementation 'com.github.jgabrielfreitas:BlurImageView:1.0.1'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    implementation('com.alimuzaffar.lib:pinentryedittext:2.0.6') {
+        exclude group: 'androidx.appcompat', module: 'appcompat'
+    }
+    //Push Notification
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+
 
 }
 
