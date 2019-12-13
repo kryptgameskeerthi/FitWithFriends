@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1083531644110-apr4ddu0222gl1tfugh4a4n537d8nm4o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kryptgames.health.fitwithfriends",
+            "certificate_hash": "bebd27a657ab7683ddbe6f6185bb58560437185d"
+          }
+        },
+        {
           "client_id": "1083531644110-4ivkhud0m4ua9pqoj6mc2e3fua52mmi9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

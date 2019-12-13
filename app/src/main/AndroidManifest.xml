@@ -16,10 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.ExcerciseTrackActivity"
-            android:theme="@style/AppCompatNoActionBar">
 
-        </activity>
+        <activity
+            android:name=".activity.ExcerciseTrackActivity"
+            android:theme="@style/AppCompatNoActionBar"></activity>
         <activity
             android:name=".activity.WelcomeActivity"
             android:screenOrientation="portrait"
@@ -28,7 +28,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <activity
@@ -39,13 +38,13 @@
             android:theme="@style/Theme.AppCompat.Light" />
         <activity
             android:name=".activity.CreateProfileActivity"
-            android:theme="@style/NoActionBar"></activity>
+            android:theme="@style/NoActionBar" />
     </application>
-    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
 </manifest>
