@@ -110,7 +110,7 @@ public class InvitePopup extends AppCompatDialogFragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Profile profile = dataSnapshot.getValue(Profile.class);
                 hostName.setText((profile.getName()) + " " + (profile.getLastName()));
-                Picasso.with(getContext()).load((dataSnapshot.child("imageRef").getValue(String.class))).into(hostImage);
+                Picasso.get().load((dataSnapshot.child("imageRef").getValue(String.class))).into(hostImage);
                 tokenId=dataSnapshot.child("token").getValue(String.class);
 
             }
