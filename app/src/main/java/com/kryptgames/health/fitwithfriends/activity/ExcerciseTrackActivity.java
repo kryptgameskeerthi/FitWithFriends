@@ -1,12 +1,10 @@
 package com.kryptgames.health.fitwithfriends.activity;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,24 +13,18 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.kryptgames.health.fitwithfriends.FitWithFriendsApplication;
+import com.kryptgames.health.fitwithfriends.utils.FitWithFriendsApplication;
 import com.kryptgames.health.fitwithfriends.R;
 import com.kryptgames.health.fitwithfriends.adapters.ActivityTypeListAdapter;
 import com.kryptgames.health.fitwithfriends.models.FitActivity;
 import com.kryptgames.health.fitwithfriends.utils.FitCalculationUtils;
 import com.yashovardhan99.timeit.Stopwatch;
-
-import java.lang.reflect.Executable;
 
 
 public class ExcerciseTrackActivity extends AppCompatActivity implements ActivityTypeListAdapter.FitActivityTypeClicked, SensorEventListener {

@@ -1,7 +1,8 @@
-package com.kryptgames.health.fitwithfriends;
+package com.kryptgames.health.fitwithfriends.utils;
 
 import android.app.Application;
 
+import com.kryptgames.health.fitwithfriends.R;
 import com.kryptgames.health.fitwithfriends.models.FitActivityType;
 import com.kryptgames.health.fitwithfriends.presenters.DbPresenterContract;
 import com.kryptgames.health.fitwithfriends.presenters.TestDbPresenter;

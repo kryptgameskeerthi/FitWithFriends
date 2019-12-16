@@ -11,11 +11,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.kryptgames.health.fitwithfriends.FitWithFriendsApplication;
+import com.kryptgames.health.fitwithfriends.utils.FitWithFriendsApplication;
 import com.kryptgames.health.fitwithfriends.R;
 import com.kryptgames.health.fitwithfriends.models.FitActivityType;
-
-import java.util.ArrayList;
 
 
 public class ActivityTypeListAdapter extends RecyclerView.Adapter<ActivityTypeListAdapter.ViewHolder> {
