@@ -204,7 +204,7 @@ public class InviteFriendsFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
             final FriendsInvitation friendsInvitation = horizontalList.get(position);
-            Picasso.with(getContext()).load(horizontalList.get(position).getUserImageRef()).into(holder.userImage);
+            Picasso.get().load(horizontalList.get(position).getUserImageRef()).into(holder.userImage);
             holder.userName.setText(horizontalList.get(position).getUserName());
             holder.userImage.setForeground(friendsInvitation.isSelected() ? getResources().getDrawable(R.drawable.user_selected_foreground) : null);
             holder.userImage.setOnClickListener(new View.OnClickListener() {
@@ -355,6 +355,7 @@ public class InviteFriendsFragment extends Fragment {
 
                 if (phoneNumber.length() > 10) {
                     phoneNumber = phoneNumber.replaceAll("\\s", "");
+                    phoneNumber=phoneNumber.replaceAll(".","");
                     phoneNumber = phoneNumber.replaceAll("-", "");
                     phoneNumber = phoneNumber.replace("+91", "");
                     phoneNumber = phoneNumber.replace("(", "");

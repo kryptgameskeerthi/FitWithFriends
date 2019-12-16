@@ -92,7 +92,7 @@
             android:layout_height="40dp"
             android:layout_gravity="bottom|right"
             android:background="@drawable/circle"
-            android:src="@mipmap/ic_pencil"
+
 
             />
 

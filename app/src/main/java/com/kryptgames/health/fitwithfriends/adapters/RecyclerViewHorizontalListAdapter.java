@@ -44,7 +44,7 @@ public class RecyclerViewHorizontalListAdapter extends RecyclerView.Adapter<Recy
     @Override
     public void onBindViewHolder(DetailsViewHolder holder, final int position) {
 
-        Picasso.with(context).load(horizontalList.get(position).getUserImage()).into(holder.imageView);
+        Picasso.get().load(horizontalList.get(position).getUserImage()).into(holder.imageView);
 
 
 

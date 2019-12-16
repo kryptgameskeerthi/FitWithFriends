@@ -66,7 +66,7 @@ public class RecyclerFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new RecyclerViewAdapter(mlist, getContext()));
-        populateListHorizontal();
+        //populateListHorizontal();
         populateList();
         getData();
         getList();
@@ -269,7 +269,7 @@ public class RecyclerFragment extends Fragment {
         mlist.add(five);
     }
 
-    private void populateListHorizontal(){
+   /* private void populateListHorizontal(){
         InvitePopupPojo one = new InvitePopupPojo(R.drawable.harryw,"Harry P");
         InvitePopupPojo two = new InvitePopupPojo(R.drawable.harryw,"Harry P");
         InvitePopupPojo three = new InvitePopupPojo(R.drawable.harryw,"Harry P");
@@ -284,7 +284,7 @@ public class RecyclerFragment extends Fragment {
         nList.add(six);
 
 
-    }
+    }*/
 
 
 
