@@ -126,6 +126,16 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
                 });
                 pinentryLayout.setVisibility(View.VISIBLE);
                 mbutton.setText("Go");
+
+                mbutton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mEntered_OTP = (PinEntryEditText) findViewById(R.id.fwf_pinentryedittext_otp);
+                        String entered_OTP = mEntered_OTP.getText().toString();
+                        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, entered_OTP);
+                        signInWithPhoneAuthCredential(credential);
+                    }
+                });
             }
         };
         mbutton.setOnClickListener(new View.OnClickListener() {
@@ -141,15 +151,7 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
                 mUserNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(13) });
                 mUserNumber.setEnabled(false);
                 mUserNumber.setBackground(getResources().getDrawable(R.drawable.edittext_steelbackground));
-                mbutton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mEntered_OTP = (PinEntryEditText) findViewById(R.id.fwf_pinentryedittext_otp);
-                        String entered_OTP = mEntered_OTP.getText().toString();
-                        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, entered_OTP);
-                        signInWithPhoneAuthCredential(credential);
-                    }
-                });
+
             }
         });
     }
