@@ -17,9 +17,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 
 import android.view.Gravity;
@@ -45,6 +47,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -55,6 +58,7 @@ import com.kryptgames.health.fitwithfriends.R;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -66,12 +70,14 @@ public class CreateProfileActivity extends AppCompatActivity {
     private static final int PICK_IMAGE = 1;
 
     TextView mDisplayDate;
+    String valid_email;
 
-    EditText edName,edLastName;
+    EditText edName,edLastName,emailAddress;
     Spinner spinnerGender;
 
     Button save;
-    CircleImageView profilePic,edit;
+    CircleImageView profilePic;
+    ImageView edit;
     ImageButton back;
 
     DatabaseReference databaseReference;
@@ -104,6 +110,7 @@ public class CreateProfileActivity extends AppCompatActivity {
 
 
         userNumber=getIntent().getStringExtra("number");
+        emailAddress=findViewById(R.id.emailAddress);
 
 
         storage = FirebaseStorage.getInstance();
@@ -202,6 +209,47 @@ public class CreateProfileActivity extends AppCompatActivity {
                         return "";
                     }
                 }
+        });
+
+
+        emailAddress.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before,
+                                      int count) {
+
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                Is_Valid_Email(emailAddress); // pass your EditText Obj here.
+            }
+
+            public void Is_Valid_Email(EditText edt) {
+                if (edt.getText().toString() == null) {
+                    edt.setError("Invalid Email Address");
+                    valid_email = null;
+                } else if (isEmailValid(edt.getText().toString()) == false) {
+                    edt.setError("Invalid Email Address");
+                    valid_email = null;
+                } else {
+                    valid_email = edt.getText().toString();
+                }
+            }
+
+            boolean isEmailValid(CharSequence email) {
+                return android.util.Patterns.EMAIL_ADDRESS.matcher(email)
+                        .matches();
+            }
         });
 
 
@@ -335,10 +383,11 @@ public class CreateProfileActivity extends AppCompatActivity {
 
         String name = edName.getText().toString().trim();
         String lastName = edLastName.getText().toString().trim();
-        String genre = spinnerGender.getSelectedItem().toString();
+        String gender = spinnerGender.getSelectedItem().toString();
         String dob = mDisplayDate.getText().toString();
         String height = heightSpinner.getSelectedItem().toString();
         String weight = weightSpinner.getSelectedItem().toString();
+        String email=emailAddress.getText().toString();
 
 
 
@@ -363,9 +412,13 @@ public class CreateProfileActivity extends AppCompatActivity {
 
 
                                             imageReference=String.valueOf(uri);
-                                            Profile profile = new Profile(name, lastName, genre, dob,height, weight,imageReference, userNumber);
+                                            Profile profile = new Profile(name, lastName, gender, dob,height, weight,imageReference, userNumber,email);
 
                                             databaseReference.child(userNumber).setValue(profile);
+                                            HashMap<String,Object>a=new HashMap<>();
+                                            String token= FirebaseInstanceId.getInstance().getToken();
+                                            a.put("token",token);
+                                            databaseReference.child(userNumber).updateChildren(a);
 
 
                                         /*HashMap<String, String> hashMap = new HashMap<>();
@@ -399,6 +452,8 @@ public class CreateProfileActivity extends AppCompatActivity {
 
                     }
                 });
+            }else {
+                Toast.makeText(this, "please upload the image", Toast.LENGTH_SHORT).show();
             }
 
 
