@@ -4,97 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ice"
+    android:background="#f0f3f4"
     tools:context=".activity.CreateProfileActivity"
     >
-
-
-    <!--<com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_marginTop="24dp"
-        android:background="@color/colorPrimary"
-        android:elevation="5dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        >
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:id="@+id/toolbarText"
-            android:text="Create Profile"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:fontFamily="@font/robotoblack"
-            >
-
-        </TextView>
-
-
-    </com.google.android.material.appbar.MaterialToolbar>-->
-
-    <LinearLayout
-        android:id="@+id/head"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/snow"
-        android:layout_marginTop="24dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/toolbarText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/robotoblack"
-            android:gravity="center"
-            android:text="Create Profile"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20dp"/>
-
-
-    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/frameLayout2"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/head"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_goneMarginTop="30dp">
-
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profilePic"
             android:layout_width="match_parent"
-            android:layout_height="97dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/harryw" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
+
+        <ImageView
             android:id="@+id/edit"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:layout_gravity="bottom|right"
-            android:background="@drawable/circle"
-
-
+            android:src="@mipmap/ic_create"
             />
+
 
 
     </FrameLayout>
@@ -103,12 +46,12 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/shape"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/save"
@@ -180,6 +123,25 @@
 
         </LinearLayout>
 
+        <EditText
+            android:id="@+id/emailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/edittext"
+            android:hint="Email Address"
+            android:fontFamily="@font/robotolight"
+            android:padding="5dip"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:inputType="text"
+            android:maxLines="1"/>
+
+
+
         <TextView
             android:id="@+id/mDisplayDate"
             android:layout_width="match_parent"
@@ -190,9 +152,9 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/edittext"
             android:hint="Enter Date Of Birth"
-            android:gravity="center"
             android:padding="5dp"
             android:textAlignment="center"
+            android:gravity="center"
             android:textSize="20dp"
             android:fontFamily="@font/robotolight"
             />
@@ -209,7 +171,7 @@
             android:layout_marginBottom="12dp"
             android:background="@drawable/spinner"
             android:orientation="horizontal"
-           >
+            >
 
 
             <androidx.appcompat.widget.AppCompatSpinner
@@ -238,7 +200,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="8dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/spinner"
             android:orientation="horizontal">
 
@@ -259,25 +221,25 @@
         </LinearLayout>
 
 
+
     </LinearLayout>
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/save"
-        style="@style/button_round"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="100dp"
+        android:paddingVertical="12dp"
+        android:paddingHorizontal="60dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/button"
-        android:padding="15dp"
+        android:background="@drawable/button_round"
+        style="@style/button_round"
         android:text="Save"
         android:textColor="#FFFFFF"
-        app:cornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:cornerRadius="20dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
