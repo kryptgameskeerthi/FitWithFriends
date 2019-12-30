@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,122 +8,105 @@
     tools:context=".activity.PhoneAuthenticationActivity">
 
 
-    <FrameLayout
-        android:id="@+id/frameLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_goneMarginTop="30dp">
+    <RelativeLayout
+        android:id="@+id/fwf_logoandtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp">
 
         <ImageView
             android:id="@+id/fwf_imageview_applogo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="120dp"
-            android:layout_marginBottom="8dp"
-            android:scaleX="1.2"
-            android:scaleY="1.2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.303"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.172"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
             app:srcCompat="@drawable/ic_dummy_logo" />
 
-        <TextView
-            android:id="@+id/fwf_textview_appnamelineone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="28dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="@font/nunitoregular"
-            android:gravity="center"
-            android:text="@string/app_name1"
-            android:textColor="@color/snow"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.849"
-            app:layout_constraintStart_toEndOf="@+id/fwf_imageview_applogo"
-            app:layout_constraintTop_toTopOf="@+id/fwf_imageview_applogo" />
-
-        <TextView
-            android:id="@+id/fwf_textview_appnamelinetwo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="27dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="4dp"
-            android:fontFamily="@font/nunitoregular"
-            android:gravity="center"
-            android:text="@string/app_name2"
-            android:textColor="@color/snow"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/fwf_imageview_applogo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/fwf_imageview_applogo" />
-    </FrameLayout>
-
-
         <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="match_parent"
-            android:layout_height="480dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.333"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/fwf_imageview_applogo"
+            android:layout_centerVertical="true">
 
             <TextView
-                android:id="@+id/fwf_textview_signuplogin"
-                android:layout_width="match_parent"
+                android:id="@+id/fwf_textview_appnamelineone"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="48dp"
-                android:text="@string/fwf_text_signUP"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="20sp"/>
+                android:layout_marginStart="8dp"
+                android:text="Fit with"
+                android:textSize="24sp"
+                android:textColor="@color/snow"
+                android:fontFamily="@font/robotobold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fwf_textview_appnamelineone"
+                android:layout_alignStart="@+id/fwf_textview_appnamelineone"
+                android:text="Friends"
+                android:fontFamily="@font/robotobold"
+                android:textSize="24sp"
+                android:textColor="@color/snow"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/fwf_textview_signuplogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/drab"
+        android:layout_marginTop="300dp"
+        app:cardElevation="20dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:text="Sign Up/Login"
+            android:textColor="@color/snow"
+            android:textSize="20sp"
+            android:fontFamily="@font/robotobold"
+            android:layout_gravity="center_horizontal"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+    <EditText
+        android:id="@+id/fwf_edittext_countrycode"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="+91"
+        android:background="@drawable/pinentry_background"
+        android:layout_below="@+id/fwf_textview_signuplogin"
+        android:textColor="@color/black"
+        android:paddingVertical="10dp"
+        android:layout_marginStart="40dp"
+        android:textAlignment="center"
+        android:layout_marginTop="80dp"
+        android:maxLength="4"
+        android:maxLines="1"
+        android:textSize="16sp"
+        />
 
             <EditText
                 android:id="@+id/fwf_edittext_phonenumber"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/fwf_textview_signuplogin"
-                android:layout_centerInParent="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="38dp"
-                android:background="@xml/edit_round"
+                android:layout_toEndOf="@+id/fwf_edittext_countrycode"
+                android:layout_alignTop="@+id/fwf_edittext_countrycode"
+                android:background="@drawable/pinentry_background"
                 android:hint="@string/fwf_editText_phoneNumber_hint"
-                android:paddingStart="60dp"
-                android:paddingEnd="60dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="40dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:inputType="phone"
-                android:maxLength="13"
+                android:maxLength="10"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textColorHint="@color/mdtp_transparent_black"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -169,7 +152,21 @@
                 android:textAlignment="center"
                 android:textColor="@color/snow"
                 android:textSize="16sp"
+                android:textAllCaps="false"
                 app:cornerRadius="20dp" />
-        </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/fwf_progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/rust"
+        android:layout_below="@+id/fwf_textview_signuplogin"
+        android:layout_marginTop="-8dp"
+        android:visibility="gone"/>
+
+
+
+
+</RelativeLayout>

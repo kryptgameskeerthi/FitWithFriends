@@ -47,6 +47,7 @@ public class RewardsRecyclerFragment extends Fragment {
         RecyclerView recyclerView=view.findViewById(R.id.fwf_layout_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new RewardsRecyclerFragment.RecyclerViewAdapter(mlist,getContext()));
+        mlist.clear();
         populateList();
         return view;
     }

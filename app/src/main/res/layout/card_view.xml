@@ -70,14 +70,15 @@
                         android:text="75"
                         android:textSize="20sp"
                         android:textColor="@color/sage"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="%"
                         android:layout_toEndOf="@+id/percentage"
-                        android:textSize="20sp"
+                        android:layout_toRightOf="@+id/percentage"
+                        android:text="%"
                         android:textColor="@color/sage"
-                        android:layout_toRightOf="@+id/percentage"/>
+                        android:textSize="20sp" />
                 </RelativeLayout>
             </RelativeLayout>
             <RelativeLayout

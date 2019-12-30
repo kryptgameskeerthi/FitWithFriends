@@ -352,18 +352,23 @@ public class InviteFriendsFragment extends Fragment {
 
             while (phoneCursor.moveToNext()) {
                 String phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                phoneNumber=phoneNumber+"";
 
                 if (phoneNumber.length() > 10) {
                     phoneNumber = phoneNumber.replaceAll("\\s", "");
-                    phoneNumber=phoneNumber.replaceAll(".","");
                     phoneNumber = phoneNumber.replaceAll("-", "");
                     phoneNumber = phoneNumber.replace("+91", "");
                     phoneNumber = phoneNumber.replace("(", "");
                     phoneNumber = phoneNumber.replace(")", "");
                     if (phoneNumber.length() > 10)
                         phoneNumber = phoneNumber.substring(1, 11);
+
+                    else if(phoneNumber.length()==10){
+                            if(!numbers.contains(phoneNumber))
+                            numbers.add(phoneNumber);}
+
                 }
-                if (phoneNumber.length() == 10) {
+                else if(phoneNumber.length()==10) {
                     if(!numbers.contains(phoneNumber))
                     numbers.add(phoneNumber);
 
