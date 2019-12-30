@@ -15,6 +15,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +43,7 @@ import java.util.concurrent.TimeUnit;
 
 public class PhoneAuthenticationActivity extends AppCompatActivity {
 
-    private EditText mUserNumber;
+    private EditText mUserNumber,countryCode;
     private PinEntryEditText mEntered_OTP;
     private Button mbutton;
     private FirebaseAuth mAuth;
@@ -51,6 +52,7 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
     private static String cUserNumber,userNumber;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private LinearLayout pinentryLayout;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,43 +61,12 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mbutton = (Button) findViewById(R.id.fwf_button_otp);
         pinentryLayout=findViewById(R.id.fwf_layout_pinentry);
+        countryCode=findViewById(R.id.fwf_edittext_countrycode);
 
         mUserNumber = (EditText) findViewById(R.id.fwf_edittext_phonenumber);
-
-        mUserNumber.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+        progressBar=findViewById(R.id.fwf_progressbar);
 
 
-                if(s.length()>0) {
-                    char a;
-                    a = s.charAt(0);
-                    if (a == '+') {
-                        mUserNumber.setFilters(new InputFilter[]{new InputFilter.LengthFilter(13)});
-                        cUserNumber = mUserNumber.getText().toString();
-
-
-                    } else {
-                        mUserNumber.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
-                        userNumber = mUserNumber.getText().toString();
-                        cUserNumber = "+" + "91" + userNumber;
-                    }
-                }
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-
-
-            }
-        });
 
 
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -107,12 +78,18 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
             @Override
             public void onVerificationFailed(FirebaseException e) {
                 Toast.makeText(getApplicationContext(),"Service error,please try again after short time",Toast.LENGTH_LONG).show();
+                mUserNumber.setEnabled(true);
+                countryCode.setEnabled(true);
+                mUserNumber.setBackground(getResources().getDrawable(R.drawable.edittext));
+                countryCode.setBackground(getResources().getDrawable(R.drawable.edittext));
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override
             public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                 super.onCodeSent(s, forceResendingToken);
                 mVerificationId = s;
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(PhoneAuthenticationActivity.this, "Otp sent successfully", Toast.LENGTH_SHORT).show();
                 mEntered_OTP = (PinEntryEditText) findViewById(R.id.fwf_pinentryedittext_otp);
 
@@ -130,6 +107,9 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
                 mbutton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        progressBar.setVisibility(View.VISIBLE);
+                        mbutton.setEnabled(false);
+                        mbutton.setBackgroundColor(getResources().getColor(R.color.steel));
                         mEntered_OTP = (PinEntryEditText) findViewById(R.id.fwf_pinentryedittext_otp);
                         String entered_OTP = mEntered_OTP.getText().toString();
                         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, entered_OTP);
@@ -141,16 +121,17 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
         mbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
 
-                if(cUserNumber.length()>10){
-                    userNumber=cUserNumber.substring(3,13);
-                }
-                mUserNumber.setFilters(new InputFilter[]{new InputFilter.LengthFilter(13)});
-                mUserNumber.setText(cUserNumber);
+               userNumber=mUserNumber.getText().toString();
+                cUserNumber=countryCode.getText().toString()+mUserNumber.getText().toString();
+
+                mUserNumber.setText(userNumber);
                 PhoneAuthProvider.getInstance().verifyPhoneNumber(cUserNumber, 60, TimeUnit.SECONDS, PhoneAuthenticationActivity.this, mCallbacks);
-                mUserNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(13) });
                 mUserNumber.setEnabled(false);
                 mUserNumber.setBackground(getResources().getDrawable(R.drawable.edittext_steelbackground));
+                countryCode.setEnabled(false);
+                countryCode.setBackground(getResources().getDrawable(R.drawable.edittext_steelbackground));
 
             }
         });
@@ -209,6 +190,9 @@ public class PhoneAuthenticationActivity extends AppCompatActivity {
 
                         } else {
                             Toast.makeText(getApplicationContext(), "You have entered incorrect OTP", Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
+                            mbutton.setEnabled(true);
+                            mbutton.setBackgroundColor(getResources().getColor(R.color.sage));
                         }
                     }
                 });

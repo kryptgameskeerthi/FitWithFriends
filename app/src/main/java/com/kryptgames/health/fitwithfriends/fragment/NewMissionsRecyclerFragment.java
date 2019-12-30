@@ -42,6 +42,7 @@ public class NewMissionsRecyclerFragment extends Fragment {
         RecyclerView recyclerView=view.findViewById(R.id.fwf_layout_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new RecyclerViewAdapter(mlist,getContext()));
+        mlist.clear();
         populateList();
         return view;
     }
@@ -140,7 +141,7 @@ public class NewMissionsRecyclerFragment extends Fragment {
         }
     }
     private void populateList() {
-        NewMissionsPojo one=new NewMissionsPojo("Run 50 km in four days",50,4,5);
+        NewMissionsPojo one=new NewMissionsPojo("Run 50 km in four days",50,4,2);
         NewMissionsPojo two = new NewMissionsPojo("Run 100 km in eight days",100,8,7);
         NewMissionsPojo three= new NewMissionsPojo("Run 200 km in two weeks",200,14,10);
         NewMissionsPojo four =new NewMissionsPojo("Run 500 km in one month",500,30,15);
